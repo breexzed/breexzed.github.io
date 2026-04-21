@@ -1,0 +1,151 @@
+{
+  "generated": "2026-04-20T23:36:06.975Z",
+  "nodeCount": 13,
+  "indexedCount": 12,
+  "docs": [
+    {
+      "id": "trail_learning_note",
+      "title": "Learning Note",
+      "desc": "A trail that marks the edge where confusion sharpened into a useful question and that question became a stable point of return.",
+      "markdown": "A trail that marks the edge where confusion sharpened into a useful question and that question became a stable point of return.\n",
+      "tags": "learning trail",
+      "type": "trail",
+      "formula": "trace -> learning",
+      "domain": "learning",
+      "signalStatus": "",
+      "sourceRef": "trails/learning-note.md"
+    },
+    {
+      "id": "trail_entropy_note",
+      "title": "Entropy Note",
+      "desc": "A small trail confirming that entropy is not an abstract idea here but a recurring pressure visible in everyday experience, mood, and environment.",
+      "markdown": "A small trail confirming that entropy is not an abstract idea here but a recurring pressure visible in everyday experience, mood, and environment.\n",
+      "tags": "entropy trail",
+      "type": "trail",
+      "formula": "trace -> entropy",
+      "domain": "entropy",
+      "signalStatus": "",
+      "sourceRef": "trails/entropy-note.md"
+    },
+    {
+      "id": "trail_coordination_note",
+      "title": "Coordination Note",
+      "desc": "A confirming trace that mutual understanding leaves behind structure: repeated language, smoother handoff, less friction, and a clearer shared direction.",
+      "markdown": "A confirming trace that mutual understanding leaves behind structure: repeated language, smoother handoff, less friction, and a clearer shared direction.\n",
+      "tags": "coordination trail",
+      "type": "trail",
+      "formula": "trace -> coordination",
+      "domain": "coordination",
+      "signalStatus": "",
+      "sourceRef": "trails/coordination-note.md"
+    },
+    {
+      "id": "learning_edge",
+      "title": "Learning Edge",
+      "desc": "The learning edge is the moment where not knowing becomes productive instead of humiliating, and uncertainty begins to function as a route rather than a stop sign.",
+      "markdown": "The learning edge is the moment where not knowing becomes productive instead of humiliating, and uncertainty begins to function as a route rather than a stop sign.\n\nLinked trail:\n- [Learning Note](../trails/learning-note.md)\n",
+      "tags": "learning epistemics",
+      "type": "signal",
+      "formula": "ignorance -> inquiry",
+      "domain": "learning",
+      "signalStatus": "emerging",
+      "sourceRef": "signals/learning-edge.md"
+    },
+    {
+      "id": "entropy_window",
+      "title": "Entropy Window",
+      "desc": "Entropy keeps reappearing as a direct reminder that life is not fully domesticated by plans, categories, or ideals of coherence.",
+      "markdown": "Entropy keeps reappearing as a direct reminder that life is not fully domesticated by plans, categories, or ideals of coherence.\n\nLinked trail:\n- [Entropy Note](../trails/entropy-note.md)\n",
+      "tags": "entropy observation",
+      "type": "signal",
+      "formula": "disorder -> contact",
+      "domain": "entropy",
+      "signalStatus": "confirmed",
+      "sourceRef": "signals/entropy-window.md"
+    },
+    {
+      "id": "coordination_window",
+      "title": "Coordination Window",
+      "desc": "Coordination appears as a signal whenever separate perspectives briefly find enough structure to act together without collapsing into sameness.",
+      "markdown": "Coordination appears as a signal whenever separate perspectives briefly find enough structure to act together without collapsing into sameness.\n\nLinked trail:\n- [Coordination Note](../trails/coordination-note.md)\n",
+      "tags": "coordination systems",
+      "type": "signal",
+      "formula": "relation -> mutual understanding",
+      "domain": "coordination",
+      "signalStatus": "emerging",
+      "sourceRef": "signals/coordination-window.md"
+    },
+    {
+      "id": "systems_as_world",
+      "title": "Systems As World",
+      "desc": "The world exhibits itself as systems to beings: arrangements, feedbacks, frictions, interfaces, and repeating forms that can be learned and re-entered.",
+      "markdown": "The world exhibits itself as systems to beings: arrangements, feedbacks, frictions, interfaces, and repeating forms that can be learned and re-entered.\n\nThis concept currently leans on:\n- [World As Systems](../articulations/world-as-systems.md)\n- [Coordination Window](../signals/coordination-window.md)\n- [Coordination Note](../trails/coordination-note.md)\n",
+      "tags": "systems order",
+      "type": "concept",
+      "formula": "world -> systems -> pattern",
+      "domain": "systems",
+      "signalStatus": "",
+      "sourceRef": "concepts/systems-as-world.md"
+    },
+    {
+      "id": "knowing_and_knowledge",
+      "title": "Knowing And Knowledge",
+      "desc": "Knowing is not only possession. It is an active relation between contact, interpretation, doubt, correction, and the forms that remain after understanding moves.",
+      "markdown": "Knowing is not only possession. It is an active relation between contact, interpretation, doubt, correction, and the forms that remain after understanding moves.\n\nThis concept is grounded by:\n- [Knowledge In Motion](../articulations/knowledge-in-motion.md)\n- [Learning Edge](../signals/learning-edge.md)\n- [Learning Note](../trails/learning-note.md)\n",
+      "tags": "epistemics knowledge",
+      "type": "concept",
+      "formula": "contact -> inference -> knowledge",
+      "domain": "epistemics",
+      "signalStatus": "",
+      "sourceRef": "concepts/knowing-and-knowledge.md"
+    },
+    {
+      "id": "being_in_the_world",
+      "title": "Being In The World",
+      "desc": "Being is not isolated from the world. It appears through relation, constraint, contact, and the forms of attention that become possible inside them.",
+      "markdown": "Being is not isolated from the world. It appears through relation, constraint, contact, and the forms of attention that become possible inside them.\n\nThis concept is presently cross-linked through:\n- [Constraints And Becoming](../articulations/constraints-and-becoming.md)\n- [Entropy Window](../signals/entropy-window.md)\n- [Entropy Note](../trails/entropy-note.md)\n",
+      "tags": "philosophy being",
+      "type": "concept",
+      "formula": "being -> world -> relation",
+      "domain": "ontology",
+      "signalStatus": "",
+      "sourceRef": "concepts/being-in-the-world.md"
+    },
+    {
+      "id": "world_as_systems",
+      "title": "World As Systems",
+      "desc": "To approach the world as systems is to look for the visible and hidden rules by which relations hold, break, and reform.",
+      "markdown": "To approach the world as systems is to look for the visible and hidden rules by which relations hold, break, and reform.\n\nRelated nodes:\n- [Systems As World](../concepts/systems-as-world.md)\n- [Coordination Window](../signals/coordination-window.md)\n",
+      "tags": "systems topology",
+      "type": "articulation",
+      "formula": "relation -> structure -> navigation",
+      "domain": "systems",
+      "signalStatus": "",
+      "sourceRef": "articulations/world-as-systems.md"
+    },
+    {
+      "id": "knowledge_in_motion",
+      "title": "Knowledge In Motion",
+      "desc": "Knowledge lives by moving between minds, mediums, questions, and revisions. What remains alive is what can still be entered, tested, and transformed.",
+      "markdown": "Knowledge lives by moving between minds, mediums, questions, and revisions. What remains alive is what can still be entered, tested, and transformed.\n\nRelated nodes:\n- [Knowing And Knowledge](../concepts/knowing-and-knowledge.md)\n- [Learning Edge](../signals/learning-edge.md)\n",
+      "tags": "learning memetics",
+      "type": "articulation",
+      "formula": "knowledge -> move -> live",
+      "domain": "epistemics",
+      "signalStatus": "",
+      "sourceRef": "articulations/knowledge-in-motion.md"
+    },
+    {
+      "id": "constraints_and_becoming",
+      "title": "Constraints And Becoming",
+      "desc": "Constraints do not only suffocate. They also expose the exact shape of what resists, what bends, and what might become otherwise through patient attention.",
+      "markdown": "Constraints do not only suffocate. They also expose the exact shape of what resists, what bends, and what might become otherwise through patient attention.\n\nRelated nodes:\n- [Being In The World](../concepts/being-in-the-world.md)\n- [Entropy Window](../signals/entropy-window.md)\n",
+      "tags": "becoming limits",
+      "type": "articulation",
+      "formula": "constraint != end",
+      "domain": "philosophy",
+      "signalStatus": "",
+      "sourceRef": "articulations/constraints-and-becoming.md"
+    }
+  ]
+}

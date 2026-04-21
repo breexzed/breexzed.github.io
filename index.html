@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BREEXZED — Digital Estate</title>
+
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/owlcyon.css">
+
+<script type="module" src="/src/lib/main.ts"></script>
+</head>
+<body>
+
+<canvas id="cosmos"></canvas>
+
+<nav>
+  <a href="/" class="nav-mark" data-route>BREEXZED</a>
+  <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-links" aria-label="Toggle navigation">☰</button>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="/" data-route>Home</a></li>
+    <li><a href="/map" data-route>Map</a></li>
+    <li><a href="/corpus" data-route>Corpus</a></li>
+    <li><a href="/signals" data-route>Signal</a></li>
+    <li><a href="/projects" data-route>Projects</a></li>
+  </ul>
+</nav>
+
+<section id="home" class="hero">
+  <div class="wrap hero-wrap">
+    <p class="hero-epoch reveal">BREEXZED</p>
+    <div class="hero-manifesto reveal">
+      <p>Trapped within constraints that suffocates being and becoming, i untie myself from the shackles binded on me, through the dispersion of my soul and the traces i leave of having existed, this site serves as a home for the one in me who knows nothing, but wants to learn.</p>
+      <p>Having seen how i saw myself, i realized, there was little i knew apart from myself. Self-knowledge is no mystery, understanding one thing is an implicit attribution to the one who understands. I want to have an understanding, yes of me, but more also of the world around me and of how it constituted, what role i could play in bringing out the beautiful pain of being this specific being, this person, whoami&gt; breexzed</p>
+    </div>
+
+    <div class="hero-interests reveal">
+      <p class="hero-interest-label">Base Interests</p>
+      <div class="interest-list">
+        <div class="interest-item">
+          <span class="interest-term">Philosophy</span>
+          <span class="interest-body">what is known of being in the world</span>
+        </div>
+        <div class="interest-item">
+          <span class="interest-term">Systems</span>
+          <span class="interest-body">what the world exhibits itself as to us beings</span>
+        </div>
+        <div class="interest-item">
+          <span class="interest-term">Epistemics</span>
+          <span class="interest-body">how we know what we know to be, what knowing is, the constituents of knowledge</span>
+        </div>
+        <div class="interest-item">
+          <span class="interest-term">Sciences</span>
+          <span class="interest-body">active engagement with the world around me, making explicit contact</span>
+        </div>
+        <div class="interest-item">
+          <span class="interest-term">Memetics</span>
+          <span class="interest-body">the aliveness of knowledge</span>
+        </div>
+        <div class="interest-item">
+          <span class="interest-term">Technology</span>
+          <span class="interest-body">the world as systems with implicit knowledge, a way of ordering reality</span>
+        </div>
+        <div class="interest-item">
+          <span class="interest-term">Entropy</span>
+          <span class="interest-body">life in its rawest form</span>
+        </div>
+        <div class="interest-item">
+          <span class="interest-term">Information</span>
+          <span class="interest-body">the smallest unit of reality</span>
+        </div>
+        <div class="interest-item">
+          <span class="interest-term">Co-ordination</span>
+          <span class="interest-body">mutual understanding</span>
+        </div>
+        <div class="interest-item">
+          <span class="interest-term">Coherence</span>
+          <span class="interest-body">inhabiting within everything in the between</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="corpus" class="surface-section">
+  <div class="wrap">
+    <p class="s-label reveal">Corpus</p>
+    <div class="section-head reveal">
+      <h2 class="s-title">Projects, concepts, and articulations.</h2>
+      <p class="section-copy">A filtered index of the work and ideas that make up the estate. The current seed is concept-, articulation-, signal-, and trail-first, with projects still supported as a future publishing surface.</p>
+    </div>
+    <div class="filter-row reveal" id="corpus-filters"></div>
+    <div id="corpus-grid" class="reveal"></div>
+  </div>
+</section>
+
+<section id="map" class="surface-section">
+  <div class="wrap">
+    <p class="s-label reveal">Map</p>
+    <div class="section-head reveal">
+      <h2 class="s-title">Map Explorer and graph navigation.</h2>
+      <p class="section-copy">Graph is the primary surface. Toggle over to Map Explorer whenever you want the detailed tree and reading flow.</p>
+    </div>
+
+    <div class="map-surface panel deep reveal" id="map-surface-shell" data-map-view="graph">
+      <div class="map-surface-head">
+        <div>
+          <div class="map-surface-label">Map Surface</div>
+          <div class="map-surface-copy">Navigate visually or move into the detailed explorer.</div>
+        </div>
+        <div class="map-view-switch" aria-label="Map view toggle">
+          <button type="button" class="map-view-button active" data-map-view-target="graph" aria-pressed="true">Graph</button>
+          <button type="button" class="map-view-button" data-map-view-target="explorer" aria-pressed="false">Map Explorer</button>
+        </div>
+      </div>
+
+      <div class="map-surface-status" id="graph-canvas-status">Graph ready</div>
+
+      <div class="map-surface-body">
+        <div class="map-graph" id="graph-canvas-shell" aria-live="polite">
+          <div id="graph-canvas-host"></div>
+        </div>
+
+        <div class="map-container">
+          <div class="map-sidebar panel mid">
+            <div class="map-sidebar-inner" id="tree-nav"></div>
+          </div>
+
+          <div class="map-detail panel shallow" id="detail-panel"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="signals" class="surface-section">
+  <div class="wrap">
+    <p class="s-label reveal">Signal</p>
+    <div class="section-head reveal">
+      <h2 class="s-title">Signals and trails.</h2>
+      <p class="section-copy">This surface stays open and intentionally quiet until there is something worth publishing into it.</p>
+    </div>
+    <div id="signals-list" class="reveal"></div>
+  </div>
+</section>
+
+<section id="projects" class="surface-section">
+  <div class="wrap">
+    <p class="s-label reveal">Projects</p>
+    <div class="section-head reveal">
+      <h2 class="s-title">Dedicated project surface.</h2>
+      <p class="section-copy">A direct page for projects when you are ready to publish them, kept separate from the main ontology-driven corpus.</p>
+    </div>
+    <div id="projects-grid" class="reveal"></div>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-in">
+    <div class="foot-left">
+      <p>BREEXZED</p>
+      <p class="foot-copy">A home for traces, projects, learning, and the slow arrangement of understanding.</p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
