@@ -104,6 +104,29 @@ function isPublished(node: Node): boolean {
   return node.id !== 'root' && (node.status || 'published') === 'published';
 }
 
+function getNodePreviewImage(node: Node): string | null {
+  if (node.thumbnail) return node.thumbnail;
+  if (node.visual) return node.visual;
+  if (Array.isArray(node.images) && node.images.length > 0) return node.images[0];
+  return null;
+}
+
+function renderNodeLinks(node: Node): string {
+  if (!Array.isArray(node.links) || node.links.length === 0) return '';
+  const links = node.links.slice(0, 3);
+  return `
+    <div class="pc-links">
+      ${links
+        .map(link => `
+          <a class="pc-link" href="${escapeAttr(link.href)}" target="_blank" rel="noopener noreferrer">
+            ${escapeHtml(link.label)}
+          </a>
+        `)
+        .join('')}
+    </div>
+  `;
+}
+
 function renderCorpusCard(node: Node): string {
   const typeLabel =
     node.type === 'projects'
@@ -113,9 +136,11 @@ function renderCorpusCard(node: Node): string {
         : node.type === 'concept'
           ? 'Concept'
           : toTitleCase(node.type || 'note');
+  const visual = getNodePreviewImage(node);
 
   return `
     <div class="project-card panel mid" data-node="${escapeAttr(node.id)}">
+      ${visual ? `<div class="pc-visual"><img src="${escapeAttr(visual)}" alt="${escapeAttr(node.title)}"></div>` : ''}
       <div class="pc-content">
         <div class="pc-meta">
           <span class="pc-tag">${escapeHtml(typeLabel)}</span>
@@ -124,6 +149,7 @@ function renderCorpusCard(node: Node): string {
         <h3 class="pc-title">${escapeHtml(node.title)}</h3>
         <p class="pc-desc">${escapeHtml(node.desc || '')}</p>
         <div class="pc-formula">${escapeHtml(node.formula || '')}</div>
+        ${renderNodeLinks(node)}
       </div>
     </div>
   `;
@@ -131,11 +157,15 @@ function renderCorpusCard(node: Node): string {
 
 function renderSignalCard(node: Node): string {
   const status = node.current_status ? `status: ${node.current_status}` : 'status: untracked';
+  const visual = getNodePreviewImage(node);
   return `
     <div class="essay-card panel mid" data-node="${escapeAttr(node.id)}">
-      <div class="ec-date">${escapeHtml(node.first_noticed || node.publishDate || node.date || '')}</div>
-      <div class="ec-title">${escapeHtml(node.title)}</div>
-      <div class="ec-desc">${escapeHtml(status)}${node.domain ? ` • ${escapeHtml(node.domain)}` : ''}</div>
+      ${visual ? `<div class="ec-visual"><img src="${escapeAttr(visual)}" alt="${escapeAttr(node.title)}"></div>` : ''}
+      <div class="ec-body">
+        <div class="ec-date">${escapeHtml(node.first_noticed || node.publishDate || node.date || '')}</div>
+        <div class="ec-title">${escapeHtml(node.title)}</div>
+        <div class="ec-desc">${escapeHtml(status)}${node.domain ? ` • ${escapeHtml(node.domain)}` : ''}</div>
+      </div>
     </div>
   `;
 }

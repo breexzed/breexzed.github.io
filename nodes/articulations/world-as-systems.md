@@ -12,6 +12,8 @@ connects:
 status: published
 domain: systems
 source: field-note
+thumbnail: ./world_as_systems-thumb.svg
+visual: ./world_as_systems-visual.svg
 tags:
   - systems
   - topology

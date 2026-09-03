@@ -12,6 +12,8 @@ connects:
   - trail_learning_note
 status: published
 domain: epistemics
+thumbnail: ./knowing_and_knowledge-thumb.svg
+visual: ./knowing_and_knowledge-visual.svg
 tags:
   - epistemics
   - knowledge

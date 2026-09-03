@@ -1,8 +1,8 @@
 import { Explorer } from './explorer';
 
-type RouteKey = 'home' | 'map' | 'corpus' | 'signals' | 'projects' | 'node';
+type RouteKey = 'home' | 'map' | 'corpus' | 'signals' | 'projects' | 'whoami' | 'node';
 
-const ALL_SECTIONS = ['home', 'corpus', 'map', 'signals', 'projects', 'node-page'];
+const ALL_SECTIONS = ['home', 'corpus', 'map', 'signals', 'projects', 'whoami', 'node-page'];
 const HOME_SECTIONS = ['home', 'corpus', 'map', 'signals', 'projects'];
 
 const ROUTE_SECTIONS: Record<RouteKey, string[]> = {
@@ -11,6 +11,7 @@ const ROUTE_SECTIONS: Record<RouteKey, string[]> = {
   corpus: ['corpus'],
   signals: ['signals'],
   projects: ['projects'],
+  whoami: ['whoami'],
   node: ['node-page']
 };
 
@@ -22,11 +23,11 @@ function normalizePath(pathname: string): string {
 function parseRoute(pathname: string): { key: RouteKey; nodeId?: string } {
   const path = normalizePath(pathname);
   if (path === '/') return { key: 'home' };
-  if (path === '/map') return { key: 'map' };
+  if (path === '/map') return { key: 'corpus' };
   if (path === '/corpus') return { key: 'corpus' };
   if (path === '/signals') return { key: 'signals' };
   if (path === '/projects') return { key: 'projects' };
-  // Legacy aliases preserved for old links.
+  if (path === '/whoami') return { key: 'whoami' };  // Legacy aliases preserved for old links.
   if (path === '/writing') return { key: 'signals' };
   if (path === '/concepts' || path === '/logic') return { key: 'corpus' };
   if (path === '/stack') return { key: 'projects' };
@@ -89,10 +90,11 @@ function applyRoute(pathname: string): void {
 function hashToPath(hash: string): string | null {
   const value = hash.replace(/^#/, '').trim();
   if (!value) return null;
-  if (value === 'map') return '/map';
+  if (value === 'map') return '/corpus';
   if (value === 'corpus' || value === 'concepts' || value === 'principles') return '/corpus';
   if (value === 'signals' || value === 'essays') return '/signals';
   if (value === 'projects' || value === 'stack') return '/projects';
+  if (value === 'whoami' || value === 'about') return '/whoami';
 
   const directId = Explorer.getNodes()[value] ? value : null;
   if (directId) return `/node/${encodeURIComponent(directId)}`;

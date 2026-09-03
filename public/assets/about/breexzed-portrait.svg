@@ -1,0 +1,29 @@
+<svg width="900" height="1100" viewBox="0 0 900 1100" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="100" y1="80" x2="820" y2="1040" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0A1220"/>
+      <stop offset="0.5" stop-color="#18263A"/>
+      <stop offset="1" stop-color="#101B2B"/>
+    </linearGradient>
+    <radialGradient id="halo" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(430 350) rotate(90) scale(420 420)">
+      <stop stop-color="#DDEEFF" stop-opacity="0.9"/>
+      <stop offset="1" stop-color="#DDEEFF" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="skin" x1="290" y1="290" x2="620" y2="760" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F3D6BE"/>
+      <stop offset="1" stop-color="#D7A57F"/>
+    </linearGradient>
+  </defs>
+  <rect width="900" height="1100" fill="url(#bg)"/>
+  <circle cx="442" cy="348" r="310" fill="url(#halo)"/>
+  <circle cx="450" cy="470" r="210" fill="rgba(255,255,255,0.03)" stroke="#EAF6FF" stroke-opacity="0.2"/>
+  <path d="M305 784C340 684 392 624 460 624C522 624 582 676 614 784L652 930H262L305 784Z" fill="#111B27" stroke="#EAF6FF" stroke-opacity="0.16"/>
+  <path d="M354 324C354 232 418 182 448 182C490 182 540 226 568 324C590 403 582 514 520 563C498 580 470 590 448 590C426 590 398 580 374 563C314 514 304 408 354 324Z" fill="url(#skin)"/>
+  <path d="M380 402C396 376 420 360 448 360C476 360 500 376 515 402" stroke="#27415F" stroke-width="10" stroke-linecap="round"/>
+  <circle cx="408" cy="466" r="10" fill="#202B3D"/>
+  <circle cx="490" cy="466" r="10" fill="#202B3D"/>
+  <path d="M418 518C438 533 461 533 480 518" stroke="#7E445C" stroke-width="8" stroke-linecap="round"/>
+  <path d="M302 338C330 264 383 220 446 214" stroke="#CFDFF9" stroke-width="10" stroke-linecap="round" opacity="0.7"/>
+  <path d="M586 342C556 260 514 216 450 214" stroke="#CFDFF9" stroke-width="10" stroke-linecap="round" opacity="0.7"/>
+  <path d="M262 810C332 764 392 740 448 740C504 740 566 764 644 810" stroke="#DDEEFF" stroke-width="12" stroke-linecap="round" opacity="0.74"/>
+</svg>

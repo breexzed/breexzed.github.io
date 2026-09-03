@@ -4,6 +4,11 @@ export type NodeStatus = 'draft' | 'published' | 'archived' | 'private';
 
 export type TabType = 'explorer' | 'content' | 'diagram';
 
+export interface NodeLink {
+  label: string;
+  href: string;
+}
+
 export interface Node {
   id: string;
   title: string;
@@ -25,6 +30,8 @@ export interface Node {
   featured?: boolean;
   thumbnail?: string;
   visual?: string;
+  images?: string[];
+  links?: NodeLink[];
   externalUrl?: string;
   publishDate?: string;
   status?: NodeStatus;

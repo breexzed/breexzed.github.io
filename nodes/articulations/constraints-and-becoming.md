@@ -12,6 +12,8 @@ connects:
 status: published
 domain: philosophy
 source: manifesto
+thumbnail: ./constraints_and_becoming-thumb.svg
+visual: ./constraints_and_becoming-visual.svg
 tags:
   - becoming
   - limits

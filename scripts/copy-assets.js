@@ -71,6 +71,34 @@ function rewriteNodeAssets(topology, copiedMap) {
       if (mapped) node[field] = mapped;
     }
 
+    for (const field of ['images', 'gallery', 'media']) {
+      const list = Array.isArray(node[field]) ? node[field] : [];
+      for (let index = 0; index < list.length; index += 1) {
+        const current = list[index];
+        if (!current || isExternalPath(current)) continue;
+        const resolved = resolveAssetPath(source, current);
+        if (!resolved) continue;
+        const mapped = copiedMap.get(path.normalize(resolved));
+        if (mapped) list[index] = mapped;
+      }
+      if (list.length > 0) node[field] = list;
+    }
+
+    if (Array.isArray(node.links)) {
+      for (const link of node.links) {
+        const href = link && (link.href || link.url || link.link);
+        if (!href || isExternalPath(href)) continue;
+        const resolved = resolveAssetPath(source, href);
+        if (!resolved) continue;
+        const mapped = copiedMap.get(path.normalize(resolved));
+        if (mapped) {
+          if (link.href) link.href = mapped;
+          else if (link.url) link.url = mapped;
+          else if (link.link) link.link = mapped;
+        }
+      }
+    }
+
     if (typeof node.content === 'string' && node.content.includes('src=')) {
       node.content = node.content.replace(/src=(['"])([^'"]+)\1/gi, (full, quote, src) => {
         if (isExternalPath(src)) return full;
