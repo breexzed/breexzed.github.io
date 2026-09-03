@@ -146,22 +146,36 @@ function renderBreadcrumb(breadcrumb: string[], activeNode: string, nodes: Recor
   `;
 }
 
+function renderNodeLinkList(node: Node): string {
+  if (!Array.isArray(node.links) || node.links.length === 0) return '';
+  return `
+    <div class="node-page-links">
+      ${node.links
+        .slice(0, 4)
+        .map(link => `
+          <a class="pc-link" href="${escapeAttr(link.href)}" target="_blank" rel="noopener noreferrer">
+            ${escapeHtml(link.label)}
+          </a>
+        `)
+        .join('')}
+    </div>
+  `;
+}
+
 export function renderNodePage({
   node,
   breadcrumb,
   nodes,
   sanitizeMarkdown
 }: NodePageParams): string {
-  const visual = node.visual || node.thumbnail;
+  const visual = node.visual || node.thumbnail || (Array.isArray(node.images) ? node.images[0] : null);
+  const gallery = Array.isArray(node.images) ? node.images : [];
   const content = node.content || '<p style="color:var(--t-void); font-style:italic;">No content available.</p>';
 
   return `
     <div class="node-page-shell">
       <div class="node-page-top">
         ${renderBreadcrumb(breadcrumb, node.id, nodes)}
-        <div class="node-page-actions">
-          <button type="button" class="node-page-action" data-node-open-map="true">Begin Map</button>
-        </div>
       </div>
 
       <div class="node-page-hero panel deep">
@@ -173,9 +187,18 @@ export function renderNodePage({
         <h1 class="node-page-title">${escapeHtml(node.title)}</h1>
         <p class="node-page-formula">${escapeHtml(node.formula)}</p>
         <p class="node-page-desc">${escapeHtml(node.desc || '')}</p>
+        ${renderNodeLinkList(node)}
       </div>
 
       ${visual ? `<figure class="node-page-visual panel deep"><img src="${escapeAttr(visual)}" alt="${escapeAttr(node.title)}"></figure>` : ''}
+      ${gallery.length > 1 ? `
+        <div class="node-page-gallery panel shallow">
+          ${gallery
+            .slice(1)
+            .map(src => `<img src="${escapeAttr(src)}" alt="${escapeAttr(node.title)}" loading="lazy">`)
+            .join('')}
+        </div>
+      ` : ''}
 
       <div class="node-page-grid">
         <article class="node-page-article panel shallow">
@@ -186,12 +209,7 @@ export function renderNodePage({
         </article>
 
         <aside class="node-page-aside">
-          <div class="node-route-block panel mid">
-            <div class="node-route-block-label">Reading shell</div>
-            <p class="node-route-note">This page is the focused surface for the node. Use the map when you want a wider field, and use the related nodes here when you already know where you want to trail next.</p>
-          </div>
-          ${renderRelatedCards('Trails forward', node.children || [], nodes)}
-          ${renderRelatedCards('Attached nodes', node.connects || [], nodes)}
+          ${node.type !== 'signal' ? renderRelatedCards('Trails forward', node.children || [], nodes) : ''}
         </aside>
       </div>
     </div>

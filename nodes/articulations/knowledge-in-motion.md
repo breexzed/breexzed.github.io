@@ -12,6 +12,8 @@ connects:
 status: published
 domain: epistemics
 source: working-thesis
+thumbnail: ./knowledge_in_motion-thumb.svg
+visual: ./knowledge_in_motion-visual.svg
 tags:
   - learning
   - memetics

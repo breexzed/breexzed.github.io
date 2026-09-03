@@ -53,6 +53,43 @@ function normalizeTags(value) {
   return [];
 }
 
+function normalizeStringList(value) {
+  if (Array.isArray(value)) {
+    return value
+      .map(item => (typeof item === 'string' ? item.trim() : String(item || '').trim()))
+      .filter(Boolean);
+  }
+  if (typeof value === 'string') {
+    return value
+      .split(',')
+      .map(item => item.trim())
+      .filter(Boolean);
+  }
+  return [];
+}
+
+function normalizeLinks(value) {
+  if (!value) return [];
+  const raw = Array.isArray(value) ? value : [value];
+  return raw
+    .map(item => {
+      if (typeof item === 'string') {
+        return { label: 'Link', href: item.trim() };
+      }
+      if (item && typeof item === 'object') {
+        const href = item.href || item.url || item.link || '';
+        if (!href) return null;
+        return {
+          label: String(item.label || item.title || 'Link').trim() || 'Link',
+          href: String(href).trim()
+        };
+      }
+      return null;
+    })
+    .filter(Boolean)
+    .filter(link => link.href);
+}
+
 function normalizeSource(absPath) {
   return path.relative(NODES_DIR, absPath).split(path.sep).join('/');
 }
@@ -259,6 +296,11 @@ async function buildTopology() {
       frontmatter.date ||
       new Date().toISOString().split('T')[0];
 
+    const images = normalizeStringList(
+      frontmatter.images || frontmatter.gallery || frontmatter.media || frontmatter.image || []
+    );
+    const links = normalizeLinks(frontmatter.links || frontmatter.references || frontmatter.externalLinks);
+
     nodes[id] = {
       id,
       label: frontmatter.label || frontmatter.title,
@@ -280,6 +322,8 @@ async function buildTopology() {
       type,
       featured: frontmatter.featured === true,
       thumbnail: frontmatter.thumbnail || null,
+      images: images.length > 0 ? images : undefined,
+      links: links.length > 0 ? links : undefined,
       externalUrl: frontmatter.externalUrl || null,
       publishDate,
       status,

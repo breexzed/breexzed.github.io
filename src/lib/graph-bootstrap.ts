@@ -1,6 +1,6 @@
 import { Explorer } from './explorer';
 import { Router } from './router';
-import { GraphEngine } from './graph-engine';
+import { GraphEngine } from './graph-optional';
 
 type MapSurfaceView = 'graph' | 'explorer';
 
@@ -10,7 +10,7 @@ export class GraphBootstrap {
   private shell: HTMLElement | null = null;
   private host: HTMLElement | null = null;
   private status: HTMLElement | null = null;
-  private view: MapSurfaceView = 'graph';
+  private view: MapSurfaceView = 'explorer';
   private graphStatus = 'Graph ready';
   private mountRequestId = 0;
 
@@ -23,7 +23,8 @@ export class GraphBootstrap {
     this.bindViewControls();
     this.renderView();
     if (!location.pathname.startsWith('/node/')) {
-      await this.ensureGraphMounted();
+      this.view = 'explorer';
+      this.renderView();
     }
 
     if (!this.listening) {
@@ -41,7 +42,7 @@ export class GraphBootstrap {
           return;
         }
         if (detail?.key === 'map' || detail?.key === 'home') {
-          void this.setView('graph');
+          void this.setView('explorer');
         }
       });
 

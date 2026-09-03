@@ -1,223 +1,234 @@
 # BREEXZED Digital Estate
 
-Graph-first static corpus for BREEXZED, built with Markdown, TypeScript, Vite, Graphology, and Sigma.
+This repository is primarily owned by Breexzed. It is a personal digital estate: a small static website that turns writing, projects, and ideas into a browsable, graph-like system instead of a normal blog or database-driven app.
 
-The current seeded corpus starts from scratch with the active ontology:
-- `concept`
-- `articulation`
-- `signal`
-- `trail`
+If you are not technical, the simplest way to think about it is this:
 
-The structural shell node uses:
-- `root`
+- Write content as markdown pages in `nodes/`
+- The site reads those pages and turns them into a network of related ideas
+- The homepage, corpus, signals, and node pages are generated from that content
+- The whole thing is built locally and deployed as a static site
 
-`projects` is still supported by the compiler and runtime for future publishing and backward compatibility, but it is not used by the current seeded corpus.
+This is meant to feel like a living archive, not a standard CMS.
 
-Legacy node tokens remain supported in code for compatibility:
-- `project` is normalized to `projects`
-- `note`
-- `essay`
-- `page`
+## Who this is for
 
-Those legacy types are not part of the current live corpus baseline.
+This repo is mainly for Breexzed as a personal knowledge and publishing space, but it is structured so that future edits can be made in a clean, low-friction way.
 
-Canonical behavior details live in [docs/SYSTEM_SPEC.md](/C:/Users/Owl/Owlcyon/the_topology_of_being/docs/SYSTEM_SPEC.md).
+The project is designed around a simple rule: content is the source of truth, and code should mostly stay out of the way.
 
-## Current Status
+## How this repo was built
 
-- Single-page home with dedicated route views for `Home`, `Map`, `Corpus`, `Signal`, and `Projects`
-- Dedicated node pages live at `/node/:id`
-- Graph canvas is live and synchronized with explorer state
-- `/map` defaults to Graph view
-- `/node/:id` is the canonical reading surface for any node
-- Search is published-only and type-aware
-- Seed corpus now builds entirely from `concept`, `articulation`, `signal`, and `trail`
+At a high level, the site is built in three layers:
 
-## Stack
+1. Content layer
+   - Everything important lives in markdown files under `nodes/`
+   - Each markdown file represents a node in the estate
+   - A node can have a title, summary, links, tags, visual asset, and relationships to other nodes
 
-- TypeScript + Vite runtime
-- Markdown content under `nodes/`
-- Topology compiler in `scripts/build-topology.js`
-- Search compiler in `scripts/build-search.js`
-- Asset rewriting in `scripts/copy-assets.js`
-- Graph state/rendering via Graphology + Sigma + ForceAtlas2
+2. Build pipeline
+   - A Node.js build process reads those markdown files and turns them into structured data
+   - The project compiles the content into `data/topology.json` and a search index
+   - Images and local assets are copied into the public site output and linked correctly
 
-## Commands
+3. Frontend layer
+   - Vite serves and bundles the front-end
+   - The browser renders the estate as a homepage, corpus grid, graph map, and individual node pages
+   - The main UI is a static site with JavaScript-driven navigation and visual interactions
+
+The key tools are:
+
+- Vite for local serving and production build
+- TypeScript for app logic
+- Markdown for content
+- Node scripts for content processing and asset handling
+- Graphology/Sigma for the network/map view
+
+## The important folders
+
+- `nodes/` — the live content that makes up the estate
+- `templates/` — starter files for new nodes
+- `scripts/` — build scripts that turn markdown into site data
+- `src/` — app logic and front-end rendering
+- `css/` — styling and visual language
+- `public/` — generated public assets and static files
+- `docs/` — notes and system/reference docs
+
+## The simple mental model
+
+Think of the estate like this:
+
+- a home page for the whole space
+- a corpus of ideas/projects/articulations
+- a graph or map view to show relationships
+- individual node pages for reading deeper
+- a signal surface for observations and evolving threads
+
+The system is intentionally authored as a living network rather than a linear timeline.
+
+## How to use this repo
+
+### 1. Install dependencies
+
+From the project root:
+
+```bash
+npm install
+```
+
+### 2. Run it locally
+
+Start the local development environment:
+
+```bash
+npm run dev
+```
+
+This will build the content pipeline and start the app in a local browser preview.
+
+### 3. Build the site for production
+
+```bash
+npm run build
+```
+
+This generates the production-ready output in `dist/`.
+
+### 4. Preview the production build
+
+```bash
+npm run preview
+```
+
+### 5. Regenerate content only
+
+If you are making changes to markdown nodes or frontmatter:
+
+```bash
+npm run build:content
+```
+
+This runs the topology and asset pipeline without a full app rebuild.
+
+## What usually gets edited
+
+If you are not highly technical, the main thing you will use is:
+
+- `nodes/` for writing and organizing content
+- `templates/` for creating new post-like entries
+- `public/assets/...` for uploaded images or portraits
+- `src/config/site.ts` for site-level contact/social links
+
+You do not usually need to edit the application logic unless you are intentionally changing the structure or display system.
+
+## Creating a new page or node
+
+1. Open the relevant folder under `nodes/`
+2. Copy a file from `templates/`
+3. Rename it to match your new node
+4. Fill in the frontmatter and body text
+5. Run:
+
+```bash
+npm run build:content
+```
+
+If the build passes, the node is accepted into the estate.
+
+## Adding images
+
+You can attach visuals to a node by placing an image beside the markdown file and referencing it in the frontmatter or body.
+
+Examples:
+
+```yaml
+visual: ./example-image.jpg
+```
+
+or
+
+```yaml
+thumbnail: ./example-image.jpg
+```
+
+The build pipeline copies these assets to the static public folder and rewrites internal references automatically.
+
+## Core commands
 
 ```bash
 npm install
 npm run dev
-npm run build:topology
 npm run build:content
-npx tsc --noEmit
 npm run build
 npm run preview
+npm run smoke
 ```
 
-## Active Routes
+Useful shorthand:
 
-- `/`
-- `/map`
-- `/corpus`
-- `/signals`
-- `/projects`
-- `/node/:id`
+- `npm run dev` = work locally
+- `npm run build:content` = update content model
+- `npm run build` = full production build
+- `npm run smoke` = quick validation check
 
-Legacy route aliases are still normalized for compatibility:
-- `/writing` -> `/signals`
-- `/concepts` and `/logic` -> `/corpus`
-- `/stack` -> `/projects`
+## Repo structure in plain English
 
-Hash links are also normalized at runtime for compatibility.
+- `nodes/` = the estate itself
+- `templates/` = starting points for new writings
+- `scripts/` = the build engine
+- `src/` = browser app logic
+- `css/` = visual styling
+- `docs/` = design and authoring reference material
 
-## Map Behavior
+## Ownership
 
-- `/map` opens the graph by default
-- Map surface can toggle between `Graph` and `Map Explorer`
-- Clicking a graph node routes to `/node/:id`
-- `/node/:id` opens the dedicated node page
-- Graph layout is cached in localStorage to avoid re-running layout work on every load
+This project is primarily owned by Breexzed.
 
-## Build Pipeline
+The repository is a personal digital estate and reflection space for Breexzed's work, ideas, projects, systems, and traces. The design and editorial direction are part of that ownership and identity.
 
-1. `npm run build:topology`
-   - Parses Markdown in `nodes/`
-   - Validates required fields, IDs, parents, children, and `connects`
-   - Normalizes `project` -> `projects`
-   - Validates signal `current_status`
-   - Writes `data/topology.json` and `public/data/topology.json`
+## Quick start for a non-technical person
 
-2. `npm run copy:assets`
-   - Rewrites asset paths in topology outputs
-   - Copies eligible visuals into `public/assets/visuals`
+If you just want to add or update content without touching the code:
 
-3. `npm run build:search`
-   - Builds `public/data/search-index.json`
-   - Includes published nodes only
+1. Open `nodes/`
+2. Pick a node type folder or template
+3. Create a new markdown file
+4. Add title, summary, and links in frontmatter
+5. Write your content in markdown
+6. Add any image next to it
+7. Run:
 
-4. `npm run build`
-   - Runs the content pipeline
-   - Builds the Vite app into `dist/`
-
-## Content Model
-
-### Required frontmatter
-
-```yaml
-id: sample_node
-title: Sample Node
-formula: relation -> meaning
-depth: 1
+```bash
+npm run build:content
 ```
 
-### Common optional fields
+8. Run:
 
-```yaml
-label: concept
-parent: root
-children:
-  - child_node
-connects:
-  - related_node
-type: concept
-status: published
-domain: ontology
-source: working-thesis
-tags:
-  - philosophy
+```bash
+npm run dev
 ```
 
-### Type-specific fields
+9. Open the local site and check it
 
-`signal`
+That is the main day-to-day use of the repo.
 
-```yaml
-type: signal
-first_noticed: 2026-04-20
-current_status: emerging
-domain: learning
-children:
-  - trail_learning_note
-connects:
-  - knowing_and_knowledge
-  - knowledge_in_motion
-```
+## Notes
 
-`trail`
+This project is intentionally not a traditional app with a database and login system. It is a static site built around content, relationships, and public reading.
 
-```yaml
-type: trail
-source: reading margin
-date_of_discovery: 2026-04-21
-domain: learning
-connects:
-  - knowing_and_knowledge
-```
+The interesting thing is not that it is advanced in a big-application sense. The interesting thing is that it organizes ideas as a navigable estate: readable, connected, and human.
 
-`articulation`
+For deeper technical notes, see:
 
-```yaml
-type: articulation
-source: working-thesis
-domain: epistemics
-connects:
-  - knowing_and_knowledge
-  - learning_edge
-```
+- `docs/SYSTEM_SPEC.md`
+- `docs/AUTHORING.md`
+- `docs/visual-system-guide.md`
 
-`concept`
+## Final summary
 
-```yaml
-type: concept
-domain: systems
-connects:
-  - world_as_systems
-  - coordination_window
-  - trail_coordination_note
-```
+This repo is Breexzed's digital estate: a lightweight, static, content-first website that turns writing into a browsable system of relationships. It is built from markdown, processed into structured topology data, and rendered as a graph-rich site with curated reading surfaces.
 
-`projects` (supported, not currently seeded)
-
-```yaml
-type: projects
-externalUrl: https://example.com
-publishDate: 2026-04-21
-thumbnail: assets/visuals/example.png
-featured: true
-```
-
-### Starter templates
-
-Copy one of these files when publishing a new node from scratch:
-- `templates/concept.md`
-- `templates/articulation.md`
-- `templates/signal.md`
-- `templates/trail.md`
-- `templates/projects.md`
-
-## Authoring Notes
-
-- Keep node IDs lowercase and stable
-- Use `children` for tree structure
-- Use `connects` for cross-links and graph relationships
-- `source` is authored provenance for trails/articulations and any node that needs it
-- `sourcePath` is compiler-owned metadata written into `topology.json`; do not author it by hand
-- The current compiler treats body markdown links as inferred `children` only when neither `children` nor `connects` is explicitly authored
-- Published-only discovery is a hard rule for search and public listing
-
-For the full posting and update workflow, read [docs/AUTHORING.md](/C:/Users/Owl/Owlcyon/the_topology_of_being/docs/AUTHORING.md).
-
-## Repo Structure
-
-- `nodes/`
-  Active source corpus
-- `scripts/`
-  Build pipeline for topology, assets, and search
-- `templates/`
-  Copy-forward starter files for each supported node type
-- `src/lib/`
-  Runtime orchestration, explorer, router, graph, search UI
-- `src/components/`
+If you want to work with it, focus on the content in `nodes/` and the templates first. The code exists to support the structure, not to replace the underlying ideas.
   Tree/detail rendering
 - `src/types/`
   Runtime and graph contracts

@@ -171,12 +171,6 @@ function bindNodePageInteractions(surface: HTMLElement): void {
     });
   });
 
-  surface.querySelectorAll<HTMLButtonElement>('[data-node-open-map]').forEach(button => {
-    button.addEventListener('click', () => {
-      Router.navigate('/map');
-    });
-  });
-
   if (!currentNode) return;
   surface.querySelectorAll<HTMLAnchorElement>('.node-content a').forEach(link => {
     const href = link.getAttribute('href');

@@ -12,6 +12,8 @@ connects:
   - trail_entropy_note
 status: published
 domain: ontology
+thumbnail: ./being_in_the_world-thumb.svg
+visual: ./being_in_the_world-visual.svg
 tags:
   - philosophy
   - being

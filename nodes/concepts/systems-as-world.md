@@ -12,6 +12,8 @@ connects:
   - trail_coordination_note
 status: published
 domain: systems
+thumbnail: ./systems_as_world-thumb.svg
+visual: ./systems_as_world-visual.svg
 tags:
   - systems
   - order
