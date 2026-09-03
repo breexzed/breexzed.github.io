@@ -1,7 +1,7 @@
 {
-  "generated": "2026-05-15T22:50:56.259Z",
-  "nodeCount": 14,
-  "indexedCount": 13,
+  "generated": "2026-09-03T19:35:46.195Z",
+  "nodeCount": 15,
+  "indexedCount": 14,
   "docs": [
     {
       "id": "the_gap",
@@ -85,6 +85,18 @@
       "formula": "relation -> mutual understanding",
       "domain": "coordination",
       "signalStatus": "emerging",
+      "sourceRef": ""
+    },
+    {
+      "id": "estate_lab",
+      "title": "Estate Lab",
+      "desc": "A small living system for tracing patterns, turning observations into usable structure, and keeping the work legible over time.",
+      "markdown": "A small living system for tracing patterns, turning observations into usable structure, and keeping the work legible over time.\n\nThis project is the working surface for the estate: a place to gather signals, shape concepts, and make the relations between things visible without losing the personal tone of the work.\n",
+      "tags": "living practice systems",
+      "type": "projects",
+      "formula": "living -> systems -> prototypes",
+      "domain": "systems",
+      "signalStatus": "",
       "sourceRef": ""
     },
     {
