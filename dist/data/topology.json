@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-03T08:00:56.210Z",
+  "generated": "2026-09-03T19:08:02.138Z",
   "nodeCount": 15,
   "nodes": {
     "root": {
@@ -291,6 +291,42 @@
       "domain": "coordination",
       "date_of_discovery": null
     },
+    "estate_lab": {
+      "id": "estate_lab",
+      "label": "project",
+      "title": "Estate Lab",
+      "formula": "living -> systems -> prototypes",
+      "desc": "A small living system for tracing patterns, turning observations into usable structure, and keeping the work legible over time.",
+      "content": "<p>A small living system for tracing patterns, turning observations into usable structure, and keeping the work legible over time.</p>\n<p>This project is the working surface for the estate: a place to gather signals, shape concepts, and make the relations between things visible without losing the personal tone of the work.</p>\n",
+      "markdown": "A small living system for tracing patterns, turning observations into usable structure, and keeping the work legible over time.\n\nThis project is the working surface for the estate: a place to gather signals, shape concepts, and make the relations between things visible without losing the personal tone of the work.\n",
+      "parent": "root",
+      "children": [],
+      "connects": [
+        "systems_as_world",
+        "world_as_systems"
+      ],
+      "depth": 1,
+      "glyph": "·",
+      "visual": "/assets/visuals/projects-estate_lab-visual.svg",
+      "tags": [
+        "living",
+        "practice",
+        "systems"
+      ],
+      "date": "2026-09-03",
+      "source": null,
+      "sourcePath": "projects/estate-lab.md",
+      "type": "projects",
+      "featured": false,
+      "thumbnail": "/assets/visuals/projects-estate_lab-thumb.svg",
+      "externalUrl": null,
+      "publishDate": "2026-09-03",
+      "status": "published",
+      "first_noticed": null,
+      "current_status": null,
+      "domain": "systems",
+      "date_of_discovery": null
+    },
     "systems_as_world": {
       "id": "systems_as_world",
       "label": "concept",
@@ -397,42 +433,6 @@
       "first_noticed": null,
       "current_status": null,
       "domain": "ontology",
-      "date_of_discovery": null
-    },
-    "estate_lab": {
-      "id": "estate_lab",
-      "label": "project",
-      "title": "Estate Lab",
-      "formula": "living -> systems -> prototypes",
-      "desc": "A small living system for tracing patterns, turning observations into usable structure, and keeping the work legible over time.",
-      "content": "<p>A small living system for tracing patterns, turning observations into usable structure, and keeping the work legible over time.</p>\n<p>This project is the working surface for the estate: a place to gather signals, shape concepts, and make the relations between things visible without losing the personal tone of the work.</p>\n",
-      "markdown": "A small living system for tracing patterns, turning observations into usable structure, and keeping the work legible over time.\n\nThis project is the working surface for the estate: a place to gather signals, shape concepts, and make the relations between things visible without losing the personal tone of the work.\n",
-      "parent": "root",
-      "children": [],
-      "connects": [
-        "systems_as_world",
-        "world_as_systems"
-      ],
-      "depth": 1,
-      "glyph": "·",
-      "visual": "/assets/visuals/projects-estate_lab-visual.svg",
-      "tags": [
-        "living",
-        "practice",
-        "systems"
-      ],
-      "date": "2026-09-03",
-      "source": null,
-      "sourcePath": "projects/estate-lab.md",
-      "type": "projects",
-      "featured": false,
-      "thumbnail": "/assets/visuals/projects-estate_lab-thumb.svg",
-      "externalUrl": null,
-      "publishDate": "2026-09-03",
-      "status": "published",
-      "first_noticed": null,
-      "current_status": null,
-      "domain": "systems",
       "date_of_discovery": null
     },
     "world_as_systems": {
