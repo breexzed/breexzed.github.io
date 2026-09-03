@@ -1,6 +1,6 @@
 import { Explorer } from './explorer';
 import { Router } from './router';
-import { GraphEngine } from './graph-engine';
+import { GraphEngine } from './graph-optional';
 
 type MapSurfaceView = 'graph' | 'explorer';
 
