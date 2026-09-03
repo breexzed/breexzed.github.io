@@ -20,6 +20,20 @@ function normalizePath(pathname: string): string {
   return pathname.endsWith('/') ? pathname.slice(0, -1) : pathname;
 }
 
+function isStaticHost(): boolean {
+  if (typeof window === 'undefined') return false;
+  const host = window.location.hostname || '';
+  return host.includes('github.io');
+}
+
+function toHistoryPath(pathname: string): string {
+  const next = normalizePath(pathname);
+  if (isStaticHost() && next !== '/') {
+    return `#${next}`;
+  }
+  return next;
+}
+
 function parseRoute(pathname: string): { key: RouteKey; nodeId?: string } {
   const path = normalizePath(pathname);
   if (path === '/') return { key: 'home' };
@@ -90,6 +104,24 @@ function applyRoute(pathname: string): void {
 function hashToPath(hash: string): string | null {
   const value = hash.replace(/^#/, '').trim();
   if (!value) return null;
+  if (value.startsWith('/')) {
+    const path = normalizePath(value);
+    if (path === '/map') return '/corpus';
+    if (path === '/corpus' || path === '/concepts' || path === '/principles') return '/corpus';
+    if (path === '/signals' || path === '/essays') return '/signals';
+    if (path === '/projects' || path === '/stack') return '/projects';
+    if (path === '/whoami' || path === '/about') return '/whoami';
+    if (path.startsWith('/node/')) {
+      const nodeId = decodeURIComponent(path.slice('/node/'.length));
+      return Explorer.getNodes()[nodeId] ? `/node/${encodeURIComponent(nodeId)}` : null;
+    }
+    const leaf = path.split('/').filter(Boolean).pop();
+    if (leaf && Explorer.getNodes()[leaf]) {
+      return `/node/${encodeURIComponent(leaf)}`;
+    }
+    return null;
+  }
+
   if (value === 'map') return '/corpus';
   if (value === 'corpus' || value === 'concepts' || value === 'principles') return '/corpus';
   if (value === 'signals' || value === 'essays') return '/signals';
@@ -106,10 +138,78 @@ function hashToPath(hash: string): string | null {
   return null;
 }
 
+function getBasePath(): string {
+  const pathname = window.location.pathname || '/';
+  const trimmed = pathname.replace(/index\.html$/i, '').replace(/\/+$/, '');
+  if (!trimmed || trimmed === '/') return '';
+  return trimmed;
+}
+
+function getPreferredNodePath(nodeId: string): string {
+  const encodedId = encodeURIComponent(nodeId);
+  const isGitHubPages = window.location.hostname.includes('github.io');
+  const isLocalDev = ['localhost', '127.0.0.1', '0.0.0.0'].includes(window.location.hostname);
+  const base = getBasePath();
+
+  if (isGitHubPages || (!isLocalDev && !window.location.pathname.startsWith('/node/'))) {
+    return `${base}/#/node/${encodedId}`;
+  }
+
+  return `${base}/node/${encodedId}`;
+}
+
+function getPreferredNodeUrl(nodeId: string): string {
+  const origin = window.location.origin || 'https://example.com';
+  const path = getPreferredNodePath(nodeId);
+  return `${origin}${path}`;
+}
+
+async function copyNodeLink(nodeId: string): Promise<boolean> {
+  const url = getPreferredNodeUrl(nodeId);
+  try {
+    if (navigator.clipboard && window.isSecureContext) {
+      await navigator.clipboard.writeText(url);
+      return true;
+    }
+
+    const helper = document.createElement('textarea');
+    helper.value = url;
+    helper.setAttribute('readonly', 'true');
+    helper.style.position = 'fixed';
+    helper.style.opacity = '0';
+    document.body.appendChild(helper);
+    helper.select();
+    const copied = document.execCommand('copy');
+    document.body.removeChild(helper);
+    return copied;
+  } catch (error) {
+    console.warn('Failed to copy node link', error);
+    return false;
+  }
+}
+
+function getResolvedPath(): string {
+  const hashRoute = hashToPath(location.hash);
+  if (hashRoute) return hashRoute;
+  return normalizePath(location.pathname);
+}
+
 function navigate(pathname: string): void {
   const next = normalizePath(pathname);
-  if (normalizePath(location.pathname) !== next) {
-    history.pushState({}, '', next);
+  const historyPath = toHistoryPath(next);
+  const currentPath = normalizePath(location.pathname);
+  const currentHash = location.hash;
+
+  if (currentHash && currentHash.startsWith('#')) {
+    if (normalizePath(currentPath) === next) {
+      applyRoute(next);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+  }
+
+  if (currentPath !== next || (currentHash && currentHash.startsWith('#') && historyPath !== currentHash)) {
+    history.pushState({}, '', historyPath);
   }
   applyRoute(next);
   window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -134,20 +234,27 @@ function interceptNavLinks(): void {
 function init(): void {
   interceptNavLinks();
 
-  const hashPath = hashToPath(location.hash);
-  if (hashPath) {
-    history.replaceState({}, '', hashPath);
+  const initialRoute = getResolvedPath();
+  if (initialRoute !== normalizePath(location.pathname)) {
+    const nextLocation = isStaticHost() ? `#${initialRoute}` : initialRoute;
+    history.replaceState({}, '', nextLocation);
   }
 
-  applyRoute(location.pathname);
+  applyRoute(initialRoute);
 
   window.addEventListener('popstate', () => {
-    applyRoute(location.pathname);
+    applyRoute(getResolvedPath());
+  });
+
+  window.addEventListener('hashchange', () => {
+    applyRoute(getResolvedPath());
   });
 }
 
 export const Router = {
   init,
   navigate,
-  navigateToNode
+  navigateToNode,
+  getPreferredNodeUrl,
+  copyNodeLink
 };
