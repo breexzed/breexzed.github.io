@@ -15,8 +15,10 @@
 }
 
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{background:var(--void);color:var(--t-hi);font-family:var(--mono);font-size:13px;line-height:1.75;overflow-x:hidden;min-height:100vh}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{background:var(--void);color:var(--t-hi);font-family:var(--mono);font-size:13px;line-height:1.75;overflow-x:hidden;min-height:100vh;-webkit-font-smoothing:antialiased}
+img,svg{max-width:100%;display:block}
+a,button,input,textarea,select{-webkit-tap-highlight-color:transparent}
 canvas#cosmos{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:0}
 .wrap{position:relative;z-index:2;max-width:1080px;margin:0 auto;padding:0 44px}
 
@@ -227,6 +229,26 @@ footer{border-top:1px solid var(--wire-0);padding:32px 0 40px;position:relative;
 .stagger>*{opacity:0;transform:translateY(14px);transition:opacity .75s,transform .75s}
 .stagger.in>*{opacity:1;transform:none}
 
+@media (max-width:1100px){
+  .wrap{padding:0 28px}
+  .whoami-layout{grid-template-columns:1fr}
+  .whoami-portrait img{min-height:240px;max-height:360px}
+  .map-container{grid-template-columns:220px 1fr}
+  .foot-in{padding:0 28px}
+}
+
+@media (max-width:900px){
+  nav{padding:16px 20px}
+  .nav-links{gap:14px}
+  .nav-links a{letter-spacing:.2em}
+  .hero{padding-top:120px}
+  .hero-wrap{gap:20px}
+  .hero-manifesto p + p{font-size:18px}
+  .projects-grid{grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}
+  .foot-in{flex-direction:column;align-items:flex-start}
+  .foot-right{justify-content:flex-start}
+}
+
 @media (max-width:800px){
   .wrap{padding:0 20px}
   nav{padding:12px 14px}
@@ -253,4 +275,39 @@ footer{border-top:1px solid var(--wire-0);padding:32px 0 40px;position:relative;
   .search-bar{width:94vw;padding:14px}
   .foot-in{padding:0 20px;flex-direction:column}
   .foot-right{justify-content:flex-start}
+}
+
+@media (max-width:640px){
+  .wrap,.foot-in{padding-left:16px;padding-right:16px}
+  section{padding:72px 0}
+  .hero{min-height:auto;padding:106px 0 62px}
+  .hero-epoch{letter-spacing:.22em}
+  .hero-manifesto p{font-size:clamp(26px,10vw,40px)}
+  .hero-manifesto p + p{font-size:15px;line-height:1.7}
+  .s-title{font-size:clamp(26px,9vw,40px)}
+  .section-copy{font-size:12px}
+  .whoami-panel{padding:18px 16px;gap:18px}
+  .whoami-copy p{font-size:clamp(22px,7vw,30px)}
+  .whoami-copy p + p{font-size:12px;line-height:1.8}
+  .whoami-interests .interest-item{padding:7px 10px}
+  .filter-row{gap:8px}
+  .filter-chip,.map-view-button,.detail-action-button,.node-page-action{padding:7px 10px;letter-spacing:.14em}
+  .pc-content,.ec-body,.node-page-article,.node-route-block,.node-page-hero{padding:16px}
+  .pc-title,.ec-title,.detail-title,.node-page-title{line-height:1.12}
+  .node-page-kicker,.detail-actions{gap:8px}
+  footer{padding:24px 0 32px}
+}
+
+@media (max-width:420px){
+  nav .nav-mark{letter-spacing:.05em;font-size:11px}
+  .hero-epoch{letter-spacing:.16em}
+  .nav-links a{letter-spacing:.12em}
+  .whoami-interests .interest-term{letter-spacing:.12em}
+  .pc-meta,.detail-meta-label,.node-route-card-type{letter-spacing:.08em}
+  .search-bar{padding:12px}
+}
+
+@media (orientation: landscape) and (max-height:540px){
+  .hero{min-height:auto;padding-top:112px;padding-bottom:56px}
+  .surface-section{padding-top:60px}
 }
