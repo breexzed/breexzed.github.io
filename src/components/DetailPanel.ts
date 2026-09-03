@@ -126,6 +126,7 @@ function renderExplorerTab(node: Node, nodes: Record<string, Node>): string {
     <div class="detail-desc">${escapeHtml(node.desc)}</div>
     <div class="detail-actions">
       <button type="button" class="detail-action-button" data-open-node-page="true">Open Node Page</button>
+      <button type="button" class="detail-action-button" data-copy-node-link="true">Copy node link</button>
     </div>
     ${childrenHTML}
     ${connectedHTML}

@@ -134,6 +134,17 @@ function bindDetailInteractions(panel: HTMLElement): void {
     });
   });
 
+  panel.querySelectorAll<HTMLButtonElement>('[data-copy-node-link]').forEach(button => {
+    button.addEventListener('click', async () => {
+      const previous = button.textContent;
+      const copied = await Router.copyNodeLink(activeNode);
+      button.textContent = copied ? 'Copied!' : 'Copy failed';
+      window.setTimeout(() => {
+        button.textContent = previous || 'Copy node link';
+      }, 1600);
+    });
+  });
+
   panel.querySelectorAll<HTMLAnchorElement>('.node-content a').forEach(link => {
     const currentNode = nodes[activeNode];
     const href = link.getAttribute('href');
@@ -168,6 +179,17 @@ function bindNodePageInteractions(surface: HTMLElement): void {
     if (!id) return;
     card.addEventListener('click', () => {
       Router.navigateToNode(id);
+    });
+  });
+
+  surface.querySelectorAll<HTMLButtonElement>('[data-copy-node-link]').forEach(button => {
+    button.addEventListener('click', async () => {
+      const previous = button.textContent;
+      const copied = await Router.copyNodeLink(activeNode);
+      button.textContent = copied ? 'Copied!' : 'Copy failed';
+      window.setTimeout(() => {
+        button.textContent = previous || 'Copy node link';
+      }, 1600);
     });
   });
 
