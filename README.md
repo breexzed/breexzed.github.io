@@ -1,19 +1,15 @@
 # BREEXZED Digital Estate
 
-This repository is primarily owned by Breexzed. It is a personal digital estate: a small static website that turns writing, projects, and ideas into a browsable, graph-like system instead of a normal blog or database-driven app.
+This repository is primarily owned by Breexzed. It is a personal digital estate: a static website that turns writing, projects, and ideas into a browsable, graph-like system.
 
-If you are not technical, the simplest way to think about it is this:
+If yo ever want to make use of this site as a template for your own estate,the simplest way to think about it is this:
 
-- Write content as markdown pages in `nodes/`
+- You write content as markdown pages in `nodes/`
 - The site reads those pages and turns them into a network of related ideas
 - The homepage, corpus, signals, and node pages are generated from that content
 - The whole thing is built locally and deployed as a static site
 
-This is meant to feel like a living archive, not a standard CMS.
-
-## Who this is for
-
-This repo is mainly for Breexzed as a personal knowledge and publishing space, but it is structured so that future edits can be made in a clean, low-friction way.
+It's meant to feel like a living archive, not a standard CMS.
 
 The project is designed around a simple rule: content is the source of truth, and code should mostly stay out of the way.
 
@@ -64,7 +60,7 @@ Think of the estate like this:
 - individual node pages for reading deeper
 - a signal surface for observations and evolving threads
 
-The system is intentionally authored as a living network rather than a linear timeline.
+The system is intentionally authored as a living network.
 
 ## How to use this repo
 
@@ -171,7 +167,7 @@ Useful shorthand:
 - `npm run build` = full production build
 - `npm run smoke` = quick validation check
 
-## Repo structure in plain English
+## Repo structure
 
 - `nodes/` = the estate itself
 - `templates/` = starting points for new writings
@@ -184,9 +180,8 @@ Useful shorthand:
 
 This project is primarily owned by Breexzed.
 
-The repository is a personal digital estate and reflection space for Breexzed's work, ideas, projects, systems, and traces. The design and editorial direction are part of that ownership and identity.
-
-## Quick start for a non-technical person
+The repository is a personal digital estate and reflection space for Breexzed's work, ideas, projects, systems, and traces. The design and editorial direction are part of that ownership and identity. 
+## Quick start 
 
 If you just want to add or update content without touching the code:
 
@@ -212,17 +207,6 @@ npm run dev
 
 That is the main day-to-day use of the repo.
 
-## Notes
-
-This project is intentionally not a traditional app with a database and login system. It is a static site built around content, relationships, and public reading.
-
-The interesting thing is not that it is advanced in a big-application sense. The interesting thing is that it organizes ideas as a navigable estate: readable, connected, and human.
-
-For deeper technical notes, see:
-
-- `docs/SYSTEM_SPEC.md`
-- `docs/AUTHORING.md`
-- `docs/visual-system-guide.md`
 
 ## Final summary
 

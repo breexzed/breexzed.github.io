@@ -1,0 +1,40 @@
+# --- Obsidian System & Layout (Ignore local UI states) ---
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+.obsidian/graph.json
+.obsidian/backlink.json
+.obsidian/search.json
+
+# --- Security (Ignore plugin settings that might hold API keys) ---
+# Un-comment the line below if you use AI or sync plugins with secret keys:
+# .obsidian/plugins/*/data.json
+
+# --- OS & System Trash (Never commit these) ---
+.DS_Store
+Thumbs.db
+.Trash/
+
+
+# Dependency directories (never commit these)
+node_modules/
+jspm_packages/
+
+# Build outputs (GitHub Pages builds the site, or you deploy the compiled folder)
+dist/
+build/
+out/
+.next/
+
+# Environment variables & secrets (CRITICAL for security)
+.env
+.env.local
+.env.*.local
+
+# Operating System files
+.DS_Store
+Thumbs.db
+*.log
+
+# Editor-specific folders
+.vscode/
+.idea/

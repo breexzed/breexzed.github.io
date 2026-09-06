@@ -180,7 +180,7 @@ If the resource should remain part of the estate, make it another node and link 
 - builds, experiments, products, implementations
 - can include images, code, links, and external references
 
-## 10. What catches edge cases now
+## 10. What catches edge cases 
 
 The compiler already catches:
 
@@ -193,7 +193,7 @@ The compiler already catches:
 - broken `connects` references
 - broken internal markdown links
 
-The smoke layer now checks:
+The smoke layer checks:
 
 - `/map` graph default
 - `/node/:id` dedicated node page
