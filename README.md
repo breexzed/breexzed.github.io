@@ -2,7 +2,7 @@
 
 This repository is primarily owned by Breexzed. It is a personal digital estate: a static website that turns writing, projects, and ideas into a browsable, graph-like system.
 
-If you ever want to make use of this site as a template for your own estate,the simplest way to think about it is this:
+the simplest way to think about it is this:
 
 - You write content as markdown pages in `nodes/`
 - The site reads those pages and turns them into a network of related ideas
