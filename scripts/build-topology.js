@@ -189,7 +189,26 @@ async function buildTopology() {
   const relativeFiles = await glob('nodes/**/*.md', { cwd: ROOT_DIR, nodir: true });
   const files = relativeFiles.map(file => path.join(ROOT_DIR, file));
   if (files.length === 0) {
-    throw new Error(`No Markdown files found in ${NODES_DIR}`);
+    const emptyTopology = {
+      generated: new Date().toISOString(),
+      nodeCount: 0,
+      nodes: {},
+      treeOrder: [],
+      metadata: {
+        version: '2.0-phase4',
+        builder: 'scripts/build-topology.js',
+        source: 'Markdown → JSON',
+        profile: 'strict',
+        empty: true
+      }
+    };
+
+    fs.mkdirSync(path.dirname(OUTPUT_FILE), { recursive: true });
+    fs.writeFileSync(OUTPUT_FILE, JSON.stringify(emptyTopology, null, 2));
+    fs.mkdirSync(path.dirname(PUBLIC_OUTPUT_FILE), { recursive: true });
+    fs.writeFileSync(PUBLIC_OUTPUT_FILE, JSON.stringify(emptyTopology, null, 2));
+    console.log('No Markdown nodes found; wrote an empty topology.');
+    return;
   }
 
   const errors = [];

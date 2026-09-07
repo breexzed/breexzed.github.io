@@ -5,15 +5,16 @@
   "main": "index.html",
   "scripts": {
     "build": "npm run build:content && vite build",
-    "build:content": "npm run build:topology && npm run copy:assets && npm run build:search",
+    "build:content": "npm run build:topology && npm run copy:assets && npm run build:search && npm run build:ai",
     "build:topology": "node scripts/build-topology.js",
     "build:search": "node scripts/build-search.js",
+    "build:ai": "node scripts/build-ai-index.js",
     "copy:assets": "node scripts/copy-assets.js",
     "dev": "npm run build:content && vite",
     "preview": "vite preview",
     "smoke:runtime": "node scripts/smoke-runtime.js",
     "smoke": "npm run build && npm run smoke:runtime",
-    "deploy": "npm run build && git add data/topology.json public/data/topology.json public/data/search-index.json && git commit -m 'Update topology content' && git push"
+    "deploy": "npm run build && git add data/topology.json public/data/topology.json public/data/search-index.json public/ai public/llms.txt && git commit -m 'Update topology content' && git push"
   },
   "repository": {
     "type": "git",
@@ -31,11 +32,8 @@
   "dependencies": {
     "flexsearch": "^0.7.43",
     "glob": "^10.3.0",
-    "graphology": "^0.26.0",
-    "graphology-layout-forceatlas2": "^0.10.1",
     "gray-matter": "^4.0.3",
-    "marked": "^11.0.0",
-    "sigma": "^3.0.2"
+    "marked": "^11.0.0"
   },
   "devDependencies": {
     "@rollup/rollup-linux-x64-gnu": "^4.63.1",

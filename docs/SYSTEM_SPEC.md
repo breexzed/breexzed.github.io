@@ -2,12 +2,12 @@
 
 ## 1. Purpose
 
-This repository is the active V2 static system for BREEXZED: a graph-first public corpus organized by relation rather than chronology.
+This repository is the active V2 static system for BREEXZED: a relation-aware public corpus organized by meaning rather than chronology.
 
 The current live baseline is:
 - strict build validation
 - single-source topology JSON
-- graph + explorer dual navigation
+- linked explorer navigation
 - published-only discovery
 - scratch-seeded corpus using `concept`, `articulation`, `signal`, and `trail`
 
@@ -15,7 +15,6 @@ The current live baseline is:
 
 Canonical surfaces:
 - `/`
-- `/map`
 - `/corpus`
 - `/signals`
 - `/projects`
@@ -130,17 +129,16 @@ Compatibility normalization:
 6. Breadcrumb is ancestry-derived.
 7. Search indexes published nodes only.
 8. `/node/:id` remains the canonical deep link and dedicated reading page.
-9. Graph state is derived from the same canonical node registry as explorer/search.
-10. Graph failure must not block list/detail exploration.
+9. Node relationships are derived from the same canonical topology used by explorer/search.
+10. Linked node navigation must remain functional without a graph renderer.
 
-## 7. Graph Surface Contract
+## 7. Retrieval Surface Contract
 
-- `/map` defaults to Graph view
 - `/node/:id` renders the dedicated node page
-- Graph click routes to `/node/:id`
-- Graph highlight syncs with active explorer node
-- Layout may be stabilized from cache rather than reheated every load
-- If graph render fails, explorer remains functional
+- Related nodes and markdown references route to `/node/:id`
+- The topology data remains the source of parent, child, and cross-link relationships
+- `/llms.txt` provides an orientation guide for AI agents
+- `/ai/manifest.json`, `/ai/summaries.json`, `/ai/nodes.json`, and `/ai/relationships.json` provide structured retrieval layers
 
 ## 8. Search Contract
 
@@ -172,12 +170,14 @@ Build:
 - `npm run build` succeeds
 
 Runtime:
-- `/map` opens graph by default
+- `/map` returns the not-found surface
 - `/node/:id` opens the dedicated node page
 - search routes to canonical node path
 - corpus filtering updates the visible corpus grid
 
-Graph:
-- graph/explorer selection remains synchronized
+Retrieval:
+- `/llms.txt` identifies the AI retrieval entry points
+- `/ai/manifest.json` describes the generated bundle
+- `/ai/nodes.json` and `/ai/relationships.json` support node-level traversal
 - cached coordinates prevent unnecessary repeat layout work
 - explorer is still usable if graph is unavailable

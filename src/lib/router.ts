@@ -1,18 +1,18 @@
 import { Explorer } from './explorer';
 
-type RouteKey = 'home' | 'map' | 'corpus' | 'signals' | 'projects' | 'whoami' | 'node';
+type RouteKey = 'home' | 'corpus' | 'signals' | 'projects' | 'whoami' | 'node' | 'not-found';
 
-const ALL_SECTIONS = ['home', 'corpus', 'map', 'signals', 'projects', 'whoami', 'node-page'];
-const HOME_SECTIONS = ['home', 'corpus', 'map', 'signals', 'projects'];
+const ALL_SECTIONS = ['home', 'corpus', 'signals', 'projects', 'whoami', 'node-page', 'not-found'];
+const HOME_SECTIONS = ['home', 'corpus', 'signals', 'projects'];
 
 const ROUTE_SECTIONS: Record<RouteKey, string[]> = {
   home: HOME_SECTIONS,
-  map: ['map'],
   corpus: ['corpus'],
   signals: ['signals'],
   projects: ['projects'],
   whoami: ['whoami'],
-  node: ['node-page']
+  node: ['node-page'],
+  'not-found': ['not-found']
 };
 
 function normalizePath(pathname: string): string {
@@ -37,7 +37,7 @@ function toHistoryPath(pathname: string): string {
 function parseRoute(pathname: string): { key: RouteKey; nodeId?: string } {
   const path = normalizePath(pathname);
   if (path === '/') return { key: 'home' };
-  if (path === '/map') return { key: 'corpus' };
+  if (path === '/map') return { key: 'not-found' };
   if (path === '/corpus') return { key: 'corpus' };
   if (path === '/signals') return { key: 'signals' };
   if (path === '/projects') return { key: 'projects' };
@@ -49,7 +49,7 @@ function parseRoute(pathname: string): { key: RouteKey; nodeId?: string } {
     const nodeId = decodeURIComponent(path.slice('/node/'.length));
     return { key: 'node', nodeId };
   }
-  return { key: 'home' };
+  return { key: 'not-found' };
 }
 
 function setSectionVisibility(ids: string[]): void {
@@ -106,7 +106,6 @@ function hashToPath(hash: string): string | null {
   if (!value) return null;
   if (value.startsWith('/')) {
     const path = normalizePath(value);
-    if (path === '/map') return '/corpus';
     if (path === '/corpus' || path === '/concepts' || path === '/principles') return '/corpus';
     if (path === '/signals' || path === '/essays') return '/signals';
     if (path === '/projects' || path === '/stack') return '/projects';
@@ -122,7 +121,6 @@ function hashToPath(hash: string): string | null {
     return null;
   }
 
-  if (value === 'map') return '/corpus';
   if (value === 'corpus' || value === 'concepts' || value === 'principles') return '/corpus';
   if (value === 'signals' || value === 'essays') return '/signals';
   if (value === 'projects' || value === 'stack') return '/projects';

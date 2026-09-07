@@ -212,9 +212,9 @@ async function main() {
 
     await navigate(`http://${HOST}:${PREVIEW_PORT}/map`);
     assertions.push({
-      name: '/map defaults to graph',
+      name: '/map is removed',
       pass: await evaluate(
-        `(() => document.getElementById('map-surface-shell')?.dataset.mapView === 'graph')()`
+        `(() => document.body.dataset.route === 'not-found' && document.getElementById('not-found')?.classList.contains('route-hidden') === false)()`
       )
     });
 

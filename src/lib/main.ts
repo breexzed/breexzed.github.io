@@ -6,7 +6,6 @@ import { searchManager } from '@/utils/search';
 import { searchUI } from './search-ui';
 import type { Node } from '@/types/Node';
 import { escapeAttr, escapeHtml } from '@/utils/markdown';
-import { graphBootstrap } from './graph-bootstrap';
 import { siteConfig } from '@/config/site';
 
 type CorpusFilter = 'all' | 'projects' | 'concept' | 'articulation';
@@ -301,9 +300,9 @@ async function init(): Promise<void> {
   Router.init();
   initCorpusViews();
   renderFooterSocials();
-  await searchManager.init(Explorer.getNodes() as Record<string, Node>);
+  const searchInit = searchManager.init(Explorer.getNodes() as Record<string, Node>);
+  await searchInit;
   searchUI.init();
-  await graphBootstrap.init();
 
   console.log('✓ BREEXZED estate ready');
 }

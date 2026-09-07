@@ -1,8 +1,7 @@
-import type { Node, TabType, Topology, NodeType, NodeStatus, GraphContracts } from '@/types';
+import type { Node, TabType, Topology, NodeType, NodeStatus } from '@/types';
 import { Persistence } from './persistence';
 import { renderTreeNav, renderDetailPanel, renderNodePage } from '@components/index';
 import { resolveMarkdownHrefToSourcePath } from '@/utils/markdown';
-import { GraphStore } from './graph-store';
 import { Router } from './router';
 
 type ExplorerApi = {
@@ -10,7 +9,6 @@ type ExplorerApi = {
   navigate: (id: string, options?: NavigateOptions) => void;
   getActiveNode: () => string;
   getNodes: () => Record<string, Node>;
-  getGraphContracts: () => GraphContracts | null;
 };
 
 type NavigateOptions = {
@@ -294,8 +292,6 @@ async function init(): Promise<void> {
     );
     sourcePathToNodeId = buildSourcePathIndex(nodes);
     treeOrder = Array.isArray(topology.treeOrder) ? topology.treeOrder : [];
-    GraphStore.hydrate(nodes);
-
     const hashNode = resolveHashToNode(location.hash.slice(1));
     const lastNode = Persistence.getLastNode();
     if (hashNode) {
@@ -331,7 +327,6 @@ export const Explorer: ExplorerApi = {
   navigate,
   getActiveNode: () => activeNode,
   getNodes: () => nodes,
-  getGraphContracts: () => GraphStore.get()
 };
 
 declare global {

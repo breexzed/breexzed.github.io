@@ -25,6 +25,8 @@ let width = 0;
 let height = 0;
 let stars: Star[] = [];
 let animationFrame: number | null = null;
+let lastDrawAt = 0;
+const FRAME_INTERVAL = 1000 / 30;
 
 function randF(a: number, b: number): number {
   return a + Math.random() * (b - a);
@@ -114,8 +116,13 @@ function resize(): void {
   buildStars();
 }
 
-function draw(): void {
+function draw(timestamp = 0): void {
   if (!ctx) return;
+  if (timestamp - lastDrawAt < FRAME_INTERVAL) {
+    animationFrame = requestAnimationFrame(draw);
+    return;
+  }
+  lastDrawAt = timestamp;
   ctx.clearRect(0, 0, width, height);
 
   for (const star of stars) {
