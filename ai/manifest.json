@@ -1,6 +1,6 @@
 {
   "schema": "breexzed.ai.v1",
-  "generated": "2026-09-07T22:07:15.438Z",
+  "generated": "2026-09-07T23:20:43.425Z",
   "description": "Machine-readable retrieval index for the BREEXZED digital estate.",
   "entrypoints": {
     "manifest": "/ai/manifest.json",
