@@ -49,48 +49,20 @@
   </div>
 </section>
 
-<section id="map" class="surface-section">
-  <div class="wrap">
-    <p class="s-label reveal">Map</p>
-    <div class="section-head reveal">
-      <h2 class="s-title">Map Explorer</h2>
-      <p class="section-copy">The map is presented as a navigational overview first, with the graph kept available in the background rather than treated as the primary surface.</p>
-    </div>
-
-    <div class="map-surface panel deep reveal" id="map-surface-shell" data-map-view="explorer">
-      <div class="map-surface-head">
-        <div>
-          <div class="map-surface-label">Map Surface</div>
-          <div class="map-surface-copy">Overview-first navigation, with graph rendering held in reserve.</div>
-        </div>
-        <div class="map-view-switch" aria-label="Map view toggle" hidden>
-          <button type="button" class="map-view-button" data-map-view-target="graph" aria-pressed="false">Graph</button>
-          <button type="button" class="map-view-button active" data-map-view-target="explorer" aria-pressed="true">Map Explorer</button>
-        </div>
-      </div>
-
-      <div class="map-surface-status" id="graph-canvas-status">Map Explorer ready</div>
-
-      <div class="map-surface-body">
-        <div class="map-graph" id="graph-canvas-shell" aria-live="polite">
-          <div id="graph-canvas-host"></div>
-        </div>
-
-        <div class="map-container">
-          <div class="map-sidebar panel mid">
-            <div class="map-sidebar-inner" id="tree-nav"></div>
-          </div>
-
-          <div class="map-detail panel shallow" id="detail-panel"></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <section id="node-page" class="surface-section route-hidden">
   <div class="wrap">
     <div id="node-page-shell"></div>
+  </div>
+</section>
+
+<section id="not-found" class="surface-section route-hidden">
+  <div class="wrap">
+    <p class="s-label reveal">404</p>
+    <div class="section-head reveal">
+      <h2 class="s-title">This surface does not exist.</h2>
+      <p class="section-copy">Use the main reading surfaces or retrieve the estate through the machine-readable AI index.</p>
+    </div>
+    <p><a href="/" data-route>Return home</a> · <a href="/corpus" data-route>Browse the corpus</a> · <a href="/llms.txt">AI retrieval guide</a></p>
   </div>
 </section>
 

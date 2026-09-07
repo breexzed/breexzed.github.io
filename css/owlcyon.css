@@ -107,7 +107,6 @@ section{padding:110px 0;position:relative}
 .ec-desc{font-size:12px;line-height:1.8;color:var(--t-lo)}
 .empty-panel{padding:20px;color:var(--t-void);font-size:12px}
 
-#map{display:none !important}
 
 .map-surface{padding:18px}
 .map-surface-head{display:flex;justify-content:space-between;align-items:flex-start;gap:16px}
@@ -118,9 +117,6 @@ section{padding:110px 0;position:relative}
 .map-surface-body{position:relative}
 .map-container{display:grid;grid-template-columns:260px 1fr;gap:14px}
 .map-graph{display:block}
-#map-surface-shell[data-map-view="graph"] .map-container{display:none}
-#map-surface-shell[data-map-view="explorer"] .map-graph{display:none}
-#graph-canvas-host{height:min(62vh,560px);border:1px solid var(--wire-0);border-radius:10px;overflow:hidden;background:rgba(5,12,24,.54)}
 .map-sidebar{padding:20px 0}
 .map-sidebar-inner{padding:20px;display:flex;flex-direction:column;gap:2px}
 .tree-item{display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:6px;cursor:pointer;border:1px solid transparent;transition:all .2s}
@@ -280,7 +276,6 @@ footer{border-top:1px solid var(--wire-0);padding:32px 0 40px;position:relative;
   .node-page-top{flex-direction:column;align-items:flex-start}
   .node-page-grid{grid-template-columns:1fr}
   .node-page-hero,.node-page-article,.node-route-block{padding:20px}
-  #graph-canvas-host{height:56vh}
   .search-bar{width:94vw;padding:14px}
   .foot-in{padding:0 20px;flex-direction:column}
   .foot-right{justify-content:flex-start}

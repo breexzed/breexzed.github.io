@@ -29,7 +29,7 @@ At a high level, the site is built in three layers:
 
 3. Frontend layer
    - Vite serves and bundles the front-end
-   - The browser renders the estate as a homepage, corpus grid, graph map, and individual node pages
+   - The browser renders the estate as a homepage, linked map explorer, corpus grid, and individual node pages
    - The main UI is a static site with JavaScript-driven navigation and visual interactions
 
 The key tools are:
@@ -38,7 +38,7 @@ The key tools are:
 - TypeScript for app logic
 - Markdown for content
 - Node scripts for content processing and asset handling
-- Graphology/Sigma for the network/map view
+- The topology compiler for node relationships and linked navigation
 
 ## The important folders
 
@@ -244,8 +244,8 @@ npm run smoke
 ```
 
 And the key interaction scenarios to verify are:
-- `/map` graph default
+- `/llms.txt` and `/ai/*` machine-readable retrieval surfaces
 - `/node/:id` explorer fallback
 - search-to-node routing
 - corpus filtering
-- mobile/touch graph behavior
+- mobile/touch node navigation

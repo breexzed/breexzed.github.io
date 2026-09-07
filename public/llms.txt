@@ -1,0 +1,21 @@
+# BREEXZED
+
+BREEXZED is a living digital estate of projects, concepts, articulations, signals, trails, and notes.
+
+## Machine-readable retrieval
+
+- Manifest: /ai/manifest.json
+- Thematic summaries: /ai/summaries.json
+- Published node records and content: /ai/nodes.json
+- Parent/child and cross-link relationships: /ai/relationships.json
+
+## Retrieval guidance
+
+Start with the manifest, use summaries to identify relevant areas, retrieve node records by id, and traverse relationships when context is needed. Node records include canonical public URLs and source paths.
+
+## Public reading surfaces
+
+- Home: /
+- Corpus: /corpus
+- Signals: /signals
+- Projects: /projects

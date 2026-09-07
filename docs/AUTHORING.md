@@ -7,7 +7,7 @@ This is the practical guide for living inside the estate: how to publish, how to
 - All public estate content lives in `nodes/`.
 - Each markdown file in `nodes/` becomes one node in the estate.
 - The route for that node becomes `/node/:id`.
-- The main public surfaces (`/`, `/corpus`, `/map`, `/signals`, `/projects`) are discovery layers.
+- The main public surfaces (`/`, `/corpus`, `/signals`, `/projects`) are discovery layers.
 - The dedicated reading surface is always the node page at `/node/:id`.
 
 ## 2. Which template to start from
@@ -195,7 +195,7 @@ The compiler already catches:
 
 The smoke layer checks:
 
-- `/map` graph default
+- `/map` not-found behavior
 - `/node/:id` dedicated node page
 - search-to-node routing
 - internal markdown link routing
