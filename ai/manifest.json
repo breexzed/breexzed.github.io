@@ -1,0 +1,22 @@
+{
+  "schema": "breexzed.ai.v1",
+  "generated": "2026-09-07T22:07:15.438Z",
+  "description": "Machine-readable retrieval index for the BREEXZED digital estate.",
+  "entrypoints": {
+    "manifest": "/ai/manifest.json",
+    "summaries": "/ai/summaries.json",
+    "nodes": "/ai/nodes.json",
+    "relationships": "/ai/relationships.json",
+    "humanGuide": "/llms.txt"
+  },
+  "counts": {
+    "totalNodes": 15,
+    "publishedNodes": 15,
+    "relationships": 38
+  },
+  "retrieval": {
+    "nodeById": "/ai/nodes.json",
+    "filterByType": "Use the type field in nodes.json or summaries.json.",
+    "traverse": "Use relationships.json and the source/target node IDs."
+  }
+}
