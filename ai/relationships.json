@@ -1,15 +1,10 @@
 {
   "schema": "breexzed.ai.v1",
-  "generated": "2026-09-07T23:20:43.425Z",
+  "generated": "2026-09-11T02:01:22.795Z",
   "relationships": [
     {
       "source": "root",
-      "target": "being_in_the_world",
-      "relation": "parent-child"
-    },
-    {
-      "source": "root",
-      "target": "systems_as_world",
+      "target": "worlds",
       "relation": "parent-child"
     },
     {
@@ -48,13 +43,103 @@
       "relation": "parent-child"
     },
     {
-      "source": "trail_learning_note",
+      "source": "constraints_and_becoming",
+      "target": "being_in_the_world",
+      "relation": "connects"
+    },
+    {
+      "source": "constraints_and_becoming",
+      "target": "entropy_window",
+      "relation": "connects"
+    },
+    {
+      "source": "knowledge_in_motion",
       "target": "knowing_and_knowledge",
       "relation": "connects"
     },
     {
-      "source": "trail_entropy_note",
+      "source": "knowledge_in_motion",
+      "target": "learning_edge",
+      "relation": "connects"
+    },
+    {
+      "source": "world_as_systems",
+      "target": "systems_as_world",
+      "relation": "connects"
+    },
+    {
+      "source": "world_as_systems",
+      "target": "coordination_window",
+      "relation": "connects"
+    },
+    {
+      "source": "knowing_and_knowledge",
+      "target": "knowledge_in_motion",
+      "relation": "connects"
+    },
+    {
+      "source": "knowing_and_knowledge",
+      "target": "learning_edge",
+      "relation": "connects"
+    },
+    {
+      "source": "knowing_and_knowledge",
+      "target": "trail_learning_note",
+      "relation": "connects"
+    },
+    {
+      "source": "estate_lab",
+      "target": "systems_as_world",
+      "relation": "connects"
+    },
+    {
+      "source": "estate_lab",
+      "target": "world_as_systems",
+      "relation": "connects"
+    },
+    {
+      "source": "coordination_window",
+      "target": "trail_coordination_note",
+      "relation": "parent-child"
+    },
+    {
+      "source": "coordination_window",
+      "target": "systems_as_world",
+      "relation": "connects"
+    },
+    {
+      "source": "coordination_window",
+      "target": "world_as_systems",
+      "relation": "connects"
+    },
+    {
+      "source": "entropy_window",
+      "target": "trail_entropy_note",
+      "relation": "parent-child"
+    },
+    {
+      "source": "entropy_window",
       "target": "being_in_the_world",
+      "relation": "connects"
+    },
+    {
+      "source": "entropy_window",
+      "target": "constraints_and_becoming",
+      "relation": "connects"
+    },
+    {
+      "source": "learning_edge",
+      "target": "trail_learning_note",
+      "relation": "parent-child"
+    },
+    {
+      "source": "learning_edge",
+      "target": "knowing_and_knowledge",
+      "relation": "connects"
+    },
+    {
+      "source": "learning_edge",
+      "target": "knowledge_in_motion",
       "relation": "connects"
     },
     {
@@ -63,88 +148,13 @@
       "relation": "connects"
     },
     {
-      "source": "learning_edge",
-      "target": "trail_learning_note",
-      "relation": "parent-child"
-    },
-    {
-      "source": "learning_edge",
-      "target": "knowing_and_knowledge",
-      "relation": "connects"
-    },
-    {
-      "source": "learning_edge",
-      "target": "knowledge_in_motion",
-      "relation": "connects"
-    },
-    {
-      "source": "entropy_window",
-      "target": "trail_entropy_note",
-      "relation": "parent-child"
-    },
-    {
-      "source": "entropy_window",
+      "source": "trail_entropy_note",
       "target": "being_in_the_world",
       "relation": "connects"
     },
     {
-      "source": "entropy_window",
-      "target": "constraints_and_becoming",
-      "relation": "connects"
-    },
-    {
-      "source": "coordination_window",
-      "target": "trail_coordination_note",
-      "relation": "parent-child"
-    },
-    {
-      "source": "coordination_window",
-      "target": "systems_as_world",
-      "relation": "connects"
-    },
-    {
-      "source": "coordination_window",
-      "target": "world_as_systems",
-      "relation": "connects"
-    },
-    {
-      "source": "estate_lab",
-      "target": "systems_as_world",
-      "relation": "connects"
-    },
-    {
-      "source": "estate_lab",
-      "target": "world_as_systems",
-      "relation": "connects"
-    },
-    {
-      "source": "systems_as_world",
-      "target": "world_as_systems",
-      "relation": "connects"
-    },
-    {
-      "source": "systems_as_world",
-      "target": "coordination_window",
-      "relation": "connects"
-    },
-    {
-      "source": "systems_as_world",
-      "target": "trail_coordination_note",
-      "relation": "connects"
-    },
-    {
-      "source": "knowing_and_knowledge",
-      "target": "knowledge_in_motion",
-      "relation": "connects"
-    },
-    {
-      "source": "knowing_and_knowledge",
-      "target": "learning_edge",
-      "relation": "connects"
-    },
-    {
-      "source": "knowing_and_knowledge",
-      "target": "trail_learning_note",
+      "source": "trail_learning_note",
+      "target": "knowing_and_knowledge",
       "relation": "connects"
     },
     {
@@ -163,33 +173,38 @@
       "relation": "connects"
     },
     {
-      "source": "world_as_systems",
-      "target": "systems_as_world",
+      "source": "systems_as_world",
+      "target": "world_as_systems",
       "relation": "connects"
     },
     {
-      "source": "world_as_systems",
+      "source": "systems_as_world",
       "target": "coordination_window",
       "relation": "connects"
     },
     {
-      "source": "knowledge_in_motion",
-      "target": "knowing_and_knowledge",
+      "source": "systems_as_world",
+      "target": "trail_coordination_note",
       "relation": "connects"
     },
     {
-      "source": "knowledge_in_motion",
-      "target": "learning_edge",
-      "relation": "connects"
-    },
-    {
-      "source": "constraints_and_becoming",
+      "source": "worlds",
       "target": "being_in_the_world",
+      "relation": "parent-child"
+    },
+    {
+      "source": "worlds",
+      "target": "systems_as_world",
+      "relation": "parent-child"
+    },
+    {
+      "source": "worlds",
+      "target": "world_as_systems",
       "relation": "connects"
     },
     {
-      "source": "constraints_and_becoming",
-      "target": "entropy_window",
+      "source": "worlds",
+      "target": "constraints_and_becoming",
       "relation": "connects"
     }
   ]
