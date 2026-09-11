@@ -7,8 +7,7 @@ depth: 0
 type: root
 glyph: ◈
 children:
-  - being_in_the_world
-  - systems_as_world
+  - worlds
   - knowing_and_knowledge
   - constraints_and_becoming
   - world_as_systems
@@ -24,8 +23,7 @@ tags:
 This is the living home of BREEXZED: a graph-first corpus for learning through traces, relations, and return.
 
 Start from the concepts:
-- [Being In The World](./concepts/being-in-the-world.md)
-- [Systems As World](./concepts/systems-as-world.md)
+- [Worlds](./worlds/worlds.md)
 - [Knowing And Knowledge](./concepts/knowing-and-knowledge.md)
 
 Read the articulations:

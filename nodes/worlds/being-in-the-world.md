@@ -3,8 +3,8 @@ id: being_in_the_world
 title: Being In The World
 label: concept
 formula: being -> world -> relation
-depth: 1
-parent: root
+depth: 2
+parent: worlds
 type: concept
 connects:
   - constraints_and_becoming
@@ -12,8 +12,8 @@ connects:
   - trail_entropy_note
 status: published
 domain: ontology
-thumbnail: ./being_in_the_world-thumb.svg
-visual: ./being_in_the_world-visual.svg
+thumbnail: ../concepts/being_in_the_world-thumb.svg
+visual: ../concepts/being_in_the_world-visual.svg
 tags:
   - philosophy
   - being

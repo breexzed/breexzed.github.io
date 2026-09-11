@@ -23,17 +23,18 @@ export interface Node {
   label: string;
   glyph: string;
   tags: string[];
-  date: string;
+  date: string | null;
   source: string | null;
   sourcePath: string;
   type: NodeType;
+  folder?: boolean;
   featured?: boolean;
   thumbnail?: string;
   visual?: string;
   images?: string[];
   links?: NodeLink[];
   externalUrl?: string;
-  publishDate?: string;
+  publishDate?: string | null;
   status?: NodeStatus;
   first_noticed?: string;
   current_status?: 'invisible' | 'emerging' | 'confirmed' | 'shocked';
@@ -49,7 +50,6 @@ export interface TopologyMetadata {
 }
 
 export interface Topology {
-  generated: string;
   nodeCount: number;
   nodes: Record<string, Node>;
   treeOrder: string[];

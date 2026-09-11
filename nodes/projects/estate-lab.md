@@ -21,3 +21,5 @@ tags:
 A small living system for tracing patterns, turning observations into usable structure, and keeping the work legible over time.
 
 This project is the working surface for the estate: a place to gather signals, shape concepts, and make the relations between things visible without losing the personal tone of the work.
+
+Further reading: [Shape Up — Foreword](https://basecamp.com/shapeup/0.1-foreword)

@@ -1,5 +1,5 @@
 import type { Node } from '@/types/Node';
-import { escapeAttr, escapeHtml, sanitizeHtml } from '@/utils/markdown';
+import { escapeAttr, escapeHtml, resolveMarkdownHrefToSourcePath, sanitizeHtml } from '@/utils/markdown';
 
 type NodePageParams = {
   node: Node;
@@ -128,6 +128,64 @@ function renderRelatedCards(title: string, ids: string[], nodes: Record<string, 
   `;
 }
 
+function renderFolderCard(node: Node): string {
+  const typeLabel =
+    node.type === 'projects'
+      ? 'Project'
+      : node.type === 'articulation'
+        ? 'Articulation'
+        : node.type === 'concept'
+          ? 'Concept'
+          : toTitleCase(node.type || 'note');
+  const visual = node.thumbnail || node.visual || node.images?.[0];
+  const links = (node.links || []).slice(0, 3);
+
+  return `
+    <div class="project-card panel mid${node.folder ? ' project-card--folder' : ''}" data-node-route="${escapeAttr(node.id)}">
+      ${visual ? `<div class="pc-visual"><img src="${escapeAttr(visual)}" alt="${escapeAttr(node.title)}"></div>` : ''}
+      <div class="pc-content">
+        <div class="pc-meta">
+          <span class="pc-tag">${escapeHtml(typeLabel)}</span>
+          ${node.folder ? '<span class="pc-tag pc-folder-tag">Folder</span>' : ''}
+          ${node.domain ? `<span class="pc-tag">${escapeHtml(node.domain)}</span>` : ''}
+        </div>
+        <h3 class="pc-title">${escapeHtml(node.title)}</h3>
+        <p class="pc-desc">${escapeHtml(node.desc || '')}</p>
+        <div class="pc-formula">${escapeHtml(node.formula || '')}</div>
+        ${
+          links.length
+            ? `<div class="pc-links">${links
+                .map(
+                  link =>
+                    `<a class="pc-link" href="${escapeAttr(link.href)}" target="_blank" rel="noopener noreferrer">${escapeHtml(link.label)}</a>`
+                )
+                .join('')}</div>`
+            : ''
+        }
+      </div>
+    </div>
+  `;
+}
+
+function renderFolderChildren(node: Node, nodes: Record<string, Node>): string {
+  if (!node.folder || !node.children?.length) return '';
+  const cards = node.children.map(id => nodes[id]).filter(Boolean).map(renderFolderCard).join('');
+  if (!cards) return '';
+
+  return `
+    <div class="node-folder-contents">
+      <div class="node-route-block-label">Notes in this folder</div>
+      <div class="projects-grid">${cards}</div>
+    </div>
+  `;
+}
+
+function childrenLabel(node: Node): string {
+  if (node.folder) return 'Notes in this folder';
+  if (node.type === 'projects') return 'Project contents';
+  return 'Trails forward';
+}
+
 function renderBreadcrumb(breadcrumb: string[], activeNode: string, nodes: Record<string, Node>): string {
   return `
     <div class="breadcrumb">
@@ -162,6 +220,59 @@ function renderNodeLinkList(node: Node): string {
   `;
 }
 
+function resolveInternalNode(currentNode: Node, href: string, nodes: Record<string, Node>): Node | null {
+  const sourcePath = resolveMarkdownHrefToSourcePath(currentNode.sourcePath, href);
+  if (!sourcePath) return null;
+  return Object.values(nodes).find(node => node.sourcePath === sourcePath) || null;
+}
+
+function parseLiveUrl(href: string): URL | null {
+  try {
+    const url = new URL(href);
+    return url.protocol === 'http:' || url.protocol === 'https:' ? url : null;
+  } catch {
+    return null;
+  }
+}
+
+function renderInlineNodePreviews(content: string, currentNode: Node, nodes: Record<string, Node>): string {
+  return content.replace(
+    /<a href="([^"]+)"[^>]*>(.*?)<\/a>/g,
+    (full, href: string, label: string) => {
+      const linkedNode = resolveInternalNode(currentNode, href, nodes);
+      if (!linkedNode) {
+        const liveUrl = parseLiveUrl(href);
+        if (!liveUrl) return full;
+        const cleanLabel = label.replace(/<[^>]+>/g, '').trim() || liveUrl.hostname;
+        const pathLabel = `${liveUrl.hostname}${liveUrl.pathname === '/' ? '' : liveUrl.pathname}`;
+        return `
+          <a class="inline-node-preview inline-node-preview--live" href="${escapeAttr(liveUrl.href)}" target="_blank" rel="noopener noreferrer">
+            <span class="inline-node-preview-body">
+              <span class="inline-node-preview-meta">Live link · ${escapeHtml(liveUrl.hostname)}</span>
+              <strong>${escapeHtml(cleanLabel)}</strong>
+              <span class="inline-node-preview-desc">${escapeHtml(pathLabel)}</span>
+            </span>
+            <span class="inline-node-preview-open" aria-hidden="true">↗</span>
+          </a>
+        `;
+      }
+      const visual = linkedNode.thumbnail || linkedNode.visual || linkedNode.images?.[0];
+      const typeLabel = toTitleCase(linkedNode.type || 'node');
+      return `
+        <a class="inline-node-preview${visual ? '' : ' inline-node-preview--text'}" href="${escapeAttr(href)}" data-node-route="${escapeAttr(linkedNode.id)}">
+          ${visual ? `<img src="${escapeAttr(visual)}" alt="" loading="lazy">` : ''}
+          <span class="inline-node-preview-body">
+            <span class="inline-node-preview-meta">${escapeHtml(typeLabel)}${linkedNode.domain ? ` · ${escapeHtml(linkedNode.domain)}` : ''}</span>
+            <strong>${escapeHtml(label.replace(/<[^>]+>/g, ''))}</strong>
+            <span class="inline-node-preview-formula">${escapeHtml(linkedNode.formula || '')}</span>
+            <span class="inline-node-preview-desc">${escapeHtml(linkedNode.desc || '')}</span>
+          </span>
+        </a>
+      `;
+    }
+  );
+}
+
 export function renderNodePage({
   node,
   breadcrumb,
@@ -169,8 +280,10 @@ export function renderNodePage({
   sanitizeMarkdown
 }: NodePageParams): string {
   const visual = node.visual || node.thumbnail || (Array.isArray(node.images) ? node.images[0] : null);
-  const gallery = Array.isArray(node.images) ? node.images : [];
-  const content = node.content || '<p style="color:var(--t-void); font-style:italic;">No content available.</p>';
+  const gallery = node.folder ? [] : Array.isArray(node.images) ? node.images : [];
+  const content = node.content
+    ? renderInlineNodePreviews(node.content, node, nodes)
+    : '<p style="color:var(--t-void); font-style:italic;">No content available.</p>';
 
   return `
     <div class="node-page-shell">
@@ -209,10 +322,11 @@ export function renderNodePage({
           <div class="node-content node-page-content">
             ${sanitizeMarkdown ? sanitizeHtml(content) : content}
           </div>
+          ${renderFolderChildren(node, nodes)}
         </article>
 
         <aside class="node-page-aside">
-          ${node.type !== 'signal' ? renderRelatedCards('Trails forward', node.children || [], nodes) : ''}
+          ${node.type !== 'signal' && !node.folder ? renderRelatedCards(childrenLabel(node), node.children || [], nodes) : ''}
         </aside>
       </div>
     </div>

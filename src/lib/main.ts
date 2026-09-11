@@ -7,8 +7,9 @@ import { searchUI } from './search-ui';
 import type { Node } from '@/types/Node';
 import { escapeAttr, escapeHtml } from '@/utils/markdown';
 import { siteConfig } from '@/config/site';
+import '../../css/owlcyon.css';
 
-type CorpusFilter = 'all' | 'projects' | 'concept' | 'articulation';
+type CorpusFilter = 'all' | 'folder' | 'projects' | 'concept' | 'articulation';
 
 type LensMapApi = {
   version: string;
@@ -138,11 +139,12 @@ function renderCorpusCard(node: Node): string {
   const visual = getNodePreviewImage(node);
 
   return `
-    <div class="project-card panel mid" data-node="${escapeAttr(node.id)}">
+    <div class="project-card panel mid${node.folder ? ' project-card--folder' : ''}" data-node="${escapeAttr(node.id)}">
       ${visual ? `<div class="pc-visual"><img src="${escapeAttr(visual)}" alt="${escapeAttr(node.title)}"></div>` : ''}
       <div class="pc-content">
         <div class="pc-meta">
           <span class="pc-tag">${escapeHtml(typeLabel)}</span>
+          ${node.folder ? '<span class="pc-tag pc-folder-tag">Folder</span>' : ''}
           ${node.domain ? `<span class="pc-tag">${escapeHtml(node.domain)}</span>` : ''}
         </div>
         <h3 class="pc-title">${escapeHtml(node.title)}</h3>
@@ -171,6 +173,8 @@ function renderSignalCard(node: Node): string {
 
 function getCorpusFilterMeta(filter: CorpusFilter): { label: string; empty: string } {
   switch (filter) {
+    case 'folder':
+      return { label: 'Folders', empty: 'No folders have been published yet.' };
     case 'projects':
       return { label: 'Projects', empty: 'No published projects yet.' };
     case 'concept':
@@ -184,7 +188,12 @@ function getCorpusFilterMeta(filter: CorpusFilter): { label: string; empty: stri
 
 function getCorpusNodes(allNodes: Node[], filter: CorpusFilter): Node[] {
   const corpusNodes = allNodes
-    .filter(node => isPublished(node) && ['projects', 'concept', 'articulation'].includes(node.type))
+    .filter(
+      node =>
+        isPublished(node) &&
+        (!node.parent || node.parent === 'root') &&
+        ['projects', 'concept', 'articulation'].includes(node.type)
+    )
     .sort((a, b) => {
       if (a.featured && !b.featured) return -1;
       if (!a.featured && b.featured) return 1;
@@ -192,16 +201,18 @@ function getCorpusNodes(allNodes: Node[], filter: CorpusFilter): Node[] {
     });
 
   if (filter === 'all') return corpusNodes;
+  if (filter === 'folder') return corpusNodes.filter(node => node.folder);
   return corpusNodes.filter(node => node.type === filter);
 }
 
 function renderCorpusFilters(activeFilter: CorpusFilter): string {
-  const filters: CorpusFilter[] = ['all', 'projects', 'concept', 'articulation'];
+  const filters: CorpusFilter[] = ['all', 'folder', 'projects', 'concept', 'articulation'];
   return filters
     .map(filter => {
       const meta = getCorpusFilterMeta(filter);
       const active = filter === activeFilter;
       return `
+        ${filter === 'folder' ? '<span class="filter-separator" aria-hidden="true"></span>' : ''}
         <button
           type="button"
           class="filter-chip${active ? ' active' : ''}"
@@ -234,7 +245,7 @@ function initCorpusViews(): void {
   const signalsHost = document.getElementById('signals-list');
   const projectsHost = document.getElementById('projects-grid');
   const publishedProjects = allNodes
-    .filter(node => isPublished(node) && node.type === 'projects')
+    .filter(node => isPublished(node) && (!node.parent || node.parent === 'root') && node.type === 'projects')
     .sort((a, b) => {
       if (a.featured && !b.featured) return -1;
       if (!a.featured && b.featured) return 1;

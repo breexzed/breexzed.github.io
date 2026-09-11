@@ -136,24 +136,15 @@ function hashToPath(hash: string): string | null {
   return null;
 }
 
-function getBasePath(): string {
-  const pathname = window.location.pathname || '/';
-  const trimmed = pathname.replace(/index\.html$/i, '').replace(/\/+$/, '');
-  if (!trimmed || trimmed === '/') return '';
-  return trimmed;
-}
-
 function getPreferredNodePath(nodeId: string): string {
   const encodedId = encodeURIComponent(nodeId);
   const isGitHubPages = window.location.hostname.includes('github.io');
-  const isLocalDev = ['localhost', '127.0.0.1', '0.0.0.0'].includes(window.location.hostname);
-  const base = getBasePath();
 
-  if (isGitHubPages || (!isLocalDev && !window.location.pathname.startsWith('/node/'))) {
-    return `${base}/#/node/${encodedId}`;
+  if (isGitHubPages) {
+    return `/#/node/${encodedId}`;
   }
 
-  return `${base}/node/${encodedId}`;
+  return `/node/${encodedId}`;
 }
 
 function getPreferredNodeUrl(nodeId: string): string {
