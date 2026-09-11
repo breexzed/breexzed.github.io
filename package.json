@@ -30,6 +30,7 @@
   "author": "owlcyon",
   "license": "MIT",
   "dependencies": {
+    "@vercel/speed-insights": "^2.0.0",
     "flexsearch": "^0.7.43",
     "glob": "^10.3.0",
     "gray-matter": "^4.0.3",
