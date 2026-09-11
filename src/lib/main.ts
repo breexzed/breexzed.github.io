@@ -7,6 +7,7 @@ import { searchUI } from './search-ui';
 import type { Node } from '@/types/Node';
 import { escapeAttr, escapeHtml } from '@/utils/markdown';
 import { siteConfig } from '@/config/site';
+import { injectSpeedInsights } from '@vercel/speed-insights';
 import '../../css/owlcyon.css';
 
 type CorpusFilter = 'all' | 'folder' | 'projects' | 'concept' | 'articulation';
@@ -314,6 +315,7 @@ async function init(): Promise<void> {
   const searchInit = searchManager.init(Explorer.getNodes() as Record<string, Node>);
   await searchInit;
   searchUI.init();
+  injectSpeedInsights();
 
   console.log('✓ BREEXZED estate ready');
 }
