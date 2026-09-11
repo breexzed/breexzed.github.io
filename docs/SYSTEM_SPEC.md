@@ -43,6 +43,7 @@ Compatibility aliases:
   - `templates/signal.md`
   - `templates/trail.md`
   - `templates/projects.md`
+  - `templates/folder.md`
 - Persistence:
   - `src/lib/persistence.ts`
 - Graph:
@@ -54,7 +55,6 @@ Compatibility aliases:
 ## 4. Data Contract (`topology.json`)
 
 Top-level fields:
-- `generated`
 - `nodeCount`
 - `nodes`
 - `treeOrder`
@@ -82,12 +82,22 @@ Per-node core fields:
 - `source`
 - `sourcePath`
 - `type`
+- `folder`
 - `featured`
 - `thumbnail`
 - `externalUrl`
 - `publishDate`
 - `status`
 - `domain`
+
+Folder nodes use their normal category `type` (`concept`, `projects`, or `articulation`) plus `folder: true`. Their `children` define the contained notes; those children are omitted from global corpus discovery and rendered as full preview cards on the folder page. `connects` remains available for cross-folder graph relationships.
+
+Markdown body links are rendered in two ways:
+
+- relative or root-relative `.md` links resolve to internal node preview cards;
+- absolute `http://` and `https://` links resolve to external live-link cards showing authored label and URL host/path.
+
+External page contents are not fetched or embedded. This avoids cross-origin and iframe restrictions and leaves external content ownership, privacy, and navigation with the source site.
 
 Signal fields:
 - `first_noticed`

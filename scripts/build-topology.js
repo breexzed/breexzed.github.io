@@ -68,6 +68,12 @@ function normalizeStringList(value) {
   return [];
 }
 
+function preserveAuthoredDate(value) {
+  if (value === undefined || value === null || value === '') return null;
+  if (value instanceof Date) return value.toISOString().slice(0, 10);
+  return String(value).trim();
+}
+
 function normalizeLinks(value) {
   if (!value) return [];
   const raw = Array.isArray(value) ? value : [value];
@@ -186,11 +192,10 @@ function generateTreeOrder(nodes) {
 async function buildTopology() {
   console.log('Building topology from Markdown (profile: strict)...\n');
 
-  const relativeFiles = await glob('nodes/**/*.md', { cwd: ROOT_DIR, nodir: true });
+  const relativeFiles = (await glob('nodes/**/*.md', { cwd: ROOT_DIR, nodir: true })).sort();
   const files = relativeFiles.map(file => path.join(ROOT_DIR, file));
   if (files.length === 0) {
     const emptyTopology = {
-      generated: new Date().toISOString(),
       nodeCount: 0,
       nodes: {},
       treeOrder: [],
@@ -310,10 +315,8 @@ async function buildTopology() {
 
     const type = normalizeNodeType(frontmatter.type);
     const status = frontmatter.status || 'published';
-    const publishDate =
-      frontmatter.publishDate ||
-      frontmatter.date ||
-      new Date().toISOString().split('T')[0];
+    const authoredDate = preserveAuthoredDate(frontmatter.date);
+    const publishDate = preserveAuthoredDate(frontmatter.publishDate) || authoredDate;
 
     const images = normalizeStringList(
       frontmatter.images || frontmatter.gallery || frontmatter.media || frontmatter.image || []
@@ -335,10 +338,11 @@ async function buildTopology() {
       glyph: frontmatter.glyph || '·',
       visual: frontmatter.visual || null,
       tags: normalizeTags(frontmatter.tags),
-      date: frontmatter.date || new Date().toISOString().split('T')[0],
+      date: authoredDate,
       source: frontmatter.source || null,
       sourcePath: normalizeSource(file),
       type,
+      folder: frontmatter.folder === true,
       featured: frontmatter.featured === true,
       thumbnail: frontmatter.thumbnail || null,
       images: images.length > 0 ? images : undefined,
@@ -346,13 +350,13 @@ async function buildTopology() {
       externalUrl: frontmatter.externalUrl || null,
       publishDate,
       status,
-      first_noticed: frontmatter.first_noticed || null,
+      first_noticed: preserveAuthoredDate(frontmatter.first_noticed),
       current_status:
         type === 'signal' && frontmatter.current_status
           ? String(frontmatter.current_status).trim().toLowerCase()
           : null,
       domain: frontmatter.domain || null,
-      date_of_discovery: frontmatter.date_of_discovery || null
+      date_of_discovery: preserveAuthoredDate(frontmatter.date_of_discovery)
     };
   }
 
@@ -387,7 +391,6 @@ async function buildTopology() {
   }
 
   const topology = {
-    generated: new Date().toISOString(),
     nodeCount: Object.keys(nodes).length,
     nodes,
     treeOrder,

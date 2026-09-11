@@ -1,6 +1,6 @@
 {
   "schema": "breexzed.ai.v1",
-  "generated": "2026-09-07T21:34:32.245Z",
+  "generated": "2026-09-11T01:50:43.352Z",
   "groups": [
     {
       "type": "root",
@@ -20,106 +20,47 @@
       ]
     },
     {
-      "type": "trail",
-      "count": 4,
-      "summary": "4 published trail nodes in the BREEXZED estate.",
-      "entries": [
-        {
-          "id": "the_gap",
-          "title": "The Gap",
-          "summary": "It’s 2026, and I wake up each day to a new technological advancement. It’s thrilling—immense, astonishing, and deeply exciting.",
-          "domain": "writing",
-          "tags": [
-            "acceleration",
-            "cognition",
-            "technology",
-            "reflection"
-          ]
-        },
-        {
-          "id": "trail_learning_note",
-          "title": "Learning Note",
-          "summary": "This trail marks the moment when confusion became precise enough to be useful. A vague uncertainty turned into a question I could actually return to, test, and let reorganize what I thought I understood.",
-          "domain": "learning",
-          "tags": [
-            "learning",
-            "trail"
-          ]
-        },
-        {
-          "id": "trail_entropy_note",
-          "title": "Entropy Note",
-          "summary": "I noticed this trail through the ordinary evidence of things slipping out of ideal form: a room requiring reordering, attention fragmenting under pressure, plans losing coherence faster than expected. None of it was dramatic, but all of it carried the same signature.",
-          "domain": "entropy",
-          "tags": [
-            "entropy",
-            "trail"
-          ]
-        },
-        {
-          "id": "trail_coordination_note",
-          "title": "Coordination Note",
-          "summary": "This trail came from a moment where conversation stopped feeling like negotiation and began to feel like alignment. Vocabulary settled, timing improved, and what each person meant became easier to hand over without losing the thread.",
-          "domain": "coordination",
-          "tags": [
-            "coordination",
-            "trail"
-          ]
-        }
-      ]
-    },
-    {
-      "type": "signal",
+      "type": "articulation",
       "count": 3,
-      "summary": "3 published signal nodes in the BREEXZED estate.",
+      "summary": "3 published articulation nodes in the BREEXZED estate.",
       "entries": [
         {
-          "id": "learning_edge",
-          "title": "Learning Edge",
-          "summary": "The learning edge is the point at which not knowing stops feeling like a private embarrassment and starts behaving like a live route. It appears when confusion sharpens into a usable question, and when the question begins to reorganize the way I look, read, test, and return.",
-          "domain": "learning",
+          "id": "constraints_and_becoming",
+          "title": "Constraints And Becoming",
+          "summary": "Constraints do not only suffocate. They also expose the exact shape of what resists, what bends, and what might become otherwise through patient attention.",
+          "domain": "philosophy",
+          "tags": [
+            "becoming",
+            "limits"
+          ]
+        },
+        {
+          "id": "knowledge_in_motion",
+          "title": "Knowledge In Motion",
+          "summary": "Knowledge lives by moving between minds, mediums, questions, and revisions. What remains alive is what can still be entered, tested, and transformed.",
+          "domain": "epistemics",
           "tags": [
             "learning",
-            "epistemics"
+            "memetics"
           ]
         },
         {
-          "id": "entropy_window",
-          "title": "Entropy Window",
-          "summary": "Entropy keeps returning to me as a signal that reality never fully agrees to remain organized for long. It appears whenever systems fray at the edges: in rooms that drift toward disorder, in moods that resist neat naming, and in structures that reveal their cost the moment maintenance stops.",
-          "domain": "entropy",
+          "id": "world_as_systems",
+          "title": "World As Systems",
+          "summary": "To approach the world as systems is to look for the visible and hidden rules by which relations hold, break, and reform.",
+          "domain": "systems",
           "tags": [
-            "entropy",
-            "observation"
-          ]
-        },
-        {
-          "id": "coordination_window",
-          "title": "Coordination Window",
-          "summary": "Coordination arrives as a signal whenever separate minds, roles, or temperaments find enough mutual structure to move together without becoming identical. I notice it in small handoffs, in recurring language, in timing, and in the strange relief that comes when understanding no longer has to be forced.",
-          "domain": "coordination",
-          "tags": [
-            "coordination",
-            "systems"
+            "systems",
+            "topology"
           ]
         }
       ]
     },
     {
       "type": "concept",
-      "count": 3,
-      "summary": "3 published concept nodes in the BREEXZED estate.",
+      "count": 4,
+      "summary": "4 published concept nodes in the BREEXZED estate.",
       "entries": [
-        {
-          "id": "systems_as_world",
-          "title": "Systems As World",
-          "summary": "The world exhibits itself as systems to beings: arrangements, feedbacks, frictions, interfaces, and repeating forms that can be learned and re-entered.",
-          "domain": "systems",
-          "tags": [
-            "systems",
-            "order"
-          ]
-        },
         {
           "id": "knowing_and_knowledge",
           "title": "Knowing And Knowledge",
@@ -138,6 +79,27 @@
           "tags": [
             "philosophy",
             "being"
+          ]
+        },
+        {
+          "id": "systems_as_world",
+          "title": "Systems As World",
+          "summary": "The world exhibits itself as systems to beings: arrangements, feedbacks, frictions, interfaces, and repeating forms that can be learned and re-entered.",
+          "domain": "systems",
+          "tags": [
+            "systems",
+            "order"
+          ]
+        },
+        {
+          "id": "worlds",
+          "title": "Worlds",
+          "summary": "Worlds is a living folder for notes about how being, systems, and relations compose the environments we inhabit.",
+          "domain": "ontology",
+          "tags": [
+            "ontology",
+            "systems",
+            "relation"
           ]
         }
       ]
@@ -161,38 +123,87 @@
       ]
     },
     {
-      "type": "articulation",
+      "type": "signal",
       "count": 3,
-      "summary": "3 published articulation nodes in the BREEXZED estate.",
+      "summary": "3 published signal nodes in the BREEXZED estate.",
       "entries": [
         {
-          "id": "world_as_systems",
-          "title": "World As Systems",
-          "summary": "To approach the world as systems is to look for the visible and hidden rules by which relations hold, break, and reform.",
-          "domain": "systems",
+          "id": "coordination_window",
+          "title": "Coordination Window",
+          "summary": "Coordination arrives as a signal whenever separate minds, roles, or temperaments find enough mutual structure to move together without becoming identical. I notice it in small handoffs, in recurring language, in timing, and in the strange relief that comes when understanding no longer has to be forced.",
+          "domain": "coordination",
           "tags": [
-            "systems",
-            "topology"
+            "coordination",
+            "systems"
           ]
         },
         {
-          "id": "knowledge_in_motion",
-          "title": "Knowledge In Motion",
-          "summary": "Knowledge lives by moving between minds, mediums, questions, and revisions. What remains alive is what can still be entered, tested, and transformed.",
-          "domain": "epistemics",
+          "id": "entropy_window",
+          "title": "Entropy Window",
+          "summary": "Entropy keeps returning to me as a signal that reality never fully agrees to remain organized for long. It appears whenever systems fray at the edges: in rooms that drift toward disorder, in moods that resist neat naming, and in structures that reveal their cost the moment maintenance stops.",
+          "domain": "entropy",
+          "tags": [
+            "entropy",
+            "observation"
+          ]
+        },
+        {
+          "id": "learning_edge",
+          "title": "Learning Edge",
+          "summary": "The learning edge is the point at which not knowing stops feeling like a private embarrassment and starts behaving like a live route. It appears when confusion sharpens into a usable question, and when the question begins to reorganize the way I look, read, test, and return.",
+          "domain": "learning",
           "tags": [
             "learning",
-            "memetics"
+            "epistemics"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "trail",
+      "count": 4,
+      "summary": "4 published trail nodes in the BREEXZED estate.",
+      "entries": [
+        {
+          "id": "trail_coordination_note",
+          "title": "Coordination Note",
+          "summary": "This trail came from a moment where conversation stopped feeling like negotiation and began to feel like alignment. Vocabulary settled, timing improved, and what each person meant became easier to hand over without losing the thread.",
+          "domain": "coordination",
+          "tags": [
+            "coordination",
+            "trail"
           ]
         },
         {
-          "id": "constraints_and_becoming",
-          "title": "Constraints And Becoming",
-          "summary": "Constraints do not only suffocate. They also expose the exact shape of what resists, what bends, and what might become otherwise through patient attention.",
-          "domain": "philosophy",
+          "id": "trail_entropy_note",
+          "title": "Entropy Note",
+          "summary": "I noticed this trail through the ordinary evidence of things slipping out of ideal form: a room requiring reordering, attention fragmenting under pressure, plans losing coherence faster than expected. None of it was dramatic, but all of it carried the same signature.",
+          "domain": "entropy",
           "tags": [
-            "becoming",
-            "limits"
+            "entropy",
+            "trail"
+          ]
+        },
+        {
+          "id": "trail_learning_note",
+          "title": "Learning Note",
+          "summary": "This trail marks the moment when confusion became precise enough to be useful. A vague uncertainty turned into a question I could actually return to, test, and let reorganize what I thought I understood.",
+          "domain": "learning",
+          "tags": [
+            "learning",
+            "trail"
+          ]
+        },
+        {
+          "id": "the_gap",
+          "title": "The Gap",
+          "summary": "It’s 2026, and I wake up each day to a new technological advancement. It’s thrilling—immense, astonishing, and deeply exciting.",
+          "domain": "writing",
+          "tags": [
+            "acceleration",
+            "cognition",
+            "technology",
+            "reflection"
           ]
         }
       ]

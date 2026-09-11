@@ -131,6 +131,36 @@ npm run build:content
 
 If the build passes, the node is accepted into the estate.
 
+## Creating a folder of notes
+
+Folders are ordinary Markdown nodes, so adding one does not require changing the app code.
+
+1. Create a directory such as `nodes/my-folder/`.
+2. Copy `templates/folder.md` to `nodes/my-folder/my-folder.md`.
+3. Give the folder a lowercase stable `id`, a `title`, `formula`, `depth`, its normal category `type` (for example `concept`), `folder: true`, and `parent`.
+4. Add the child node IDs under `children`.
+5. Move or create the child Markdown files in the same directory.
+6. Set each child node's `parent` to the folder ID and increase its `depth` by one.
+7. Add cross-folder relationships under `connects` when needed.
+8. Put the folder's SVG files beside its Markdown file and keep `thumbnail` and `visual` in its frontmatter.
+9. Run `npm run build:content`, then `npm run dev` to preview it.
+
+Example:
+
+```text
+nodes/
+└── my-folder/
+    ├── my-folder.md
+    ├── my-folder-thumb.svg
+    ├── my-folder-visual.svg
+    ├── first-note.md
+    └── second-note.md
+```
+
+The folder appears in its normal category on the global surface with a single readable `FOLDER` badge, while its children appear as full preview cards inside the folder after its description. Child nodes are not duplicated globally. Each folder and note has a copyable node link. On Vercel/custom-domain deployments, links use clean paths such as `/node/worlds` and survive refreshes and new devices; GitHub Pages keeps the safe `/#/node/<id>` hash fallback.
+
+To add another note later, create its Markdown file, add its ID to the folder's `children`, set its `parent` and `depth`, and rebuild content. No TypeScript or HTML changes are needed.
+
 ## Adding images
 
 You can attach visuals to a node by placing an image beside the markdown file and referencing it in the frontmatter or body.
@@ -148,6 +178,16 @@ thumbnail: ./example-image.jpg
 ```
 
 The build pipeline copies these assets to the static public folder and rewrites internal references automatically.
+
+## Linking external reading
+
+Use a normal Markdown link inside a node:
+
+```md
+[Shape Up — Foreword](https://basecamp.com/shapeup/0.1-foreword)
+```
+
+The site turns absolute `http://` and `https://` links into compact live-link previews showing the label, domain, path, and an external-link indicator. They open in a new tab. The site does not scrape or iframe third-party page contents: browser CORS rules and external security headers make that unreliable, and avoiding it keeps visitors' privacy and the source site's controls intact. For richer context, write a short summary or attributed excerpt directly below the link.
 
 ## Core commands
 
@@ -186,7 +226,7 @@ The repository is a personal digital estate and reflection space for Breexzed's 
 If you just want to add or update content without touching the code:
 
 1. Open `nodes/`
-2. Pick a node type folder or template
+2. Pick a node category folder or template
 3. Create a new markdown file
 4. Add title, summary, and links in frontmatter
 5. Write your content in markdown

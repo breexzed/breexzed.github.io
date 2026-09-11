@@ -175,7 +175,8 @@ function bindNodePageInteractions(surface: HTMLElement): void {
   surface.querySelectorAll<HTMLElement>('[data-node-route]').forEach(card => {
     const id = card.dataset.nodeRoute;
     if (!id) return;
-    card.addEventListener('click', () => {
+    card.addEventListener('click', event => {
+      if ((event.target as Element | null)?.closest('.pc-link')) return;
       Router.navigateToNode(id);
     });
   });

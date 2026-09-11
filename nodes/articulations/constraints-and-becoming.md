@@ -21,5 +21,5 @@ tags:
 Constraints do not only suffocate. They also expose the exact shape of what resists, what bends, and what might become otherwise through patient attention.
 
 Related nodes:
-- [Being In The World](../concepts/being-in-the-world.md)
+- [Being In The World](../worlds/being-in-the-world.md)
 - [Entropy Window](../signals/entropy-window.md)

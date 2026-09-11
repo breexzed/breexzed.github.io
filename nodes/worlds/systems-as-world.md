@@ -3,8 +3,8 @@ id: systems_as_world
 title: Systems As World
 label: concept
 formula: world -> systems -> pattern
-depth: 1
-parent: root
+depth: 2
+parent: worlds
 type: concept
 connects:
   - world_as_systems
@@ -12,8 +12,8 @@ connects:
   - trail_coordination_note
 status: published
 domain: systems
-thumbnail: ./systems_as_world-thumb.svg
-visual: ./systems_as_world-visual.svg
+thumbnail: ../concepts/systems_as_world-thumb.svg
+visual: ../concepts/systems_as_world-visual.svg
 tags:
   - systems
   - order
