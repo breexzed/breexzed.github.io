@@ -3,13 +3,13 @@ id: estate_lab
 title: Estate Lab
 label: project
 formula: living -> systems -> prototypes
-depth: 1
-parent: root
+depth: 2
+parent: demos
 type: projects
 connects:
   - systems_as_world
   - world_as_systems
-status: published
+status: archived
 domain: systems
 thumbnail: ./estate_lab-thumb.svg
 visual: ./estate_lab-visual.svg

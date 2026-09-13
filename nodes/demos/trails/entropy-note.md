@@ -11,7 +11,7 @@ connects:
 source: field observation
 date_of_discovery: 2026-04-20
 domain: entropy
-status: published
+status: archived
 tags:
   - entropy
   - trail

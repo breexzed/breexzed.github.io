@@ -1,6 +1,6 @@
 {
   "schema": "breexzed.ai.v1",
-  "generated": "2026-09-11T02:11:50.478Z",
+  "generated": "2026-09-13T16:36:39.260Z",
   "groups": [
     {
       "type": "root",
@@ -21,177 +21,19 @@
     },
     {
       "type": "articulation",
-      "count": 3,
-      "summary": "3 published articulation nodes in the BREEXZED estate.",
+      "count": 2,
+      "summary": "2 published articulation nodes in the BREEXZED estate.",
       "entries": [
         {
-          "id": "constraints_and_becoming",
-          "title": "Constraints And Becoming",
-          "summary": "Constraints do not only suffocate. They also expose the exact shape of what resists, what bends, and what might become otherwise through patient attention.",
-          "domain": "philosophy",
-          "tags": [
-            "becoming",
-            "limits"
-          ]
-        },
-        {
-          "id": "knowledge_in_motion",
-          "title": "Knowledge In Motion",
-          "summary": "Knowledge lives by moving between minds, mediums, questions, and revisions. What remains alive is what can still be entered, tested, and transformed.",
-          "domain": "epistemics",
-          "tags": [
-            "learning",
-            "memetics"
-          ]
-        },
-        {
-          "id": "world_as_systems",
-          "title": "World As Systems",
-          "summary": "To approach the world as systems is to look for the visible and hidden rules by which relations hold, break, and reform.",
-          "domain": "systems",
-          "tags": [
-            "systems",
-            "topology"
-          ]
-        }
-      ]
-    },
-    {
-      "type": "concept",
-      "count": 4,
-      "summary": "4 published concept nodes in the BREEXZED estate.",
-      "entries": [
-        {
-          "id": "knowing_and_knowledge",
-          "title": "Knowing And Knowledge",
-          "summary": "Knowing is not only possession. It is an active relation between contact, interpretation, doubt, correction, and the forms that remain after understanding moves.",
-          "domain": "epistemics",
-          "tags": [
-            "epistemics",
-            "knowledge"
-          ]
-        },
-        {
-          "id": "being_in_the_world",
-          "title": "Being In The World",
-          "summary": "Being is not isolated from the world. It appears through relation, constraint, contact, and the forms of attention that become possible inside them.",
-          "domain": "ontology",
-          "tags": [
-            "philosophy",
-            "being"
-          ]
-        },
-        {
-          "id": "systems_as_world",
-          "title": "Systems As World",
-          "summary": "The world exhibits itself as systems to beings: arrangements, feedbacks, frictions, interfaces, and repeating forms that can be learned and re-entered.",
-          "domain": "systems",
-          "tags": [
-            "systems",
-            "order"
-          ]
-        },
-        {
-          "id": "worlds",
-          "title": "Worlds",
-          "summary": "Worlds is a living folder for notes about how being, systems, and relations compose the environments we inhabit.",
-          "domain": "ontology",
-          "tags": [
-            "ontology",
-            "systems",
-            "relation"
-          ]
-        }
-      ]
-    },
-    {
-      "type": "projects",
-      "count": 1,
-      "summary": "1 published projects node in the BREEXZED estate.",
-      "entries": [
-        {
-          "id": "estate_lab",
-          "title": "Estate Lab",
-          "summary": "A small living system for tracing patterns, turning observations into usable structure, and keeping the work legible over time.",
-          "domain": "systems",
-          "tags": [
-            "living",
-            "practice",
-            "systems"
-          ]
-        }
-      ]
-    },
-    {
-      "type": "signal",
-      "count": 3,
-      "summary": "3 published signal nodes in the BREEXZED estate.",
-      "entries": [
-        {
-          "id": "coordination_window",
-          "title": "Coordination Window",
-          "summary": "Coordination arrives as a signal whenever separate minds, roles, or temperaments find enough mutual structure to move together without becoming identical. I notice it in small handoffs, in recurring language, in timing, and in the strange relief that comes when understanding no longer has to be forced.",
-          "domain": "coordination",
-          "tags": [
-            "coordination",
-            "systems"
-          ]
-        },
-        {
-          "id": "entropy_window",
-          "title": "Entropy Window",
-          "summary": "Entropy keeps returning to me as a signal that reality never fully agrees to remain organized for long. It appears whenever systems fray at the edges: in rooms that drift toward disorder, in moods that resist neat naming, and in structures that reveal their cost the moment maintenance stops.",
-          "domain": "entropy",
-          "tags": [
-            "entropy",
-            "observation"
-          ]
-        },
-        {
-          "id": "learning_edge",
-          "title": "Learning Edge",
-          "summary": "The learning edge is the point at which not knowing stops feeling like a private embarrassment and starts behaving like a live route. It appears when confusion sharpens into a usable question, and when the question begins to reorganize the way I look, read, test, and return.",
+          "id": "on_learning_and_finding_the_right_information_to_learn_from",
+          "title": "On Learning and finding the right information to learn from",
+          "summary": "One of the problems I face when learning to program is finding the right information to base my understanding on. Not a tutorial, not a course, not some \"learn to program in X days\" book. I needed resources that would meet me where I was, contextualize what I was looking for against the greater picture, and — most importantly — avoid premature disclosure. Because premature disclosure defeats the whole purpose.",
           "domain": "learning",
           "tags": [
             "learning",
-            "epistemics"
-          ]
-        }
-      ]
-    },
-    {
-      "type": "trail",
-      "count": 4,
-      "summary": "4 published trail nodes in the BREEXZED estate.",
-      "entries": [
-        {
-          "id": "trail_coordination_note",
-          "title": "Coordination Note",
-          "summary": "This trail came from a moment where conversation stopped feeling like negotiation and began to feel like alignment. Vocabulary settled, timing improved, and what each person meant became easier to hand over without losing the thread.",
-          "domain": "coordination",
-          "tags": [
-            "coordination",
-            "trail"
-          ]
-        },
-        {
-          "id": "trail_entropy_note",
-          "title": "Entropy Note",
-          "summary": "I noticed this trail through the ordinary evidence of things slipping out of ideal form: a room requiring reordering, attention fragmenting under pressure, plans losing coherence faster than expected. None of it was dramatic, but all of it carried the same signature.",
-          "domain": "entropy",
-          "tags": [
-            "entropy",
-            "trail"
-          ]
-        },
-        {
-          "id": "trail_learning_note",
-          "title": "Learning Note",
-          "summary": "This trail marks the moment when confusion became precise enough to be useful. A vague uncertainty turned into a question I could actually return to, test, and let reorganize what I thought I understood.",
-          "domain": "learning",
-          "tags": [
-            "learning",
-            "trail"
+            "documentation",
+            "programming",
+            "capability"
           ]
         },
         {

@@ -3,8 +3,8 @@ id: worlds
 title: Worlds
 label: concept
 formula: worlds -> relations -> systems
-depth: 1
-parent: root
+depth: 2
+parent: demos
 type: concept
 folder: true
 children:
@@ -13,7 +13,7 @@ children:
 connects:
   - world_as_systems
   - constraints_and_becoming
-status: published
+status: archived
 domain: ontology
 thumbnail: ./worlds-thumb.svg
 visual: ./worlds-visual.svg

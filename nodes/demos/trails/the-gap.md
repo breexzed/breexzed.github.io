@@ -2,9 +2,9 @@
 id: the_gap
 title: The Gap
 formula: acceleration -> distance
-type: trail
+type: articulation
 status: published
-label: trail
+label: articulation
 parent: root
 depth: 1
 domain: writing

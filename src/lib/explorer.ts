@@ -62,10 +62,10 @@ function resolveMarkdownHrefToNodeId(currentNode: Node, href: string): string | 
 
 function resolveHashToNode(rawHash: string): string | null {
   if (!rawHash) return null;
-  if (nodes[rawHash]) return rawHash;
+  if (nodes[rawHash]?.status === 'published') return rawHash;
   if (rawHash.includes('/')) {
     const leaf = rawHash.split('/').filter(Boolean).pop();
-    if (leaf && nodes[leaf]) return leaf;
+    if (leaf && nodes[leaf]?.status === 'published') return leaf;
   }
   return null;
 }
@@ -244,7 +244,7 @@ function handleHashChange(): void {
 }
 
 function navigate(id: string, options: NavigateOptions = {}): void {
-  if (!nodes[id]) return;
+  if (!nodes[id] || (nodes[id].id !== 'root' && nodes[id].status !== 'published')) return;
 
   activeNode = id;
   if (options.tab) {

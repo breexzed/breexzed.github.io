@@ -3,8 +3,8 @@ id: coordination_window
 title: Coordination Window
 label: signal
 formula: relation -> mutual understanding
-depth: 1
-parent: root
+depth: 2
+parent: demos
 type: signal
 children:
   - trail_coordination_note
@@ -14,7 +14,7 @@ connects:
 first_noticed: 2026-04-18
 current_status: emerging
 domain: coordination
-status: published
+status: archived
 tags:
   - coordination
   - systems

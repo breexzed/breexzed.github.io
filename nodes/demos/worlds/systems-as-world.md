@@ -10,7 +10,7 @@ connects:
   - world_as_systems
   - coordination_window
   - trail_coordination_note
-status: published
+status: archived
 domain: systems
 thumbnail: ../concepts/systems_as_world-thumb.svg
 visual: ../concepts/systems_as_world-visual.svg

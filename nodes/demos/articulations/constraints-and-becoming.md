@@ -3,13 +3,13 @@ id: constraints_and_becoming
 title: Constraints And Becoming
 label: articulation
 formula: constraint != end
-depth: 1
-parent: root
+depth: 2
+parent: demos
 type: articulation
 connects:
   - being_in_the_world
   - entropy_window
-status: published
+status: archived
 domain: philosophy
 source: manifesto
 thumbnail: ./constraints_and_becoming-thumb.svg
