@@ -66,6 +66,7 @@ section{padding:110px 0;position:relative}
 .whoami-copy{display:grid;gap:18px;max-width:860px}
 .whoami-copy p{font-family:var(--display);font-size:clamp(20px,2.4vw,30px);line-height:1.22;color:var(--t-hi)}
 .whoami-copy p + p{font-family:var(--mono);font-size:13px;line-height:1.9;color:var(--t-mid)}
+.whoami-copy .whoami-note{font-family:var(--mono);font-size:13px;line-height:1.9;color:var(--t-mid)}
 .whoami-copy p:first-child{font-size:clamp(26px,3vw,40px)}
 .whoami-quote{margin:0;padding:24px 26px;border-left:2px solid var(--wire-2);background:rgba(180,210,245,.035);font-family:var(--mono);color:var(--t-mid)}
 .whoami-copy .whoami-quote p{margin:0;font-family:var(--mono);font-size:13px;line-height:1.9;color:var(--t-mid)}
