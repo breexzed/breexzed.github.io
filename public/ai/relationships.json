@@ -1,6 +1,6 @@
 {
   "schema": "breexzed.ai.v1",
-  "generated": "2026-09-13T17:13:20.769Z",
+  "generated": "2026-09-13T21:28:54.561Z",
   "relationships": [
     {
       "source": "root",
@@ -231,6 +231,11 @@
       "source": "worlds",
       "target": "constraints_and_becoming",
       "relation": "connects"
+    },
+    {
+      "source": "building_an_http_server_from_scratch",
+      "target": "stage_01_http_server",
+      "relation": "parent-child"
     }
   ]
 }

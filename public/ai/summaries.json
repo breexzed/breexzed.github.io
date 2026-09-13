@@ -1,6 +1,6 @@
 {
   "schema": "breexzed.ai.v1",
-  "generated": "2026-09-13T17:13:20.769Z",
+  "generated": "2026-09-13T21:28:54.561Z",
   "groups": [
     {
       "type": "root",
@@ -52,8 +52,8 @@
     },
     {
       "type": "projects",
-      "count": 1,
-      "summary": "1 published projects node in the BREEXZED estate.",
+      "count": 2,
+      "summary": "2 published projects nodes in the BREEXZED estate.",
       "entries": [
         {
           "id": "building_an_http_server_from_scratch",
@@ -66,6 +66,19 @@
             "http",
             "learning",
             "systems"
+          ]
+        },
+        {
+          "id": "stage_01_http_server",
+          "title": "Stage 01 HTTP Server",
+          "summary": "The first stage is to make something exist: a small Go server that can receive an HTTP request and answer it.",
+          "domain": "systems",
+          "tags": [
+            "project",
+            "go",
+            "http",
+            "stage-01",
+            "learning"
           ]
         }
       ]

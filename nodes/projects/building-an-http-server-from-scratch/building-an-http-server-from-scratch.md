@@ -16,11 +16,14 @@ tags:
   - http
   - learning
   - systems
-children: []
+children:
+  - stage_01_http_server
 connects: []
 ---
 
 I attempted building an HTTP server once before, as part of the [Backend from First Principles: Complete Series](https://backend-from-first-principle.vercel.app/) track. I got stuck shortly after establishing a TCP connection and sending requests to it — hardcoded request, hardcoded response. Those early stages live in that project's git commit logs.
+
+The project repository is [http-server on GitHub](https://github.com/breexzed/http-server).
 
 Later I came across the insights from *On Learning, Finding Projects, and Building Towards a Mind of Gold*, and I have a much clearer picture now of how I want to approach building this. I'm still unclear on a lot of the implementation details, but I plan to use this exact medium — this log — to break through them. I know I can do it. I will overcome every block.
 
