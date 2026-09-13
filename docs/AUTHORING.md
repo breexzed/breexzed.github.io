@@ -20,7 +20,7 @@ Copy one file from `templates/` and rename it into the right folder under `nodes
 - `templates/trail.md`
 - `templates/projects.md`
 
-The seeded content is only there as current demo content. You can delete or replace it node by node when you are ready.
+The repository contains the active corpus and reusable visual assets. Add new writing as a node; do not edit the application for ordinary content work.
 
 ## 3. The minimum publishing workflow
 
@@ -114,11 +114,11 @@ npm run dev
 
 If the build reports a missing child or duplicate ID, fix the frontmatter and run the same command again. The app wiring is already generic; normal folder creation should only touch `nodes/`, `templates/folder.md`, and the folder's visual assets.
 
-### Demo collections
+### Archived visual assets
 
-When a group of nodes is exploratory rather than part of the active estate, place it inside `nodes/demos/`. Keep the original node frontmatter, markdown, relationships, and visual assets intact; only the collection folder and parent references need to change. Mark the demo folder and its children `status: archived` so the material remains in the repository without appearing in public corpus, project, signal, search, tree, or direct-node surfaces.
+Reusable visuals from retired demos live in `assets/demo-visuals/`. They are not copied into the public build because they are not attached to active nodes.
 
-To promote a demo later, move its markdown and assets back into the appropriate active `nodes/<type>/` folder, set its `parent` back to `root` (or its intended active folder), restore the corresponding root or folder `children` entry, and run `npm run build:content`. Nothing about the node's identity or authored content needs to change.
+To reuse one later, copy it beside the new node Markdown file, reference it with `visual: ./filename.svg` or `thumbnail: ./filename.svg`, and run `npm run build:content`.
 
 ## 5. How internal links work
 
@@ -152,9 +152,15 @@ excerpt: >-
   in the Markdown body below the frontmatter.
 ```
 
-The content build rejects a published node with a long opening paragraph when `excerpt` is missing. This prevents the first part of an essay from being duplicated as its summary.
+The content build rejects a published non-folder node with a long opening paragraph when `excerpt` is missing. Published folder nodes may omit `excerpt` when their opening writing is intended to be the folder's full introduction.
 
-Absolute `http://` and `https://` links in node body content are rendered as live-link preview cards. They show the linked label, host, and path, open in a new tab, and remain ordinary external links underneath. This keeps previews reliable without embedding third-party pages that may block frames or expose visitors to unnecessary tracking.
+Excerpts support the same labeled Markdown links as body content:
+
+```yaml
+excerpt: "[Repository](https://github.com/example/project)"
+```
+
+Absolute `http://` and `https://` links in node body content remain ordinary clickable links. They open in a new tab, and no third-party page is fetched or embedded.
 
 The preview intentionally does not fetch or embed the external page's contents. Browsers generally block cross-origin content reads through CORS, and many sites block iframes with security headers. If an external source needs a richer preview, add a short authored quotation or summary below the live link in the node body instead. That keeps the estate readable, attribution clear, and the external page in control of its own content.
 
@@ -283,6 +289,8 @@ The compiler already catches:
 - broken `children` references
 - broken `connects` references
 - broken internal markdown links
+- published long-form nodes without an explicit excerpt
+- stale generated assets are removed before active assets are copied
 
 The smoke layer checks:
 
@@ -290,6 +298,14 @@ The smoke layer checks:
 - `/node/:id` dedicated node page
 - search-to-node routing
 - internal markdown link routing
+
+For a content-only change, the recommended final check is:
+
+```bash
+npm run smoke
+```
+
+If it passes, commit the Markdown/assets plus generated `data/` and `public/` outputs. No TypeScript, CSS, or configuration changes are needed for a normal new node.
 
 ## 11. Social and account config
 

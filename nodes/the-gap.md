@@ -13,8 +13,6 @@ tags:
   - cognition
   - technology
   - reflection
-source: owlcyon
-date_of_discovery: 2026-05-15
 children: []
 connects: []
 ---

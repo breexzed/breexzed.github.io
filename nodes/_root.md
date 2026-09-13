@@ -9,6 +9,7 @@ glyph: ◈
 children:
   - the_gap
   - on_learning_and_finding_the_right_information_to_learn_from
+  - building_an_http_server_from_scratch
 status: published
 tags:
   - breexzed
@@ -16,4 +17,4 @@ tags:
 ---
 This is the living home of BREEXZED: a graph-first corpus for learning through traces, relations, and return.
 
-The current public corpus begins with [The Gap](./demos/trails/the-gap.md), the first published articulation.
+The current public corpus begins with The Gap, the first published articulation.

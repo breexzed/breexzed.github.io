@@ -25,6 +25,27 @@ export function escapeAttr(value: unknown): string {
   return escapeHtml(value).replace(/`/g, '&#96;');
 }
 
+export function renderPlainTextWithLinks(value: unknown): string {
+  const text = String(value ?? '');
+  const linkPattern = /\[([^\]]+)\]\((https?:\/\/[^)\s]+)\)|https?:\/\/[^\s<]+/gi;
+  let output = '';
+  let cursor = 0;
+
+  for (const match of text.matchAll(linkPattern)) {
+    const rawUrl = match[2] || match[0];
+    const trailing = rawUrl.match(/[),.;:!?]+$/)?.[0] || '';
+    const url = trailing ? rawUrl.slice(0, -trailing.length) : rawUrl;
+    const start = match.index ?? 0;
+    output += escapeHtml(text.slice(cursor, start));
+    const label = match[2] ? match[1] : url;
+    output += `<a href="${escapeAttr(url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(label)}</a>`;
+    output += escapeHtml(trailing);
+    cursor = start + match[0].length;
+  }
+
+  return output + escapeHtml(text.slice(cursor));
+}
+
 function isUnsafeUrl(raw: string): boolean {
   const value = String(raw || '')
     .replace(/[\u0000-\u001F\u007F\s]+/g, '')

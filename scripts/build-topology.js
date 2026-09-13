@@ -245,6 +245,7 @@ async function buildTopology() {
     if (
       id !== 'root' &&
       status === 'published' &&
+      frontmatter.folder !== true &&
       isMissingRequired(frontmatter, 'excerpt') &&
       extractFirstParagraph(body).length > 280
     ) {
@@ -341,7 +342,7 @@ async function buildTopology() {
       label: frontmatter.label || frontmatter.title,
       title: frontmatter.title,
       formula: frontmatter.formula,
-      desc: frontmatter.excerpt || extractFirstParagraph(body),
+      desc: frontmatter.excerpt || (frontmatter.folder === true ? '' : extractFirstParagraph(body)),
       content: parsedContent,
       markdown: body,
       parent: frontmatter.parent || null,
