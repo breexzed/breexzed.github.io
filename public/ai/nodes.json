@@ -1,6 +1,6 @@
 {
   "schema": "breexzed.ai.v1",
-  "generated": "2026-09-13T22:03:17.300Z",
+  "generated": "2026-09-13T22:05:36.649Z",
   "nodes": [
     {
       "id": "root",
@@ -50,7 +50,7 @@
       "title": "Building An HTTP Server From Scratch",
       "type": "projects",
       "status": "published",
-      "summary": "https://github.com/breexzed/httpd-go",
+      "summary": "[httpd-go on GitHub](https://github.com/breexzed/httpd-go)",
       "formula": "documentation -> implementation -> capability",
       "domain": "systems",
       "tags": [

@@ -27,19 +27,20 @@ export function escapeAttr(value: unknown): string {
 
 export function renderPlainTextWithLinks(value: unknown): string {
   const text = String(value ?? '');
-  const urlPattern = /https?:\/\/[^\s<]+/gi;
+  const linkPattern = /\[([^\]]+)\]\((https?:\/\/[^)\s]+)\)|https?:\/\/[^\s<]+/gi;
   let output = '';
   let cursor = 0;
 
-  for (const match of text.matchAll(urlPattern)) {
-    const rawUrl = match[0];
+  for (const match of text.matchAll(linkPattern)) {
+    const rawUrl = match[2] || match[0];
     const trailing = rawUrl.match(/[),.;:!?]+$/)?.[0] || '';
     const url = trailing ? rawUrl.slice(0, -trailing.length) : rawUrl;
     const start = match.index ?? 0;
     output += escapeHtml(text.slice(cursor, start));
-    output += `<a href="${escapeAttr(url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(url)}</a>`;
+    const label = match[2] ? match[1] : url;
+    output += `<a href="${escapeAttr(url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(label)}</a>`;
     output += escapeHtml(trailing);
-    cursor = start + rawUrl.length;
+    cursor = start + match[0].length;
   }
 
   return output + escapeHtml(text.slice(cursor));
