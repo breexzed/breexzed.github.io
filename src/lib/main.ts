@@ -5,7 +5,7 @@ import { Router } from './router';
 import { searchManager } from '@/utils/search';
 import { searchUI } from './search-ui';
 import type { Node } from '@/types/Node';
-import { escapeAttr, escapeHtml } from '@/utils/markdown';
+import { escapeAttr, escapeHtml, renderPlainTextWithLinks } from '@/utils/markdown';
 import { siteConfig } from '@/config/site';
 import { injectSpeedInsights } from '@vercel/speed-insights';
 import '../../css/owlcyon.css';
@@ -149,7 +149,7 @@ function renderCorpusCard(node: Node): string {
           ${node.domain ? `<span class="pc-tag">${escapeHtml(node.domain)}</span>` : ''}
         </div>
         <h3 class="pc-title">${escapeHtml(node.title)}</h3>
-        ${node.desc ? `<p class="pc-desc">${escapeHtml(node.desc)}</p>` : ''}
+        ${node.desc ? `<p class="pc-desc">${renderPlainTextWithLinks(node.desc)}</p>` : ''}
         <div class="pc-formula">${escapeHtml(node.formula || '')}</div>
         ${renderNodeLinks(node)}
       </div>

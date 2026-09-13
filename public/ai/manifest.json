@@ -1,6 +1,6 @@
 {
   "schema": "breexzed.ai.v1",
-  "generated": "2026-09-13T21:57:18.418Z",
+  "generated": "2026-09-13T22:01:40.028Z",
   "description": "Machine-readable retrieval index for the BREEXZED digital estate.",
   "entrypoints": {
     "manifest": "/ai/manifest.json",
@@ -10,9 +10,9 @@
     "humanGuide": "/llms.txt"
   },
   "counts": {
-    "totalNodes": 20,
-    "publishedNodes": 5,
-    "relationships": 47
+    "totalNodes": 4,
+    "publishedNodes": 4,
+    "relationships": 3
   },
   "retrieval": {
     "nodeById": "/ai/nodes.json",

@@ -1,5 +1,5 @@
 import type { Node, TabType } from '@/types/Node';
-import { escapeAttr, escapeHtml, sanitizeHtml } from '@/utils/markdown';
+import { escapeAttr, escapeHtml, renderPlainTextWithLinks, sanitizeHtml } from '@/utils/markdown';
 
 type DetailPanelParams = {
   node: Node;
@@ -123,7 +123,7 @@ function renderExplorerTab(node: Node, nodes: Record<string, Node>): string {
       <div class="detail-title">${escapeHtml(node.title)}</div>
       <div class="detail-formula">${escapeHtml(node.formula)}</div>
     </div>
-    ${node.desc ? `<div class="detail-desc">${escapeHtml(node.desc)}</div>` : ''}
+    ${node.desc ? `<div class="detail-desc">${renderPlainTextWithLinks(node.desc)}</div>` : ''}
     <div class="detail-actions">
       <button type="button" class="detail-action-button" data-open-node-page="true">Open Node Page</button>
       <button type="button" class="detail-action-button" data-copy-node-link="true">Copy node link</button>

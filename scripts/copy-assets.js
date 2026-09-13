@@ -23,6 +23,7 @@ function sanitizeSegment(value) {
 }
 
 function copyNodeAssets() {
+  fs.rmSync(VISUALS_DIR, { recursive: true, force: true });
   fs.mkdirSync(VISUALS_DIR, { recursive: true });
   const files = glob.sync('nodes/**/*.{png,jpg,jpeg,gif,svg,webp,avif}', {
     cwd: ROOT_DIR,
