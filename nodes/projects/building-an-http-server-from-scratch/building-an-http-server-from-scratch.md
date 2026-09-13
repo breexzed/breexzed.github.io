@@ -10,7 +10,6 @@ parent: root
 depth: 1
 domain: systems
 visual: ./building-an-http-server-from-scratch-visual.svg
-excerpt: "[httpd-go on GitHub](https://github.com/breexzed/httpd-go)"
 tags:
   - project
   - go
@@ -39,6 +38,8 @@ I took it to ChatGPT and used some of the prompts from the protocol I'd followed
 I'd already been attempting to build an HTTP server. Then I found the rate-limiting blog, and I wanted to build one at a scale I could actually manage. So I decided — why not use the HTTP server as the base and scale toward the rate limiter, since they sit in the same field? ChatGPT helped me concretize that instinct and gave me the roadmap (and the infographic above) to build:
 
 > A small HTTP server in Go that starts as a bare process accepting requests, and gradually evolves into a measurable, resilient, concurrent, performance-tested piece of infrastructure.
+
+Repo: [httpd-go](https://github.com/breexzed/httpd-go)
 
 | Stage | Move | Capability |
 | --- | --- | --- |
