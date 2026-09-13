@@ -10,7 +10,7 @@ connects:
   - constraints_and_becoming
   - entropy_window
   - trail_entropy_note
-status: published
+status: archived
 domain: ontology
 thumbnail: ../concepts/being_in_the_world-thumb.svg
 visual: ../concepts/being_in_the_world-visual.svg

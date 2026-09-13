@@ -9,7 +9,7 @@ export function renderTreeNav(
   return order
     .map(id => {
       const n = nodes[id];
-      if (!n) return '';
+      if (!n || (n.id !== 'root' && n.status !== 'published')) return '';
       const depth = Number(n.depth ?? 0);
       const glyph = n.glyph || (depth === 0 ? '◈' : depth === 1 ? '—' : '·');
       const formula = depth === 0 ? `<span class="ti-formula">${escapeHtml(n.formula)}</span>` : '';

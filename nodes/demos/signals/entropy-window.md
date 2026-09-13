@@ -3,8 +3,8 @@ id: entropy_window
 title: Entropy Window
 label: signal
 formula: disorder -> contact
-depth: 1
-parent: root
+depth: 2
+parent: demos
 type: signal
 children:
   - trail_entropy_note
@@ -14,7 +14,7 @@ connects:
 first_noticed: 2026-04-19
 current_status: confirmed
 domain: entropy
-status: published
+status: archived
 tags:
   - entropy
   - observation

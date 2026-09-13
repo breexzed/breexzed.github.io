@@ -3,8 +3,8 @@ id: learning_edge
 title: Learning Edge
 label: signal
 formula: ignorance -> inquiry
-depth: 1
-parent: root
+depth: 2
+parent: demos
 type: signal
 children:
   - trail_learning_note
@@ -14,7 +14,7 @@ connects:
 first_noticed: 2026-04-20
 current_status: emerging
 domain: learning
-status: published
+status: archived
 tags:
   - learning
   - epistemics

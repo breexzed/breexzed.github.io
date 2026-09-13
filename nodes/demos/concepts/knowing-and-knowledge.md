@@ -3,14 +3,14 @@ id: knowing_and_knowledge
 title: Knowing And Knowledge
 label: concept
 formula: contact -> inference -> knowledge
-depth: 1
-parent: root
+depth: 2
+parent: demos
 type: concept
 connects:
   - knowledge_in_motion
   - learning_edge
   - trail_learning_note
-status: published
+status: archived
 domain: epistemics
 thumbnail: ./knowing_and_knowledge-thumb.svg
 visual: ./knowing_and_knowledge-visual.svg

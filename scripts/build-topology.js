@@ -234,9 +234,22 @@ async function buildTopology() {
 
     const id = String(frontmatter.id).trim();
     const normalizedType = normalizeNodeType(frontmatter.type);
+    const status = String(frontmatter.status || 'published').trim().toLowerCase();
     if (!VALID_NODE_TYPES.has(normalizedType)) {
       errors.push(
         `${normalizeSource(file)}: Invalid node type "${frontmatter.type}". Valid types: ${[...VALID_NODE_TYPES].join(', ')}`
+      );
+      continue;
+    }
+
+    if (
+      id !== 'root' &&
+      status === 'published' &&
+      isMissingRequired(frontmatter, 'excerpt') &&
+      extractFirstParagraph(body).length > 280
+    ) {
+      errors.push(
+        `${normalizeSource(file)}: Published nodes with long opening paragraphs must define an explicit "excerpt" in frontmatter`
       );
       continue;
     }
@@ -328,7 +341,7 @@ async function buildTopology() {
       label: frontmatter.label || frontmatter.title,
       title: frontmatter.title,
       formula: frontmatter.formula,
-      desc: extractFirstParagraph(body),
+      desc: frontmatter.excerpt || extractFirstParagraph(body),
       content: parsedContent,
       markdown: body,
       parent: frontmatter.parent || null,

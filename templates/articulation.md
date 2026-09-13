@@ -8,6 +8,9 @@ label: articulation
 parent: root
 depth: 1
 domain: epistemics
+excerpt: >-
+  Write the concise card and detail-panel summary here. Keep the full
+  articulation in the Markdown body below.
 tags:
   - articulation
 source: working-thesis

@@ -47,7 +47,9 @@ function parseRoute(pathname: string): { key: RouteKey; nodeId?: string } {
   if (path === '/stack') return { key: 'projects' };
   if (path.startsWith('/node/')) {
     const nodeId = decodeURIComponent(path.slice('/node/'.length));
-    return { key: 'node', nodeId };
+    return Explorer.getNodes()[nodeId]?.status === 'published'
+      ? { key: 'node', nodeId }
+      : { key: 'not-found' };
   }
   return { key: 'not-found' };
 }
@@ -96,7 +98,7 @@ function applyRoute(pathname: string): void {
   animateVisibleSections(ROUTE_SECTIONS[route.key]);
   window.dispatchEvent(new CustomEvent('route:change', { detail: route }));
 
-  if (route.key === 'node' && route.nodeId && Explorer.getNodes()[route.nodeId]) {
+  if (route.key === 'node' && route.nodeId && Explorer.getNodes()[route.nodeId]?.status === 'published') {
     Explorer.navigate(route.nodeId, { scrollToMap: false, updateHash: false });
   }
 }
@@ -112,10 +114,10 @@ function hashToPath(hash: string): string | null {
     if (path === '/whoami' || path === '/about') return '/whoami';
     if (path.startsWith('/node/')) {
       const nodeId = decodeURIComponent(path.slice('/node/'.length));
-      return Explorer.getNodes()[nodeId] ? `/node/${encodeURIComponent(nodeId)}` : null;
+      return Explorer.getNodes()[nodeId]?.status === 'published' ? `/node/${encodeURIComponent(nodeId)}` : null;
     }
     const leaf = path.split('/').filter(Boolean).pop();
-    if (leaf && Explorer.getNodes()[leaf]) {
+    if (leaf && Explorer.getNodes()[leaf]?.status === 'published') {
       return `/node/${encodeURIComponent(leaf)}`;
     }
     return null;
@@ -126,11 +128,11 @@ function hashToPath(hash: string): string | null {
   if (value === 'projects' || value === 'stack') return '/projects';
   if (value === 'whoami' || value === 'about') return '/whoami';
 
-  const directId = Explorer.getNodes()[value] ? value : null;
+  const directId = Explorer.getNodes()[value]?.status === 'published' ? value : null;
   if (directId) return `/node/${encodeURIComponent(directId)}`;
 
   const leaf = value.split('/').filter(Boolean).pop();
-  if (leaf && Explorer.getNodes()[leaf]) {
+  if (leaf && Explorer.getNodes()[leaf]?.status === 'published') {
     return `/node/${encodeURIComponent(leaf)}`;
   }
   return null;

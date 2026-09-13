@@ -3,13 +3,13 @@ id: world_as_systems
 title: World As Systems
 label: articulation
 formula: relation -> structure -> navigation
-depth: 1
-parent: root
+depth: 2
+parent: demos
 type: articulation
 connects:
   - systems_as_world
   - coordination_window
-status: published
+status: archived
 domain: systems
 source: field-note
 thumbnail: ./world_as_systems-thumb.svg

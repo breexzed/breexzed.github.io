@@ -11,7 +11,7 @@ connects:
 source: reading margin
 date_of_discovery: 2026-04-21
 domain: learning
-status: published
+status: archived
 tags:
   - learning
   - trail

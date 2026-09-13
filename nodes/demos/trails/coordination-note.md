@@ -11,7 +11,7 @@ connects:
 source: conversation fragment
 date_of_discovery: 2026-04-20
 domain: coordination
-status: published
+status: archived
 tags:
   - coordination
   - trail

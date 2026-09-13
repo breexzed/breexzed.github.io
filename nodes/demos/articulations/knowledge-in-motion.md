@@ -3,13 +3,13 @@ id: knowledge_in_motion
 title: Knowledge In Motion
 label: articulation
 formula: knowledge -> move -> live
-depth: 1
-parent: root
+depth: 2
+parent: demos
 type: articulation
 connects:
   - knowing_and_knowledge
   - learning_edge
-status: published
+status: archived
 domain: epistemics
 source: working-thesis
 thumbnail: ./knowledge_in_motion-thumb.svg
