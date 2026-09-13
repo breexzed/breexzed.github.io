@@ -1,45 +1,15 @@
 {
   "schema": "breexzed.ai.v1",
-  "generated": "2026-09-13T15:41:02.532Z",
+  "generated": "2026-09-13T16:42:54.876Z",
   "relationships": [
     {
       "source": "root",
-      "target": "worlds",
+      "target": "the_gap",
       "relation": "parent-child"
     },
     {
       "source": "root",
-      "target": "knowing_and_knowledge",
-      "relation": "parent-child"
-    },
-    {
-      "source": "root",
-      "target": "constraints_and_becoming",
-      "relation": "parent-child"
-    },
-    {
-      "source": "root",
-      "target": "world_as_systems",
-      "relation": "parent-child"
-    },
-    {
-      "source": "root",
-      "target": "knowledge_in_motion",
-      "relation": "parent-child"
-    },
-    {
-      "source": "root",
-      "target": "entropy_window",
-      "relation": "parent-child"
-    },
-    {
-      "source": "root",
-      "target": "coordination_window",
-      "relation": "parent-child"
-    },
-    {
-      "source": "root",
-      "target": "learning_edge",
+      "target": "on_learning_and_finding_the_right_information_to_learn_from",
       "relation": "parent-child"
     },
     {
@@ -86,6 +56,56 @@
       "source": "knowing_and_knowledge",
       "target": "trail_learning_note",
       "relation": "connects"
+    },
+    {
+      "source": "demos",
+      "target": "worlds",
+      "relation": "parent-child"
+    },
+    {
+      "source": "demos",
+      "target": "knowing_and_knowledge",
+      "relation": "parent-child"
+    },
+    {
+      "source": "demos",
+      "target": "constraints_and_becoming",
+      "relation": "parent-child"
+    },
+    {
+      "source": "demos",
+      "target": "world_as_systems",
+      "relation": "parent-child"
+    },
+    {
+      "source": "demos",
+      "target": "knowledge_in_motion",
+      "relation": "parent-child"
+    },
+    {
+      "source": "demos",
+      "target": "entropy_window",
+      "relation": "parent-child"
+    },
+    {
+      "source": "demos",
+      "target": "coordination_window",
+      "relation": "parent-child"
+    },
+    {
+      "source": "demos",
+      "target": "learning_edge",
+      "relation": "parent-child"
+    },
+    {
+      "source": "demos",
+      "target": "estate_lab",
+      "relation": "parent-child"
+    },
+    {
+      "source": "demos",
+      "target": "the_gap",
+      "relation": "parent-child"
     },
     {
       "source": "estate_lab",
