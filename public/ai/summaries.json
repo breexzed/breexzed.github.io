@@ -1,6 +1,6 @@
 {
   "schema": "breexzed.ai.v1",
-  "generated": "2026-09-13T22:08:05.257Z",
+  "generated": "2026-09-13T22:11:04.868Z",
   "groups": [
     {
       "type": "root",
@@ -21,8 +21,8 @@
     },
     {
       "type": "articulation",
-      "count": 1,
-      "summary": "1 published articulation node in the BREEXZED estate.",
+      "count": 2,
+      "summary": "2 published articulation nodes in the BREEXZED estate.",
       "entries": [
         {
           "id": "on_learning_and_finding_the_right_information_to_learn_from",
@@ -34,6 +34,18 @@
             "documentation",
             "programming",
             "capability"
+          ]
+        },
+        {
+          "id": "the_gap",
+          "title": "The Gap",
+          "summary": "It’s 2026, and I wake up each day to a new technological advancement. It’s thrilling—immense, astonishing, and deeply exciting.",
+          "domain": "writing",
+          "tags": [
+            "acceleration",
+            "cognition",
+            "technology",
+            "reflection"
           ]
         }
       ]
