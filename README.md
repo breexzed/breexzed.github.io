@@ -187,7 +187,7 @@ Use a normal Markdown link inside a node:
 [Shape Up — Foreword](https://basecamp.com/shapeup/0.1-foreword)
 ```
 
-The site turns absolute `http://` and `https://` links into compact live-link previews showing the label, domain, path, and an external-link indicator. They open in a new tab. The site does not scrape or iframe third-party page contents: browser CORS rules and external security headers make that unreliable, and avoiding it keeps visitors' privacy and the source site's controls intact. For richer context, write a short summary or attributed excerpt directly below the link.
+The site keeps absolute `http://` and `https://` links as ordinary clickable links. They open in a new tab. The site does not scrape or iframe third-party page contents: browser CORS rules and external security headers make that unreliable, and avoiding it keeps visitors' privacy and the source site's controls intact. For richer context, write a short summary or attributed excerpt directly below the link.
 
 ## Core commands
 

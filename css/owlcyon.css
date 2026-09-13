@@ -185,6 +185,7 @@ section{padding:110px 0;position:relative}
 .node-content h1:first-child,.node-content h2:first-child,.node-content h3:first-child{margin-top:0}
 .node-content ul,.node-content ol{padding-left:18px;margin-top:14px}
 .node-content blockquote{margin:20px 0;padding:12px 16px;border-left:2px solid var(--wire-2);background:rgba(255,255,255,.02);color:var(--t-mid)}
+.node-content blockquote + hr{margin-top:28px}
 .node-content table{width:100%;table-layout:fixed;border-collapse:collapse;margin:24px 0;font-size:12px}
 .node-content th,.node-content td{padding:10px 12px;border:1px solid var(--wire-0);text-align:left;vertical-align:top;overflow-wrap:anywhere}
 .node-content th{color:var(--t-hi);font-weight:600;background:rgba(255,255,255,.04)}

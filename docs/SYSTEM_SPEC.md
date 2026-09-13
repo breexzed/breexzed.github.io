@@ -95,7 +95,7 @@ Folder nodes use their normal category `type` (`concept`, `projects`, or `articu
 Markdown body links are rendered in two ways:
 
 - relative or root-relative `.md` links resolve to internal node preview cards;
-- absolute `http://` and `https://` links resolve to external live-link cards showing authored label and URL host/path.
+- absolute `http://` and `https://` links remain ordinary external links with the authored label.
 
 External page contents are not fetched or embedded. This avoids cross-origin and iframe restrictions and leaves external content ownership, privacy, and navigation with the source site.
 
