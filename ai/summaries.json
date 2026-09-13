@@ -1,6 +1,6 @@
 {
   "schema": "breexzed.ai.v1",
-  "generated": "2026-09-13T16:42:54.876Z",
+  "generated": "2026-09-13T22:24:30.975Z",
   "groups": [
     {
       "type": "root",
@@ -46,6 +46,39 @@
             "cognition",
             "technology",
             "reflection"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "projects",
+      "count": 2,
+      "summary": "2 published projects nodes in the BREEXZED estate.",
+      "entries": [
+        {
+          "id": "building_an_http_server_from_scratch",
+          "title": "Building An HTTP Server From Scratch",
+          "summary": "",
+          "domain": "systems",
+          "tags": [
+            "project",
+            "go",
+            "http",
+            "learning",
+            "systems"
+          ]
+        },
+        {
+          "id": "stage_01_http_server",
+          "title": "Stage 01 HTTP Server",
+          "summary": "The first stage is to make something exist: a small Go server that can receive an HTTP request and answer it.",
+          "domain": "systems",
+          "tags": [
+            "project",
+            "go",
+            "http",
+            "stage-01",
+            "learning"
           ]
         }
       ]
