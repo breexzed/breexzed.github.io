@@ -10,6 +10,7 @@ parent: root
 depth: 1
 domain: systems
 visual: ./building-an-http-server-from-scratch-visual.svg
+excerpt: "https://github.com/breexzed/httpd-go"
 tags:
   - project
   - go
