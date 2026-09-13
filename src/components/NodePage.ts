@@ -299,14 +299,14 @@ export function renderNodePage({
         <div class="detail-label">${escapeHtml(node.label)}</div>
         <h1 class="node-page-title">${escapeHtml(node.title)}</h1>
         <p class="node-page-formula">${escapeHtml(node.formula)}</p>
-        <p class="node-page-desc">${escapeHtml(node.desc || '')}</p>
+        ${node.desc ? `<p class="node-page-desc">${escapeHtml(node.desc)}</p>` : ''}
         <div class="detail-actions node-page-actions">
           <button type="button" class="detail-action-button" data-copy-node-link="true">Copy node link</button>
         </div>
         ${renderNodeLinkList(node)}
       </div>
 
-      ${visual ? `<figure class="node-page-visual panel deep"><img src="${escapeAttr(visual)}" alt="${escapeAttr(node.title)}"></figure>` : ''}
+      ${visual ? `<figure class="node-page-visual${node.folder ? ' node-page-visual--folder' : ''} panel deep"><img src="${escapeAttr(visual)}" alt="${escapeAttr(node.title)}"></figure>` : ''}
       ${gallery.length > 1 ? `
         <div class="node-page-gallery panel shallow">
           ${gallery

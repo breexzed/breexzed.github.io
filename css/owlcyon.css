@@ -94,6 +94,7 @@ section{padding:110px 0;position:relative}
 .pc-visual{position:relative;border-bottom:1px solid var(--wire-0);background:rgba(255,255,255,.02)}
 .project-card--folder .pc-visual::after{content:'FOLDER';position:absolute;top:12px;left:12px;padding:5px 8px;border:1px solid rgba(217,244,255,.5);border-radius:4px;background:rgba(9,19,36,.84);color:var(--t-hi);font-size:9px;letter-spacing:.18em}
 .pc-visual img{display:block;width:100%;height:180px;object-fit:cover}
+.project-card--folder .pc-visual img{object-fit:contain;padding:10px;background:rgba(1,3,5,.28)}
 .pc-content{padding:20px}
 .pc-meta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--t-void)}
 .pc-tag{padding:3px 7px;border:1px solid var(--wire-0);border-radius:999px;background:rgba(255,255,255,.02)}
@@ -199,6 +200,7 @@ section{padding:110px 0;position:relative}
 .node-page-desc{font-size:14px;color:var(--t-mid);max-width:840px;line-height:1.9}
 .node-page-visual{overflow:hidden}
 .node-page-visual img{display:block;width:100%;height:auto;max-height:520px;object-fit:cover}
+.node-page-visual--folder img{max-height:680px;object-fit:contain;padding:18px;background:rgba(1,3,5,.28)}
 .node-page-gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;padding:12px}
 .node-page-gallery img{display:block;width:100%;height:180px;object-fit:cover;border-radius:10px;border:1px solid var(--wire-0)}
 .node-page-grid{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(280px,.75fr);gap:18px;align-items:start}

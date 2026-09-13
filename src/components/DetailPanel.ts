@@ -123,7 +123,7 @@ function renderExplorerTab(node: Node, nodes: Record<string, Node>): string {
       <div class="detail-title">${escapeHtml(node.title)}</div>
       <div class="detail-formula">${escapeHtml(node.formula)}</div>
     </div>
-    <div class="detail-desc">${escapeHtml(node.desc)}</div>
+    ${node.desc ? `<div class="detail-desc">${escapeHtml(node.desc)}</div>` : ''}
     <div class="detail-actions">
       <button type="button" class="detail-action-button" data-open-node-page="true">Open Node Page</button>
       <button type="button" class="detail-action-button" data-copy-node-link="true">Copy node link</button>

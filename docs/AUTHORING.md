@@ -152,7 +152,7 @@ excerpt: >-
   in the Markdown body below the frontmatter.
 ```
 
-The content build rejects a published node with a long opening paragraph when `excerpt` is missing. This prevents the first part of an essay from being duplicated as its summary.
+The content build rejects a published non-folder node with a long opening paragraph when `excerpt` is missing. Published folder nodes may omit `excerpt` when their opening writing is intended to be the folder's full introduction.
 
 Absolute `http://` and `https://` links in node body content are rendered as live-link preview cards. They show the linked label, host, and path, open in a new tab, and remain ordinary external links underneath. This keeps previews reliable without embedding third-party pages that may block frames or expose visitors to unnecessary tracking.
 

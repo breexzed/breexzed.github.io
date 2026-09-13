@@ -149,7 +149,7 @@ function renderCorpusCard(node: Node): string {
           ${node.domain ? `<span class="pc-tag">${escapeHtml(node.domain)}</span>` : ''}
         </div>
         <h3 class="pc-title">${escapeHtml(node.title)}</h3>
-        <p class="pc-desc">${escapeHtml(node.desc || '')}</p>
+        ${node.desc ? `<p class="pc-desc">${escapeHtml(node.desc)}</p>` : ''}
         <div class="pc-formula">${escapeHtml(node.formula || '')}</div>
         ${renderNodeLinks(node)}
       </div>
