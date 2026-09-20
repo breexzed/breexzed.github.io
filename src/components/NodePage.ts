@@ -317,7 +317,7 @@ export function renderNodePage({
       ` : ''}
 
       <div class="node-page-grid">
-        <article class="node-page-article panel shallow">
+        <article class="node-page-article">
           ${renderTypeSemantics(node, nodes)}
           <div class="node-content node-page-content">
             ${sanitizeMarkdown ? sanitizeHtml(content) : content}
