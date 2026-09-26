@@ -242,7 +242,7 @@ function renderTypeSemantics(node: Node, nodes: Record<string, Node>): string {
     if (linkedConcepts.length) rows.push(renderMetaRow('Concept anchor', linkedConcepts.join(' • ')));
     if (linkedSignals.length) rows.push(renderMetaRow('Live signals', linkedSignals.join(' • ')));
   } else if (type === 'projects') {
-    if (node.publishDate || node.date) rows.push(renderMetaRow('Published', formatDateLabel(node.publishDate || node.date) || ''));
+    if (node.publishDate || node.date) rows.push(renderMetaRow('Published', formatDateLabel(node.publishDate || node.date || undefined) || ''));
     if (node.externalUrl) rows.push(renderMetaRow('External', node.externalUrl));
   }
 
