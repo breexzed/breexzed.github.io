@@ -21,6 +21,8 @@
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;text-size-adjust:100%}
 body{background:var(--void);color:var(--t-hi);font-family:var(--mono);font-size:12px;line-height:1.65;overflow-x:hidden;min-height:100vh;-webkit-font-smoothing:antialiased}
+body::before{content:'';position:fixed;inset:-8%;z-index:-2;background:linear-gradient(180deg,rgba(1,3,8,.3),rgba(1,3,8,.88)),url('/assets/background/tower-night.png') center/cover no-repeat;filter:blur(22px) saturate(.72) brightness(.62);transform:scale(1.08);pointer-events:none}
+body::after{content:'';position:fixed;inset:0;z-index:-1;background:radial-gradient(ellipse at 50% 24%,rgba(8,30,58,.08),rgba(1,3,5,.58) 72%),linear-gradient(180deg,rgba(1,3,5,.12),rgba(1,3,5,.72));pointer-events:none}
 img,svg{max-width:100%;display:block}
 a,button,input,textarea,select{-webkit-tap-highlight-color:transparent}
 canvas#cosmos{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:0}
