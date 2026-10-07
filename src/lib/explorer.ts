@@ -216,7 +216,6 @@ function renderDetail(): void {
     activeTab,
     breadcrumb,
     nodes,
-    sanitizeMarkdown: true
   });
   bindDetailInteractions(panel);
 }
@@ -231,7 +230,6 @@ function renderNodeRoute(): void {
     node,
     breadcrumb,
     nodes,
-    sanitizeMarkdown: true
   });
   bindNodePageInteractions(surface);
 }

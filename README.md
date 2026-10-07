@@ -266,11 +266,9 @@ If you want to work with it, focus on the content in `nodes/` and the templates 
 ## Legacy / Historical Files
 
 These are not part of the active V2 runtime, but may still remain in the repo for historical reference or compatibility:
-- `js/`
-- `build.js`
 - `docs/MIGRATION_V2.md`
 
-If they are retained, treat them as historical context rather than the canonical implementation.
+If they are retained, treat them as historical context rather than the canonical implementation. The legacy `js/` runtime was removed; the active frontend lives in `src/`.
 
 ## Verification Baseline
 

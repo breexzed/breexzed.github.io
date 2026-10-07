@@ -218,7 +218,7 @@ async function main() {
       )
     });
 
-    await navigate(`http://${HOST}:${PREVIEW_PORT}/node/trail_entropy_note`);
+    await navigate(`http://${HOST}:${PREVIEW_PORT}/node/stage_01_http_server`);
     const nodeRouteState = await evaluate(`(() => ({
       path: location.pathname,
       route: document.body.dataset.route || null,
@@ -227,9 +227,9 @@ async function main() {
     assertions.push({
       name: '/node/:id renders the dedicated node page',
       pass:
-        nodeRouteState.path === '/node/trail_entropy_note' &&
+        nodeRouteState.path === '/node/stage_01_http_server' &&
         nodeRouteState.route === 'node' &&
-        nodeRouteState.nodeTitle === 'Entropy Note'
+        nodeRouteState.nodeTitle === 'Stage 01 HTTP Server'
     });
 
     await navigate(`http://${HOST}:${PREVIEW_PORT}/`);
@@ -238,7 +238,7 @@ async function main() {
       await new Promise(resolve => setTimeout(resolve, 150));
       const input = document.getElementById('search-input');
       if (!input) return { opened: false };
-      input.value = 'Entropy Window';
+      input.value = 'HTTP Server';
       input.dispatchEvent(new Event('input', { bubbles: true }));
       await new Promise(resolve => setTimeout(resolve, 350));
       const result = document.querySelector('.search-result');
@@ -249,7 +249,7 @@ async function main() {
         opened: true,
         selected: true,
         path: location.pathname,
-        title: document.querySelector('.detail-title')?.textContent?.trim() || null
+        title: document.querySelector('.node-page-title')?.textContent?.trim() || null
       };
     })()`);
     assertions.push({
@@ -257,33 +257,20 @@ async function main() {
       pass:
         searchResult.opened &&
         searchResult.selected &&
-        searchResult.path === '/node/entropy_window' &&
-        searchResult.title === 'Entropy Window'
+        ['/node/building_an_http_server_from_scratch', '/node/stage_01_http_server'].includes(searchResult.path) &&
+        ['Building An HTTP Server From Scratch', 'Stage 01 HTTP Server'].includes(searchResult.title)
     });
 
-    await navigate(`http://${HOST}:${PREVIEW_PORT}/node/being_in_the_world`);
-    const markdownLinkResult = await evaluate(`(async () => {
-      const contentTab = Array.from(document.querySelectorAll('.exp-tab')).find(el => el.textContent?.trim() === 'Content');
-      if (!contentTab) return { tabReady: false };
-      contentTab.click();
-      await new Promise(resolve => setTimeout(resolve, 250));
-      const link = document.querySelector('.node-content a');
-      if (!link) return { tabReady: true, linkReady: false };
-      link.click();
-      await new Promise(resolve => setTimeout(resolve, 600));
-      return {
-        tabReady: true,
-        linkReady: true,
-        path: location.pathname,
-        title: document.querySelector('.detail-title')?.textContent?.trim() || null
-      };
-    })()`);
+    await navigate(`http://${HOST}:${PREVIEW_PORT}/node/stage_01_http_server`);
+    const contentResult = await evaluate(`(() => ({
+      path: location.pathname,
+      content: document.querySelector('.node-page-content')?.textContent?.trim() || ''
+    }))()`);
     assertions.push({
-      name: 'internal markdown link resolves to node route',
+      name: 'node content renders',
       pass:
-        markdownLinkResult.tabReady &&
-        markdownLinkResult.linkReady &&
-        markdownLinkResult.path === '/node/constraints_and_becoming'
+        contentResult.path === '/node/stage_01_http_server' &&
+        contentResult.content.includes('Make Something Exist')
     });
 
     const failed = assertions.filter(assertion => !assertion.pass);

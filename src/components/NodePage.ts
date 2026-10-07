@@ -5,7 +5,6 @@ type NodePageParams = {
   node: Node;
   breadcrumb: string[];
   nodes: Record<string, Node>;
-  sanitizeMarkdown: boolean;
 };
 
 function toTitleCase(value: string): string {
@@ -277,7 +276,6 @@ export function renderNodePage({
   node,
   breadcrumb,
   nodes,
-  sanitizeMarkdown
 }: NodePageParams): string {
   const visual = node.visual || node.thumbnail || (Array.isArray(node.images) ? node.images[0] : null);
   const gallery = node.folder ? [] : Array.isArray(node.images) ? node.images : [];
@@ -320,7 +318,7 @@ export function renderNodePage({
         <article class="node-page-article panel deep">
           ${renderTypeSemantics(node, nodes)}
           <div class="node-content node-page-content">
-            ${sanitizeMarkdown ? sanitizeHtml(content) : content}
+            ${sanitizeHtml(content)}
           </div>
           ${renderFolderChildren(node, nodes)}
         </article>

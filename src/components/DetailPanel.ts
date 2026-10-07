@@ -6,7 +6,6 @@ type DetailPanelParams = {
   activeTab: TabType;
   breadcrumb: string[];
   nodes: Record<string, Node>;
-  sanitizeMarkdown: boolean;
 };
 
 function renderTabs(activeTab: TabType): string {
@@ -134,7 +133,7 @@ function renderExplorerTab(node: Node, nodes: Record<string, Node>): string {
   `;
 }
 
-function renderContentTab(node: Node, sanitizeMarkdown: boolean): string {
+function renderContentTab(node: Node): string {
   const content = node.content || '<p style="color:var(--t-void); font-style:italic;">No content available.</p>';
   return `
     <div class="detail-header">
@@ -142,7 +141,7 @@ function renderContentTab(node: Node, sanitizeMarkdown: boolean): string {
       <div class="detail-title">${escapeHtml(node.title)}</div>
     </div>
     <div class="node-content" style="font-size:13px; line-height:2; color:var(--t-lo);">
-      ${sanitizeMarkdown ? sanitizeHtml(content) : content}
+      ${sanitizeHtml(content)}
     </div>
   `;
 }
@@ -255,7 +254,6 @@ export function renderDetailPanel({
   activeTab,
   breadcrumb,
   nodes,
-  sanitizeMarkdown
 }: DetailPanelParams): string {
   const tabs = renderTabs(activeTab);
   const bc = renderBreadcrumb(breadcrumb, node.id, nodes);
@@ -264,7 +262,7 @@ export function renderDetailPanel({
   if (activeTab === 'explorer') {
     content = `${renderTypeSemantics(node, nodes)}${renderExplorerTab(node, nodes)}`;
   } else if (activeTab === 'content') {
-    content = renderContentTab(node, sanitizeMarkdown);
+    content = renderContentTab(node);
   } else {
     content = `
       <div class="ascii-panel panel deep">
