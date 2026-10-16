@@ -41,3 +41,4 @@ Thumbs.db
 
 # Obsidian
 .obsidian/
+.tmp-smoke-chrome-profile/

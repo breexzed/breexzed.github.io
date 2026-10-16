@@ -136,8 +136,7 @@ async function main() {
       '--disable-breakpad',
       '--disable-crash-reporter',
       `--remote-debugging-port=${DEBUG_PORT}`,
-      '--user-data-dir',
-      profileDir
+      `--user-data-dir=${profileDir}`
     ],
     {
       cwd: ROOT_DIR,
