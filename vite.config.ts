@@ -10,7 +10,8 @@ export default defineConfig({
     sourcemap: true,
     rollupOptions: {
       input: {
-        main: resolve(__dirname, 'index.html')
+        main: resolve(__dirname, 'index.html'),
+        portfolio: resolve(__dirname, 'portfolio.html')
       }
     }
   },

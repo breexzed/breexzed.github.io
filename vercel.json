@@ -9,6 +9,10 @@
   },
   "rewrites": [
     {
+      "source": "/portfolio",
+      "destination": "/portfolio.html"
+    },
+    {
       "source": "/((?!assets/|data/|ai/|llms\\.txt$).*)",
       "destination": "/index.html"
     }
