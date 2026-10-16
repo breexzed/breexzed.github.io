@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Breexzed — Infrastructure engineering</title>
+<meta name="description" content="Building Linux infrastructure in Go, from the kernel up.">
+<meta name="theme-color" content="#091324">
+<meta property="og:type" content="profile">
+<meta property="og:title" content="Breexzed — Infrastructure engineering">
+<meta property="og:description" content="Building Linux infrastructure in Go, from the kernel up.">
+<meta property="og:url" content="https://www.breexzed.me/portfolio">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@breexzed_">
+<link rel="canonical" href="https://www.breexzed.me/portfolio">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" crossorigin href="/assets/portfolio-C5rHOqw4.css">
+  <link rel="stylesheet" crossorigin href="/assets/owlcyon-D9-IHCWv.css">
+</head>
+<body>
+<main class="pf">
+  <div class="pf-nav" role="navigation" aria-label="Primary">
+    <a class="active" href="#top">Breexzed</a>
+    <a href="#work">Work</a>
+    <a href="#writing">Writing</a>
+    <a href="https://www.breexzed.me/">breexzed.me</a>
+  </div>
+
+  <header id="top">
+    <h1>Breexzed</h1>
+    <p class="pf-sub">Infrastructure engineering</p>
+    <p class="pf-summary">Building Linux infrastructure in Go, from the kernel up.</p>
+    <p class="pf-links">Links:
+      <a href="mailto:breexzed@outlook.com">Email</a>
+      <a href="https://github.com/breexzed">GitHub</a>
+      <a href="https://x.com/breexzed_">X</a>
+    </p>
+    <img class="pf-portrait" src="/assets/about/breexzed-portrait.svg" alt="Breexzed">
+  </header>
+
+  <div class="pf-section" id="about">
+    <h2>About</h2>
+    <p class="pf-greentext">
+      &gt; kid from Africa big tech dreams<br>
+      &gt; internet friend sent pc to begin with<br>
+      &gt; bricked machine trying to run Linux<br>
+      &gt; Linux ran LFG!!!<br>
+      &gt; got fascinated with the machine<br>
+      &gt; been tinkering ever since<br>
+      &gt; mfw he realized could make a living with this<br>
+      &gt; infrastructure engineering
+    </p>
+    <p class="pf-interests">Interested in: Linux, eBPF, Go, containers, cloud, kernel-native infrastructure.</p>
+  </div>
+
+  <div class="pf-section" id="work">
+    <h2>Now</h2>
+    <div class="pf-entries">
+      <div class="pf-entry">
+        <p class="pf-time">Oct 2026 – present</p>
+        <h3>Pulsed</h3>
+        <p class="pf-tech">Go · Linux /proc · standard library only</p>
+        <p class="pf-desc">A Linux process monitor in Go, built from /proc up. A learning project.</p>
+        <ul>
+          <li>Lists processes from /proc and parses /proc/PID/stat, including process names with spaces and ")".</li>
+          <li>125 lines of Go, 136 lines of tests, CI on every push.</li>
+          <li>Next: measure how many short-lived processes a once-per-second read misses, then try eBPF.</li>
+        </ul>
+        <p class="pf-links"><a href="https://github.com/breexzed/pulsed">code</a></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="pf-section">
+    <h2>Selected work</h2>
+    <div class="pf-entries">
+      <div class="pf-entry">
+        <p class="pf-time">Sep 2026</p>
+        <h3>httpd-go</h3>
+        <p class="pf-tech">Go · TCP · HTTP/1.1 (RFC 9112)</p>
+        <p class="pf-desc">A small HTTP server in Go. Built from raw TCP. A learning Project.</p>
+        <ul>
+          <li>Parses the request line and headers, with a limit on header size.</li>
+          <li>Reads request bodies using Content-Length.</li>
+          <li>Keep-alive, so each request doesn't open a new TCP connection.</li>
+          <li>Logs the client IP and duration of each request.</li>
+        </ul>
+        <p class="pf-links">
+          <a href="https://github.com/breexzed/httpd-go">code</a>
+          <a href="https://www.breexzed.me/node/building_an_http_server_from_scratch">build log</a>
+        </p>
+      </div>
+      <div class="pf-entry">
+        <p class="pf-time">Apr 2026 – Oct 2026</p>
+        <h3>wtp (Willingness To Pay)</h3>
+        <p class="pf-tech">Python · LLM APIs · GitHub Actions</p>
+        <p class="pf-desc">Find out whether people would pay, from interview and YouTube transcripts. Built with Claude, for my own process.</p>
+        <ul>
+          <li>Checks every quote the model returns against the transcript. Across 3 real runs: 41 quotes, 28 exact, 6 near-exact, 7 stitched together, 0 invented.</li>
+          <li>v0.6.2, 90 tests, CI on Python 3.11 and 3.14.</li>
+        </ul>
+        <p class="pf-links"><a href="https://github.com/breexzed/WTP-Signal-Extractor">code</a></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="pf-section">
+    <h2>Experience</h2>
+    <p class="pf-muted">No professional infrastructure role yet.</p>
+  </div>
+
+  <div class="pf-section">
+    <h2>Skills</h2>
+    <p>Go / Python / Linux (/proc) / KVM, QEMU, libvirt / Git / GitHub Actions / Docker / Bash</p>
+  </div>
+
+  <div class="pf-section">
+    <h2>Filling next</h2>
+    <ul class="pf-gaps">
+      <li>eBPF: bpftrace and bpftool, then my own programs. <span class="pf-status">not started</span></li>
+      <li>Containers from scratch: namespaces and cgroups. <span class="pf-status">not started</span></li>
+      <li>One cloud, with Terraform. <span class="pf-status">not started</span></li>
+      <li>Kubernetes, after containers. <span class="pf-status">not started</span></li>
+      <li>On-call habits: SLOs, alerts, incident write-ups. <span class="pf-status">not started</span></li>
+      <li>A merged upstream open-source contribution. <span class="pf-status">not started</span></li>
+    </ul>
+  </div>
+
+  <div class="pf-section" id="writing">
+    <h2>Writing</h2>
+    <ul>
+      <li><a href="https://www.breexzed.me/node/building_an_http_server_from_scratch">Building An HTTP Server From Scratch</a></li>
+      <li><a href="https://www.breexzed.me/node/on_learning_and_finding_the_right_information_to_learn_from">On Learning and finding the right information to learn from</a></li>
+      <li><a href="https://www.breexzed.me/node/the_gap">The Gap</a></li>
+    </ul>
+  </div>
+
+  <div class="pf-section">
+    <h2>Links</h2>
+    <p class="pf-links">
+      <a href="mailto:breexzed@outlook.com">Email</a>
+      <a href="https://github.com/breexzed">GitHub</a>
+      <a href="https://x.com/breexzed_">X</a>
+      <a href="https://www.breexzed.me/">breexzed.me</a>
+    </p>
+  </div>
+
+  <p class="pf-foot">Updated Oct 2026.</p>
+</main>
+</body>
+</html>
