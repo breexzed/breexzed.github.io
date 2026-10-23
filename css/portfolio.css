@@ -9,7 +9,7 @@
 .pf-nav a.active{color:var(--t-hi);border-bottom-color:var(--accent)}
 .pf-nav a:hover{color:var(--t-hi);text-decoration:none}
 
-.pf h1{font-family:var(--display);font-size:clamp(44px,9vw,72px);font-weight:800;line-height:.92;letter-spacing:-.045em;color:var(--t-hi)}
+.pf h1{font-family:var(--display);font-size:clamp(44px,9vw,72px);font-weight:760;line-height:.92;letter-spacing:-.03em;color:var(--t-hi)}
 .pf-sub{margin-top:12px;font-size:10px;letter-spacing:.34em;text-transform:uppercase;color:var(--t-lo)}
 .pf-summary{margin-top:20px;font-size:17px;line-height:1.5;color:var(--t-hi)}
 .pf-links{display:flex;flex-wrap:wrap;gap:6px 12px;margin-top:16px;color:var(--t-lo)}
