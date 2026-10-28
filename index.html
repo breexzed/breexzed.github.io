@@ -11,11 +11,14 @@
 <meta property="og:title" content="BREEXZED — Digital Estate">
 <meta property="og:description" content="A living estate of systems, signals, projects, and ideas in motion.">
 <meta property="og:url" content="https://www.breexzed.me/">
-<meta property="og:image" content="https://www.breexzed.me/assets/about/breexzed-portrait.svg">
-<meta name="twitter:card" content="summary">
+<meta property="og:image" content="https://www.breexzed.me/assets/og/breexzed-card.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Breexzed: Building Linux infrastructure in Go, from the kernel up.">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="BREEXZED — Digital Estate">
 <meta name="twitter:description" content="A living estate of systems, signals, projects, and ideas in motion.">
-<meta name="twitter:image" content="https://www.breexzed.me/assets/about/breexzed-portrait.svg">
+<meta name="twitter:image" content="https://www.breexzed.me/assets/og/breexzed-card.png">
 <link rel="canonical" href="https://www.breexzed.me/">
 
 <link rel="preload" href="/fonts/departure-mono/DepartureMono-Regular.woff2" as="font" type="font/woff2" crossorigin>
@@ -50,7 +53,7 @@
   </div>
 </section>
 
-<section id="corpus" class="surface-section">
+<section id="corpus" class="surface-section" data-title="Corpus">
   <div class="wrap">
     <p class="s-label reveal">Corpus</p>
     <div class="section-head reveal">
@@ -69,29 +72,32 @@
 </section>
 
 <section id="not-found" class="surface-section route-hidden">
-  <div class="wrap">
-    <p class="s-label reveal">404</p>
-    <div class="section-head reveal">
-      <h2 class="s-title">You found an unmade room.</h2>
-      <p class="section-copy">This page has not taken shape yet. The estate is still becoming, but there are a few live surfaces waiting for you.</p>
+  <!-- Inert until a 404 route mounts it, so crawlers and link previews never read it as page text. -->
+  <template id="not-found-template">
+    <div class="wrap">
+      <p class="s-label reveal">404</p>
+      <div class="section-head reveal">
+        <h2 class="s-title">You found an unmade room.</h2>
+        <p class="section-copy">This page has not taken shape yet. The estate is still becoming, but there are a few live surfaces waiting for you.</p>
+      </div>
+      <div class="not-found-links reveal">
+        <a class="not-found-link panel mid" href="/corpus" data-route>
+          <span class="node-route-card-type">Corpus</span>
+          <strong>Enter the corpus</strong>
+          <span>Projects, concepts, and articulations gathered in one field.</span>
+        </a>
+        <a class="not-found-link panel mid" href="/projects" data-route>
+          <span class="node-route-card-type">Projects</span>
+          <strong>Visit the project lab</strong>
+          <span>Dedicated builds, experiments, and systems in motion.</span>
+        </a>
+      </div>
+      <p class="not-found-return"><a href="/" data-route>Return home</a> · <a href="/llms.txt">AI retrieval guide</a></p>
     </div>
-    <div class="not-found-links reveal">
-      <a class="not-found-link panel mid" href="/corpus" data-route>
-        <span class="node-route-card-type">Corpus</span>
-        <strong>Enter the corpus</strong>
-        <span>Projects, concepts, and articulations gathered in one field.</span>
-      </a>
-      <a class="not-found-link panel mid" href="/projects" data-route>
-        <span class="node-route-card-type">Projects</span>
-        <strong>Visit the project lab</strong>
-        <span>Dedicated builds, experiments, and systems in motion.</span>
-      </a>
-    </div>
-    <p class="not-found-return"><a href="/" data-route>Return home</a> · <a href="/llms.txt">AI retrieval guide</a></p>
-  </div>
+  </template>
 </section>
 
-<section id="signals" class="surface-section">
+<section id="signals" class="surface-section" data-title="Signal">
   <div class="wrap">
     <p class="s-label reveal">Signal</p>
     <div class="section-head reveal">
@@ -102,7 +108,7 @@
   </div>
 </section>
 
-<section id="projects" class="surface-section">
+<section id="projects" class="surface-section" data-title="Projects">
   <div class="wrap">
     <p class="s-label reveal">Projects</p>
     <div class="section-head reveal">
@@ -113,7 +119,7 @@
   </div>
 </section>
 
-<section id="whoami" class="surface-section route-hidden">
+<section id="whoami" class="surface-section route-hidden" data-title="whoami">
   <div class="wrap">
     <p class="s-label reveal">whoami?</p>
     <div class="section-head reveal">

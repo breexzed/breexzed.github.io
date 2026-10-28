@@ -213,7 +213,7 @@ async function main() {
     assertions.push({
       name: '/map is removed',
       pass: await evaluate(
-        `(() => document.body.dataset.route === 'not-found' && document.getElementById('not-found')?.classList.contains('route-hidden') === false)()`
+        `(() => document.body.dataset.route === 'not-found' && document.getElementById('not-found')?.classList.contains('route-hidden') === false && document.querySelectorAll('#not-found .not-found-link').length > 0)()`
       )
     });
 
@@ -232,6 +232,20 @@ async function main() {
     });
 
     await navigate(`http://${HOST}:${PREVIEW_PORT}/`);
+    const titles = await evaluate(`(async () => {
+      const home = document.title;
+      document.querySelector('nav a[href="/whoami"]')?.click();
+      await new Promise(resolve => setTimeout(resolve, 150));
+      const whoami = document.title;
+      history.back();
+      await new Promise(resolve => setTimeout(resolve, 300));
+      return { home, whoami, back: document.title };
+    })()`);
+    assertions.push({
+      name: 'client navigation updates the tab title',
+      pass: titles.home === 'BREEXZED — Digital Estate' && titles.whoami === 'whoami — BREEXZED' && titles.back === titles.home
+    });
+
     const searchResult = await evaluate(`(async () => {
       document.dispatchEvent(new KeyboardEvent('keydown', { key: '/', bubbles: true }));
       await new Promise(resolve => setTimeout(resolve, 150));

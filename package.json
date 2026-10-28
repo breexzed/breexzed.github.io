@@ -4,7 +4,8 @@
   "description": "Living topological lens — f(x) = y",
   "main": "index.html",
   "scripts": {
-    "build": "npm run build:content && vite build",
+    "build": "npm run build:content && vite build && npm run build:prerender",
+    "build:prerender": "node scripts/prerender.js",
     "build:content": "npm run build:topology && npm run copy:assets && npm run build:search && npm run build:ai",
     "build:topology": "node scripts/build-topology.js",
     "build:search": "node scripts/build-search.js",

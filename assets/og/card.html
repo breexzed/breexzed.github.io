@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<!--
+  Source for the 1200x630 link-preview image (og:image / twitter:image).
+  X and most link previewers don't render SVG, so this is rendered to PNG:
+
+  chromium-browser --headless=new --hide-scrollbars --window-size=1200,630 \
+    --screenshot=public/assets/og/breexzed-card.png "file://$PWD/assets/og/card.html"
+-->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style>
+@font-face{font-family:'Departure Mono';src:url('../../public/fonts/departure-mono/DepartureMono-Regular.woff2') format('woff2')}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1200px;height:630px;overflow:hidden}
+body{display:flex;align-items:center;gap:66px;padding:0 88px;background:#010305 radial-gradient(ellipse at 70% 30%,rgba(8,30,58,.55),transparent 70%);color:rgba(242,249,255,.95);font-family:'Departure Mono',monospace;-webkit-font-smoothing:antialiased}
+img{width:396px;height:396px;flex-shrink:0;border:1px solid rgba(200,220,255,.18);border-radius:3px}
+.text{display:grid;gap:33px}
+h1{font-size:66px;font-weight:400;line-height:1}
+p{font-size:33px;line-height:1.33;color:rgba(205,224,248,.82);text-wrap:balance}
+.url{font-size:22px;letter-spacing:2px;color:rgba(145,172,210,.7)}
+</style>
+</head>
+<body>
+<img src="../../public/assets/about/breexzed-portrait.svg" alt="">
+<div class="text">
+  <h1>Breexzed</h1>
+  <p>Building Linux infrastructure in Go, from the kernel up.</p>
+  <p class="url">breexzed.me</p>
+</div>
+</body>
+</html>

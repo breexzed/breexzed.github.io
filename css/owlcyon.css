@@ -238,6 +238,7 @@ section{padding:92px 0;position:relative}
 .not-found-link strong{font-family:var(--display);font-size:22px;font-weight:400;line-height:1.25;color:var(--t-hi)}
 .not-found-link>span:last-child{font-size:11px;line-height:1.6;color:var(--t-lo)}
 .not-found-return{margin-top:22px}
+.not-found-return a{color:var(--t-mid)}
 .ascii-panel{padding:18px;background:var(--fill-0)}
 .ascii-panel pre{white-space:pre-wrap;color:var(--t-mid);font-family:var(--mono)}
 .a-d{color:var(--t-void)}

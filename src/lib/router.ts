@@ -90,8 +90,36 @@ function animateVisibleSections(ids: string[]): void {
   });
 }
 
+const SITE_NAME = 'BREEXZED';
+// The homepage's own <title> isn't in the prerendered route files, so keep it here.
+const HOME_TITLE = 'BREEXZED — Digital Estate';
+
+// Matches what scripts/prerender.js writes into each route's file.
+function routeTitle(route: { key: RouteKey; nodeId?: string }): string {
+  if (route.key === 'home') return HOME_TITLE;
+  if (route.key === 'node') {
+    const title = route.nodeId ? Explorer.getNodes()[route.nodeId]?.title : '';
+    return title ? `${title} — ${SITE_NAME}` : HOME_TITLE;
+  }
+  if (route.key === 'not-found') return `Not found — ${SITE_NAME}`;
+  const title = document.getElementById(route.key)?.dataset.title;
+  return title ? `${title} — ${SITE_NAME}` : HOME_TITLE;
+}
+
+function mountNotFound(): void {
+  const section = document.getElementById('not-found');
+  const template = document.getElementById('not-found-template');
+  if (!section || !(template instanceof HTMLTemplateElement) || section.querySelector('.wrap')) return;
+  section.appendChild(template.content.cloneNode(true));
+  // Mounted after main.ts set up its reveal observer, so show it directly.
+  section.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
+  interceptNavLinks(section);
+}
+
 function applyRoute(pathname: string): void {
   const route = parseRoute(pathname);
+  if (route.key === 'not-found') mountNotFound();
+  document.title = routeTitle(route);
   document.body.dataset.route = route.key;
   setSectionVisibility(ROUTE_SECTIONS[route.key]);
   setActiveNav(normalizePath(pathname));
@@ -211,8 +239,8 @@ function navigateToNode(nodeId: string): void {
   navigate(`/node/${encodeURIComponent(nodeId)}`);
 }
 
-function interceptNavLinks(): void {
-  document.querySelectorAll<HTMLAnchorElement>('a[data-route]').forEach(link => {
+function interceptNavLinks(root: ParentNode = document): void {
+  root.querySelectorAll<HTMLAnchorElement>('a[data-route]').forEach(link => {
     link.addEventListener('click', event => {
       const href = link.getAttribute('href');
       if (!href) return;
