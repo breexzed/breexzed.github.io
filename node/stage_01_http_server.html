@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stage 01 HTTP Server — BREEXZED</title>
+<meta name="description" content="The first stage is to make something exist: a small Go server that can receive an HTTP request and answer it.">
+<meta name="theme-color" content="#091324">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="BREEXZED">
+<meta property="og:title" content="Stage 01 HTTP Server — BREEXZED">
+<meta property="og:description" content="The first stage is to make something exist: a small Go server that can receive an HTTP request and answer it.">
+<meta property="og:url" content="https://www.breexzed.me/node/stage_01_http_server">
+<meta property="og:image" content="https://www.breexzed.me/assets/og/breexzed-card.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Breexzed: Building Linux infrastructure in Go, from the kernel up.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Stage 01 HTTP Server — BREEXZED">
+<meta name="twitter:description" content="The first stage is to make something exist: a small Go server that can receive an HTTP request and answer it.">
+<meta name="twitter:image" content="https://www.breexzed.me/assets/og/breexzed-card.png">
+<link rel="canonical" href="https://www.breexzed.me/node/stage_01_http_server">
+
+<link rel="preload" href="/fonts/departure-mono/DepartureMono-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
+
+  <script type="module" crossorigin src="/assets/main-8UmhHC0V.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/owlcyon-CjrvBPHe.css">
+</head>
+<body>
+
+<canvas id="cosmos"></canvas>
+
+<nav aria-label="Primary">
+  <a href="/" class="nav-mark" data-route>BREEXZED</a>
+  <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-links" aria-label="Toggle navigation">☰</button>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="/" data-route>Home</a></li>
+    <li><a href="/corpus" data-route>Corpus</a></li>
+    <li><a href="/signals" data-route>Signal</a></li>
+    <li><a href="/projects" data-route>Projects</a></li>
+    <li><a href="/whoami" data-route><span aria-hidden="true">✦</span> whoami?</a></li>
+  </ul>
+</nav>
+
+<section id="home" class="hero route-hidden">
+  <div class="wrap hero-wrap">
+    <p class="hero-epoch reveal">BREEXZED</p>
+    <div class="hero-manifesto reveal">
+      <p>Welcome to the estate.</p>
+      <p>I've been tracing systems, signals and building what i find useful.</p>
+    </div>
+
+  </div>
+</section>
+
+<section id="corpus" class="surface-section route-hidden" data-title="Corpus">
+  <div class="wrap">
+    <p class="s-label reveal">Corpus</p>
+    <div class="section-head reveal">
+      <h2 class="s-title">Projects, concepts, and articulations.</h2>
+      <p class="section-copy">Here we have a filtered index of the work and ideas that make up the estate.</p>
+    </div>
+    <div class="filter-row reveal" id="corpus-filters"></div>
+    <div id="corpus-grid" class="reveal"></div>
+  </div>
+</section>
+
+<section id="node-page" class="surface-section">
+  <div class="wrap">
+    <div id="node-page-shell">
+      <div class="node-page-shell">
+        <div class="node-page-hero panel deep">
+          <h1 class="node-page-title">Stage 01 HTTP Server</h1>
+          <p class="node-page-formula">receive -&gt; parse -&gt; answer</p>
+          <p class="node-page-desc">The first stage is to make something exist: a small Go server that can receive an HTTP request and answer it.</p>
+        </div>
+        <article class="node-page-article panel deep">
+          <div class="node-content node-page-content"><h2>Phase I — Make Something Exist</h2>
+<h3>1. HTTP Server — &quot;I can receive and answer.&quot;</h3>
+<p>You start with the smallest useful server possible, using Go&#39;s standard networking primitives.</p>
+<p>You establish the fundamental chain:</p>
+<pre><code>client
+  ↓
+network
+  ↓
+socket
+  ↓
+TCP connection
+  ↓
+HTTP request
+  ↓
+your program
+  ↓
+HTTP response
+  ↓
+client
+</code></pre>
+<p>You aren&#39;t trying to build a &quot;good&quot; server yet.</p>
+<p>You&#39;re trying to understand:</p>
+<ul>
+<li>what a process is</li>
+<li>what a port is</li>
+<li>what listening means</li>
+<li>what a connection is</li>
+<li>what bytes are</li>
+<li>what an HTTP request actually looks like</li>
+<li>how your program receives and responds to it</li>
+</ul>
+<p><strong>Capability gained:</strong></p>
+<blockquote>
+<p>I can create a network service and understand its basic path through the machine.</p>
+</blockquote>
+<hr>
+<p>To do this, you first have to build a program that listens for incoming requests in a loop and sends responses back. That, automatically, is the server.</p>
+<p>You create a program that listens for TCP connections on a specified port, accepts connections made to that socket, handles each one, and sends a response back to the caller. You do the handling of the connection yourself.</p>
+<h4>Handling the connection</h4>
+<p>When you accept the connection, you get back either an error or a network stream. Go lets you handle both. The network stream exposes three functions you can use on it: read, write, and close — which means the network stream is, in Go, an interface.</p>
+<p>The network stream represents one specific, already-established connection to one specific client. In the real world we handle more than one connection at a time, so we have to handle connections concurrently. If we don&#39;t, our accept call will block every new connection until we&#39;re done with the first one — when in reality, we could always be handling more, using concurrency. Each connection stream is a private, two-way pipe to exactly one client, already through the TCP handshake, ready to read and write immediately.</p>
+<p>It&#39;s a stream. Not a message.</p>
+<blockquote>
+<p>It&#39;s a stream, not a message. This is the part that trips people up first. TCP doesn&#39;t preserve &quot;boundaries&quot; — if the client sends 100 bytes in one write and then 50 more, your <code>Read()</code> calls might return them as 100+50, or 30+70+50, or any other split. TCP guarantees order and completeness, not chunking. That&#39;s exactly why HTTP parsing can&#39;t just be &quot;call Read once and you have the request&quot; — you often need to read repeatedly, buffering as you go, until you&#39;ve accumulated a full request (request line, then headers up to the blank line, then exactly <code>Content-Length</code> bytes of body if any). This is what &quot;raw bytes&quot; concretely means for you: you own reconstructing meaning out of an unstructured, possibly-fragmented stream.</p>
+<p>— Claude</p>
+</blockquote>
+<p>TCP doesn&#39;t know messages. It knows only bytes. So we have to build the parser that turns those bytes into meaning, accounting for every issue that could come up in the process — like the 100+50 vs. 30+70+50 split from the elaboration above. The reason is, again, that the connection is a stream with no boundaries. There&#39;s only the connection, and whatever is written through it is guaranteed only to be ordered and complete. So every read has to account for what each write actually is — decoding it — and where each write begins and ends. A write to the connection stream, once it&#39;s been decoded, can be called a message. While it&#39;s still in transit and undecoded, it&#39;s just pure bytes.</p>
+<h4>What shape does a byte take?</h4>
+<p>When a byte stream is decoded, there&#39;s a specific shape it has to take to be deemed a complete message. This format is specified by the RFC:</p>
+<blockquote>
+<p><strong>2.1. Message Format</strong></p>
+<p>An HTTP/1.1 message consists of a start-line, followed by a CRLF, and a sequence of octets in a format similar to the Internet Message Format: zero or more header field lines (collectively referred to as the &quot;headers&quot; or the &quot;header section&quot;), an empty line indicating the end of the header section, and an optional message body.</p>
+<pre><code>HTTP-message   = start-line CRLF
+*( field-line CRLF )
+CRLF
+[ message-body ]
+</code></pre>
+<p>A message can be either a request from client to server or a response from server to client. Syntactically, the two types of messages differ only in the start-line, which is either a request-line (for requests) or a status-line (for responses), and in the algorithm for determining the length of the message body.</p>
+<pre><code>start-line     = request-line / status-line
+</code></pre>
+<p>In theory, a client could receive requests and a server could receive responses, distinguishing them by their different start-line formats. In practice, servers are implemented to only expect a request (a response is interpreted as an unknown or invalid request method), and clients are implemented to only expect a response.</p>
+</blockquote>
+<h2>Parsing a Byte — the HTTP Way</h2>
+<ul>
+<li>Read the start line (the request-line, in the context of servers) into a structure.</li>
+<li>Read each header field line into a hash table by field name, until the empty line.</li>
+<li>Use the parsed data to determine whether a message body is expected. If one is indicated, it&#39;s read as a stream until an amount of octets equal to the message body length has been read, or the connection is closed.</li>
+</ul>
+<h4>Request lines</h4>
+<p>A request line — implemented by clients, expected and parsed by servers — begins with a method token, followed by a single space (SP), the request target, another single space, and ends with the protocol version:</p>
+<pre><code>request-line   = method SP request-target SP HTTP-version
+</code></pre>
+<p>Notes from the RFC on parsing the request line:</p>
+<blockquote>
+<p>Although the request-line grammar rule requires that each of the component elements be separated by a single SP octet, recipients MAY instead parse on whitespace-delimited word boundaries and, aside from the CRLF terminator, treat any form of whitespace as the SP separator while ignoring preceding or trailing whitespace.</p>
+<p>However, lenient parsing can result in request smuggling security vulnerabilities if there are multiple recipients of the message and each has its own unique interpretation of robustness.</p>
+</blockquote>
+<p>Notes on handling unimplemented requests:</p>
+<blockquote>
+<p>HTTP does not place a predefined limit on the length of a request-line. A server that receives a method longer than any that it implements SHOULD respond with a 501 (Not Implemented) status code. A server that receives a request-target longer than any URI it wishes to parse MUST respond with a 414 (URI Too Long) status code.</p>
+<p>Various ad hoc limitations on request-line length are found in practice. It is RECOMMENDED that all HTTP senders and recipients support, at a minimum, request-line lengths of 8000 octets.</p>
+</blockquote>
+<h4>Message body</h4>
+<blockquote>
+<p>The message body (if any) of an HTTP/1.1 message is used to carry content for the request or response. The message body is identical to the content unless a transfer coding has been applied.</p>
+<pre><code>message-body = *OCTET
+</code></pre>
+<p>The rules for determining when a message body is present in an HTTP/1.1 message differ for requests and responses.</p>
+<p>The presence of a message body in a request is signaled by a Content-Length or Transfer-Encoding header field. Request message framing is independent of method semantics.</p>
+<p>The presence of a message body in a response depends on both the request method it&#39;s responding to and the response status code. This corresponds to when response content is allowed by HTTP semantics.</p>
+</blockquote>
+<h4>bufio.Reader</h4>
+<p>This is the key tool, in Go, that helps us read pure bytes and identify lines out of them. It has its own methods we can use on a byte stream — one of them, <code>ReadString(delim byte) (string, error)</code>, blocks and keeps reading from the connection until it sees the delimiter you asked for, then hands back everything up to and including it. Our delimiter, in this case, is <code>\n</code> — a newline.</p>
+<h3>parseRequestLine</h3>
+<p>Once we&#39;ve identified a line from the connection stream, we build a function that takes that line as a string and splits it into method, request-target, and HTTP-version.</p>
+<h3>Implementing the parser</h3>
+<p>There&#39;s a difference between implementing — and building in general — from a tutorial versus from an actual specification. I&#39;ve done both, and I see now why a spec is what it is: the actual specification. I have to make sure the parser covers all the edge cases, most of which would&#39;ve been quietly ignored had I followed a tutorial or course instead.</p>
+<h3>End to end</h3>
+<p>Closed the loop. Added a hardcoded response in <code>handleConnection</code>:</p>
+<pre><code>response := &quot;HTTP/1.1 200 OK\r\nContent-Length: 2\r\n\r\nOK&quot;
+_, err = conn.Write([]byte(response))
+if err != nil {
+    return err
+}
+</code></pre>
+<p>Hit it with <code>curl -v</code>, and got the full response back — headers and body. Stage 1&#39;s capability is real now, not just parsed on paper: receive, and answer.</p>
+<p>The implementation is recorded in the <a href="https://github.com/breexzed/http-server/commit/db52379f5f2ddc2c867d9bce915a0e97b01d697c">Stage 01 commit</a>.</p>
+</div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="not-found" class="surface-section route-hidden">
+  <!-- Inert until a 404 route mounts it, so crawlers and link previews never read it as page text. -->
+  <template id="not-found-template">
+    <div class="wrap">
+      <p class="s-label reveal">404</p>
+      <div class="section-head reveal">
+        <h2 class="s-title">You found an unmade room.</h2>
+        <p class="section-copy">This page has not taken shape yet. The estate is still becoming, but there are a few live surfaces waiting for you.</p>
+      </div>
+      <div class="not-found-links reveal">
+        <a class="not-found-link panel mid" href="/corpus" data-route>
+          <span class="node-route-card-type">Corpus</span>
+          <strong>Enter the corpus</strong>
+          <span>Projects, concepts, and articulations gathered in one field.</span>
+        </a>
+        <a class="not-found-link panel mid" href="/projects" data-route>
+          <span class="node-route-card-type">Projects</span>
+          <strong>Visit the project lab</strong>
+          <span>Dedicated builds, experiments, and systems in motion.</span>
+        </a>
+      </div>
+      <p class="not-found-return"><a href="/" data-route>Return home</a> · <a href="/llms.txt">AI retrieval guide</a></p>
+    </div>
+  </template>
+</section>
+
+<section id="signals" class="surface-section route-hidden" data-title="Signal">
+  <div class="wrap">
+    <p class="s-label reveal">Signal</p>
+    <div class="section-head reveal">
+      <h2 class="s-title">Signals and trails.</h2>
+      <p class="section-copy">Here, I document the signals I encounter in the world as they express themselves within my field of resonance. I note them explicitly, along with the traces of how I encountered them. I explore their diverse natures to learn from them and to make predictions inferred from the lenses they share. Signals may include, but are not limited to, a person, a niche, or a group of people within a culture or subcultural organism.</p>
+    </div>
+    <div id="signals-list" class="reveal"></div>
+  </div>
+</section>
+
+<section id="projects" class="surface-section route-hidden" data-title="Projects">
+  <div class="wrap">
+    <p class="s-label reveal">Projects</p>
+    <div class="section-head reveal">
+      <h2 class="s-title">Dedicated project surface.</h2>
+      <p class="section-copy">This is the lab where I build systems out of the estate's ontology-driven corpus. Projects are also informed by signals and by the trails that led to them. Like every lab, this one is an ongoing work in progress.</p>
+    </div>
+    <div id="projects-grid" class="reveal"></div>
+  </div>
+</section>
+
+<section id="whoami" class="surface-section route-hidden" data-title="whoami">
+  <div class="wrap">
+    <p class="s-label reveal">whoami?</p>
+    <div class="section-head reveal">
+      <h2 class="s-title">About me.</h2>
+    </div>
+    <div class="whoami-panel reveal">
+      <div class="whoami-layout">
+        <figure class="whoami-portrait">
+          <img src="/assets/about/breexzed-portrait.svg" alt="BREEXZED portrait" loading="eager">
+        </figure>
+        <div class="whoami-copy">
+          <p>Building Linux infrastructure in Go, from the kernel up.<br>I write about what i build, and what they taught me.</p>
+          <p>Trapped within constraints that suffocate being and becoming, i untie myself from the shackles bound on me, through the dispersion of my soul and the traces i leave of having existed, homage to the one in me who knows nothing, but wants to learn.</p>
+          <p>Having seen how i saw myself, i realized, there was little i knew apart from myself. Self-knowledge is no mystery, understanding one thing is an implicit attribution to the one who understands. I want to have an understanding, yes of me, but more also of the world around me and of how it constituted, what role i could play in bringing out the beautiful pain of being this specific being, this person, whoami&gt; breexzed</p>
+          <p>How does one do it? You know what you want and you want to become this specific type of person. Not accidentally, not curated. Enacted. Being-as-configuration.</p>
+          <p>My little philosophy on this:</p>
+          <blockquote class="whoami-quote">
+            <p>The work of becoming great perhaps is in the act of becoming less. Recognizing the daily struggles of creating order and being one with it within the flux of life's moment.</p>
+            <p>Do you have a role model or is this dream so unique? What materials do you need to interact with to put yourself into the orbit of the class of such objects? How do you backtrack from where you’ve found what’s closest to your own truth?</p>
+            <p>Curiosity already brought you here. It will not take you back, only keep you in check. Sustain you in orbit. But the actual work of moving in alignment with the systems of the space you inhabit is solely up to how you can navigate the antigravity of your position.</p>
+            <p>In relation to the pulling forces of the bodies around you. Distractions, and sometimes, necessities. Calling them for what they are, hindrances to being who you think you could be without hindrances. But being honest with yourself, are you the type of person yet?</p>
+            <p>If you cannot manage your current life well enough to change its trajectory, do you expect something or someone else to impose order on your behalf for you? How close are you to your own truth in the first place, or is it only just an image in your head?</p>
+            <p>Seed of becoming planted in self.</p>
+            <cite>-Breexzed Daffodils</cite>
+          </blockquote>
+          <p class="whoami-note">I'll keep trying to find something to write about who I am, but for the time being, rejoice with me for who I'm becoming.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-in">
+    <div class="foot-left">
+      <p>BREEXZED</p>
+      <p class="foot-copy">A home for traces, projects, learning, and the slow arrangement of understanding.</p>
+    </div>
+    <div class="foot-right" id="footer-socials"></div>
+  </div>
+</footer>
+
+</body>
+</html>

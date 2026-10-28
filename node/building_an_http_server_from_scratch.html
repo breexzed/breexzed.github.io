@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Building An HTTP Server From Scratch — BREEXZED</title>
+<meta name="description" content="I attempted building an HTTP server once before, as part of the Backend from First Principles: Complete Series track. I got stuck shortly after establishing a…">
+<meta name="theme-color" content="#091324">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="BREEXZED">
+<meta property="og:title" content="Building An HTTP Server From Scratch — BREEXZED">
+<meta property="og:description" content="I attempted building an HTTP server once before, as part of the Backend from First Principles: Complete Series track. I got stuck shortly after establishing a…">
+<meta property="og:url" content="https://www.breexzed.me/node/building_an_http_server_from_scratch">
+<meta property="og:image" content="https://www.breexzed.me/assets/og/breexzed-card.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Breexzed: Building Linux infrastructure in Go, from the kernel up.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Building An HTTP Server From Scratch — BREEXZED">
+<meta name="twitter:description" content="I attempted building an HTTP server once before, as part of the Backend from First Principles: Complete Series track. I got stuck shortly after establishing a…">
+<meta name="twitter:image" content="https://www.breexzed.me/assets/og/breexzed-card.png">
+<link rel="canonical" href="https://www.breexzed.me/node/building_an_http_server_from_scratch">
+
+<link rel="preload" href="/fonts/departure-mono/DepartureMono-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
+
+  <script type="module" crossorigin src="/assets/main-8UmhHC0V.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/owlcyon-CjrvBPHe.css">
+</head>
+<body>
+
+<canvas id="cosmos"></canvas>
+
+<nav aria-label="Primary">
+  <a href="/" class="nav-mark" data-route>BREEXZED</a>
+  <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-links" aria-label="Toggle navigation">☰</button>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="/" data-route>Home</a></li>
+    <li><a href="/corpus" data-route>Corpus</a></li>
+    <li><a href="/signals" data-route>Signal</a></li>
+    <li><a href="/projects" data-route>Projects</a></li>
+    <li><a href="/whoami" data-route><span aria-hidden="true">✦</span> whoami?</a></li>
+  </ul>
+</nav>
+
+<section id="home" class="hero route-hidden">
+  <div class="wrap hero-wrap">
+    <p class="hero-epoch reveal">BREEXZED</p>
+    <div class="hero-manifesto reveal">
+      <p>Welcome to the estate.</p>
+      <p>I've been tracing systems, signals and building what i find useful.</p>
+    </div>
+
+  </div>
+</section>
+
+<section id="corpus" class="surface-section route-hidden" data-title="Corpus">
+  <div class="wrap">
+    <p class="s-label reveal">Corpus</p>
+    <div class="section-head reveal">
+      <h2 class="s-title">Projects, concepts, and articulations.</h2>
+      <p class="section-copy">Here we have a filtered index of the work and ideas that make up the estate.</p>
+    </div>
+    <div class="filter-row reveal" id="corpus-filters"></div>
+    <div id="corpus-grid" class="reveal"></div>
+  </div>
+</section>
+
+<section id="node-page" class="surface-section">
+  <div class="wrap">
+    <div id="node-page-shell">
+      <div class="node-page-shell">
+        <div class="node-page-hero panel deep">
+          <h1 class="node-page-title">Building An HTTP Server From Scratch</h1>
+          <p class="node-page-formula">documentation -&gt; implementation -&gt; capability</p>
+          
+        </div>
+        <article class="node-page-article panel deep">
+          <div class="node-content node-page-content"><p>I attempted building an HTTP server once before, as part of the <a href="https://backend-from-first-principle.vercel.app/">Backend from First Principles: Complete Series</a> track. I got stuck shortly after establishing a TCP connection and sending requests to it — hardcoded request, hardcoded response. Those early stages live in that project&#39;s git commit logs.</p>
+<p>The first attempt lives in <a href="https://github.com/breexzed/http-from-scratch">http-from-scratch on GitHub</a>.</p>
+<p>Later I came across the insights from <em>On Learning, Finding Projects, and Building Towards a Mind of Gold</em>, and I have a much clearer picture now of how I want to approach building this. I&#39;m still unclear on a lot of the implementation details, but I plan to use this exact medium — this log — to break through them. I know I can do it. I will overcome every block.</p>
+<h2>Project Overview</h2>
+<p>I read an intern&#39;s article on rate limiting at incident.io, as part of the protocols from <em>On Learning, Finding Projects, and Building Towards a Mind of Gold</em>. Here&#39;s the blog: <a href="https://dev.to/vivekalhat/rate-limiting-for-beginners-what-it-is-and-how-to-build-one-in-go-955">Rate limiting for beginners</a>.</p>
+<p>I took it to ChatGPT and used some of the prompts from the protocol I&#39;d followed. The infographic above is the result of that session.</p>
+<h3>The why, what, and how (task, tool, scope)</h3>
+<p>I&#39;d already been attempting to build an HTTP server. Then I found the rate-limiting blog, and I wanted to build one at a scale I could actually manage. So I decided — why not use the HTTP server as the base and scale toward the rate limiter, since they sit in the same field? ChatGPT helped me concretize that instinct and gave me the roadmap (and the infographic above) to build:</p>
+<blockquote>
+<p>A small HTTP server in Go that starts as a bare process accepting requests, and gradually evolves into a measurable, resilient, concurrent, performance-tested piece of infrastructure.</p>
+</blockquote>
+<p>Repo: <a href="https://github.com/breexzed/httpd-go">httpd-go</a></p>
+<table>
+<thead>
+<tr>
+<th>Stage</th>
+<th>Move</th>
+<th>Capability</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>BUILD</td>
+<td>HTTP server</td>
+</tr>
+<tr>
+<td>2</td>
+<td>OBSERVE</td>
+<td>Logging</td>
+</tr>
+<tr>
+<td>3</td>
+<td>REMEMBER</td>
+<td>Request counter</td>
+</tr>
+<tr>
+<td>4</td>
+<td>CONTROL</td>
+<td>Rate limiter</td>
+</tr>
+<tr>
+<td>5</td>
+<td>MODEL ENTITIES</td>
+<td>Per-client state</td>
+</tr>
+<tr>
+<td>6</td>
+<td>COMPOSE</td>
+<td>Concurrent clients</td>
+</tr>
+<tr>
+<td>7</td>
+<td>HANDLE CONCURRENCY</td>
+<td>Timeouts</td>
+</tr>
+<tr>
+<td>8</td>
+<td>BOUND TIME</td>
+<td>Connection limits</td>
+</tr>
+<tr>
+<td>9</td>
+<td>CONTROL LIFECYCLE</td>
+<td>Graceful shutdown</td>
+</tr>
+<tr>
+<td>10</td>
+<td>MEASURE</td>
+<td>Metrics</td>
+</tr>
+<tr>
+<td>11</td>
+<td>STRESS</td>
+<td>Load testing</td>
+</tr>
+<tr>
+<td>12</td>
+<td>BREAK</td>
+<td>Failure injection</td>
+</tr>
+<tr>
+<td>13</td>
+<td>COMPARE</td>
+<td>Benchmarking</td>
+</tr>
+<tr>
+<td>14</td>
+<td>DIAGNOSE</td>
+<td>Profiling</td>
+</tr>
+<tr>
+<td>15</td>
+<td>DISTRIBUTE</td>
+<td>Distributed rate limiting</td>
+</tr>
+</tbody></table>
+<p>This folder is where I document the process of my learning — the struggles, the concepts I come across, the insights, and what changes in me as I keep crossing the boundary of my own understanding. Using documentation, experiments, deliberate information collection, and agents primarily as research, debugging, and critique instruments.</p>
+<p>I wish myself good luck.</p>
+</div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="not-found" class="surface-section route-hidden">
+  <!-- Inert until a 404 route mounts it, so crawlers and link previews never read it as page text. -->
+  <template id="not-found-template">
+    <div class="wrap">
+      <p class="s-label reveal">404</p>
+      <div class="section-head reveal">
+        <h2 class="s-title">You found an unmade room.</h2>
+        <p class="section-copy">This page has not taken shape yet. The estate is still becoming, but there are a few live surfaces waiting for you.</p>
+      </div>
+      <div class="not-found-links reveal">
+        <a class="not-found-link panel mid" href="/corpus" data-route>
+          <span class="node-route-card-type">Corpus</span>
+          <strong>Enter the corpus</strong>
+          <span>Projects, concepts, and articulations gathered in one field.</span>
+        </a>
+        <a class="not-found-link panel mid" href="/projects" data-route>
+          <span class="node-route-card-type">Projects</span>
+          <strong>Visit the project lab</strong>
+          <span>Dedicated builds, experiments, and systems in motion.</span>
+        </a>
+      </div>
+      <p class="not-found-return"><a href="/" data-route>Return home</a> · <a href="/llms.txt">AI retrieval guide</a></p>
+    </div>
+  </template>
+</section>
+
+<section id="signals" class="surface-section route-hidden" data-title="Signal">
+  <div class="wrap">
+    <p class="s-label reveal">Signal</p>
+    <div class="section-head reveal">
+      <h2 class="s-title">Signals and trails.</h2>
+      <p class="section-copy">Here, I document the signals I encounter in the world as they express themselves within my field of resonance. I note them explicitly, along with the traces of how I encountered them. I explore their diverse natures to learn from them and to make predictions inferred from the lenses they share. Signals may include, but are not limited to, a person, a niche, or a group of people within a culture or subcultural organism.</p>
+    </div>
+    <div id="signals-list" class="reveal"></div>
+  </div>
+</section>
+
+<section id="projects" class="surface-section route-hidden" data-title="Projects">
+  <div class="wrap">
+    <p class="s-label reveal">Projects</p>
+    <div class="section-head reveal">
+      <h2 class="s-title">Dedicated project surface.</h2>
+      <p class="section-copy">This is the lab where I build systems out of the estate's ontology-driven corpus. Projects are also informed by signals and by the trails that led to them. Like every lab, this one is an ongoing work in progress.</p>
+    </div>
+    <div id="projects-grid" class="reveal"></div>
+  </div>
+</section>
+
+<section id="whoami" class="surface-section route-hidden" data-title="whoami">
+  <div class="wrap">
+    <p class="s-label reveal">whoami?</p>
+    <div class="section-head reveal">
+      <h2 class="s-title">About me.</h2>
+    </div>
+    <div class="whoami-panel reveal">
+      <div class="whoami-layout">
+        <figure class="whoami-portrait">
+          <img src="/assets/about/breexzed-portrait.svg" alt="BREEXZED portrait" loading="eager">
+        </figure>
+        <div class="whoami-copy">
+          <p>Building Linux infrastructure in Go, from the kernel up.<br>I write about what i build, and what they taught me.</p>
+          <p>Trapped within constraints that suffocate being and becoming, i untie myself from the shackles bound on me, through the dispersion of my soul and the traces i leave of having existed, homage to the one in me who knows nothing, but wants to learn.</p>
+          <p>Having seen how i saw myself, i realized, there was little i knew apart from myself. Self-knowledge is no mystery, understanding one thing is an implicit attribution to the one who understands. I want to have an understanding, yes of me, but more also of the world around me and of how it constituted, what role i could play in bringing out the beautiful pain of being this specific being, this person, whoami&gt; breexzed</p>
+          <p>How does one do it? You know what you want and you want to become this specific type of person. Not accidentally, not curated. Enacted. Being-as-configuration.</p>
+          <p>My little philosophy on this:</p>
+          <blockquote class="whoami-quote">
+            <p>The work of becoming great perhaps is in the act of becoming less. Recognizing the daily struggles of creating order and being one with it within the flux of life's moment.</p>
+            <p>Do you have a role model or is this dream so unique? What materials do you need to interact with to put yourself into the orbit of the class of such objects? How do you backtrack from where you’ve found what’s closest to your own truth?</p>
+            <p>Curiosity already brought you here. It will not take you back, only keep you in check. Sustain you in orbit. But the actual work of moving in alignment with the systems of the space you inhabit is solely up to how you can navigate the antigravity of your position.</p>
+            <p>In relation to the pulling forces of the bodies around you. Distractions, and sometimes, necessities. Calling them for what they are, hindrances to being who you think you could be without hindrances. But being honest with yourself, are you the type of person yet?</p>
+            <p>If you cannot manage your current life well enough to change its trajectory, do you expect something or someone else to impose order on your behalf for you? How close are you to your own truth in the first place, or is it only just an image in your head?</p>
+            <p>Seed of becoming planted in self.</p>
+            <cite>-Breexzed Daffodils</cite>
+          </blockquote>
+          <p class="whoami-note">I'll keep trying to find something to write about who I am, but for the time being, rejoice with me for who I'm becoming.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-in">
+    <div class="foot-left">
+      <p>BREEXZED</p>
+      <p class="foot-copy">A home for traces, projects, learning, and the slow arrangement of understanding.</p>
+    </div>
+    <div class="foot-right" id="footer-socials"></div>
+  </div>
+</footer>
+
+</body>
+</html>
