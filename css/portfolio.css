@@ -4,13 +4,13 @@
 .pf a:hover,.pf a:focus-visible{text-decoration:underline;text-underline-offset:3px;outline:none}
 
 .pf-nav{display:flex;flex-wrap:wrap;border-bottom:1px solid var(--wire-1);margin-bottom:40px}
-.pf-nav a{display:inline-flex;align-items:center;min-height:38px;padding:0 14px;font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--t-lo);border-bottom:1px solid transparent;transform:translateY(1px)}
+.pf-nav a{display:inline-flex;align-items:center;min-height:38px;padding:0 14px;font-family:var(--display);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--t-lo);border-bottom:1px solid transparent;transform:translateY(1px)}
 .pf-nav a:first-child{padding-left:0}
 .pf-nav a.active{color:var(--t-hi);border-bottom-color:var(--accent)}
 .pf-nav a:hover{color:var(--t-hi);text-decoration:none}
 
-.pf h1{font-family:var(--display);font-size:clamp(44px,9vw,72px);font-weight:760;line-height:.92;letter-spacing:-.03em;color:var(--t-hi)}
-.pf-sub{margin-top:12px;font-size:10px;letter-spacing:.34em;text-transform:uppercase;color:var(--t-lo)}
+.pf h1{font-family:var(--display);font-size:66px;font-weight:400;line-height:1;color:var(--t-hi)}
+.pf-sub{margin-top:12px;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--t-lo)}
 .pf-summary{margin-top:20px;font-size:17px;line-height:1.5;color:var(--t-hi)}
 .pf-links{display:flex;flex-wrap:wrap;gap:6px 12px;margin-top:16px;color:var(--t-lo)}
 .pf-links a::before{content:'[';color:var(--t-void)}
@@ -18,14 +18,14 @@
 .pf-portrait{width:132px;height:132px;margin-top:24px;border:1px solid var(--wire-1);border-radius:3px;object-fit:cover;background:var(--fill-1)}
 
 .pf-section{padding-top:48px}
-.pf h2{margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid var(--wire-0);font-family:var(--display);font-size:30px;font-weight:700;line-height:1.1;letter-spacing:-.025em;color:var(--t-hi)}
-.pf h3{display:inline;font-family:var(--display);font-size:19px;font-weight:700;letter-spacing:-.01em;color:var(--t-hi)}
+.pf h2{margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid var(--wire-0);font-family:var(--display);font-size:33px;font-weight:400;line-height:1.2;color:var(--t-hi)}
+.pf h3{display:inline;font-family:var(--display);font-size:22px;font-weight:400;color:var(--t-hi)}
 
 .pf-greentext{padding:4px 0 4px 16px;border-left:2px solid var(--wire-2);color:var(--t-mid);line-height:1.9}
 .pf-interests{margin-top:16px;color:var(--t-lo)}
 
 .pf-entries{display:grid;gap:26px}
-.pf-time{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--t-void)}
+.pf-time{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--t-void)}
 .pf-tech{margin-top:2px;font-size:12px;color:var(--t-lo)}
 .pf-desc{margin-top:6px}
 .pf ul{list-style:none;margin-top:8px}
@@ -42,7 +42,8 @@
 
 @media (max-width:640px){
   .pf{padding:24px 16px 56px}
-  .pf-nav a{padding:0 10px;letter-spacing:.16em}
-  .pf h2{font-size:24px}
+  .pf-nav a{padding:0 10px;letter-spacing:1px}
+  .pf h1{font-size:44px}
+  .pf h2{font-size:22px}
   .pf-summary{font-size:15px}
 }
