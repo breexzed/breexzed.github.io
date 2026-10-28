@@ -34,10 +34,6 @@
 .pf li::before{content:'-';position:absolute;left:0;color:var(--t-void)}
 .pf-entry .pf-links{margin-top:8px}
 
-.pf-muted{color:var(--t-lo)}
-.pf-gaps li{color:var(--t-mid)}
-.pf-gaps .pf-status{color:var(--t-void)}
-
 .pf-foot{margin-top:56px;padding-top:14px;border-top:1px solid var(--wire-0);font-size:11px;color:var(--t-void)}
 
 @media (max-width:640px){
